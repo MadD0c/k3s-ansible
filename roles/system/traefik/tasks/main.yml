@@ -1,0 +1,31 @@
+---
+- name: Add traefik repository
+  community.kubernetes.helm_repository:
+    name: traefik
+    repo_url: https://helm.traefik.io/traefik
+
+- name: Deploy traefik
+  community.kubernetes.helm:
+    name: traefik
+    chart_ref: traefik/traefik
+    release_namespace: traefik
+    create_namespace: true
+    
+- name: Copy traefik update files
+  copy:
+     src: roles/traefik/templates/update-traefik.sh
+     dest: "{{ temp_dir }}/update-traefik.sh"
+     owner: ansible
+     mode: '0700'
+
+- name: Copy over traefik settings file
+  template:
+    src: "{{ item }}"
+    dest: "{{ temp_dir }}/{{ item }}"
+  with_items:
+    - traefik-rbac.yaml
+    - traefik-deployment.yaml
+    - traefik-service.yaml
+
+- name: Update traefik
+  command: "sh {{ temp_dir }}/update-traefik.sh"
