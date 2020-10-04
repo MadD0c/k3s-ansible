@@ -1,0 +1,19 @@
+---
+   
+- name: Copy Metallb Instalastion files
+  copy:
+     src: roles/metallb/templates/metallb.sh
+     dest: "{{ temp_dir }}/metallb.sh"
+     owner: ansible
+     mode: '0700'
+     
+- name: Copy Metallb Config files
+  copy:
+     src: roles/metallb/templates/config.yml
+     dest: "{{ temp_dir }}/config.yml"
+
+- name: Install Metallb
+  command: "sh {{ temp_dir }}/metallb.sh"
+  
+- name: Configure Metallb
+  command: "kubectl apply -f {{ temp_dir }}/config.yml"
