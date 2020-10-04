@@ -1,0 +1,9 @@
+---
+kind: TLSStore
+apiVersion: traefik.containo.us/v1alpha1
+metadata:
+  name: default
+  namespace: default
+spec:
+  defaultCertificate:
+    secretName: mccannclan.family-prod
