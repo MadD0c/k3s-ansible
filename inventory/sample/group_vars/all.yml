@@ -14,15 +14,16 @@ cert_manager_issuer_staging: certissuer-staging
 # network related
 metallb_mode: layer2
 metallb_address_range: 192.168.1.120-192.168.1.200
+network_subnet: 192.168.1.0/24
 
 # storage options
-storage:
-  storage_type: device
-  device: /dev/sda
-  location: /mnt/ssd
-  wipe: true
+#storage:
+#  storage_type: device
+#  device: /dev/sda
+#  location: /mnt/ssd
+#  wipe: true
 
-# storage:
-#   storage_type: local
-#   location: /home/k8s/kube_storage
-#   wipe: true
+storage:
+  storage_type: local
+  location: /home/k8s/kube_storage
+  wipe: true
