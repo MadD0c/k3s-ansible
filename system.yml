@@ -1,6 +1,19 @@
 ---
+- hosts: master
+  become: yes
+  roles:
+    - role: system/nfs/server
+
+- hosts: node
+  become: yes
+  roles:
+    - role: system/nfs/client
 
 - hosts: master
   become: yes
   roles:
-    - role: k3s/master
+    - role: system/helm
+    - role: system/metallb
+    - role: system/nfs/provisioner
+    - role: system/cert-manager
+    - role: system/traefik
