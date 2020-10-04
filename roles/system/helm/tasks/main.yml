@@ -1,0 +1,9 @@
+---
+- name: Download file from a file path
+  get_url:
+    url: https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+    dest: "{{ temp_dir }}/get_helm.sh"
+    mode: '0770'
+    
+- name: Install Helm
+  command: "sh {{ temp_dir }}/get_helm.sh"
