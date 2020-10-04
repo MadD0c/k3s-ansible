@@ -14,18 +14,18 @@
 - name: Copy traefik update files
   copy:
      src: roles/traefik/templates/update-traefik.sh
-     dest: "{{ temp_dir }}/update-traefik.sh"
+     dest: "{{ remote_tmp }}/update-traefik.sh"
      owner: ansible
      mode: '0700'
 
 - name: Copy over traefik settings file
   template:
     src: "{{ item }}"
-    dest: "{{ temp_dir }}/{{ item }}"
+    dest: "{{ remote_tmp }}/{{ item }}"
   with_items:
     - traefik-rbac.yaml
     - traefik-deployment.yaml
     - traefik-service.yaml
 
 - name: Update traefik
-  command: "sh {{ temp_dir }}/update-traefik.sh"
+  command: "sh {{ remote_tmp }}/update-traefik.sh"
