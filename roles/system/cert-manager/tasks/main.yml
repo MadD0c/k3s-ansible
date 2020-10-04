@@ -2,7 +2,7 @@
 - name: Copy over helm deploy file
   template:
     src: cert-manager-helm.yaml
-    dest: "{{ temp_dir }}/cert-manager-helm.yaml"
+    dest: "{{ remote_tmp }}/cert-manager-helm.yaml"
 
 - name: Install cert-manager crds
   shell: "kubectl apply --validate=false -f {{ cert_manager_crds_url }}"
@@ -11,12 +11,12 @@
   k8s:
     state: present
     kubeconfig: /etc/rancher/k3s/k3s.yaml
-    src: "{{ temp_dir }}/cert-manager-helm.yaml"
+    src: "{{ remote_tmp }}/cert-manager-helm.yaml"
 
 - name: Copy over clusterIssuer files
   template:
     src: "{{ item }}"
-    dest: "{{ temp_dir }}/{{ item }}"
+    dest: "{{ remote_tmp }}/{{ item }}"
   with_items:
     - prod-clusterissuer.yaml
     - staging-clusterissuer.yaml
@@ -28,18 +28,18 @@
     state: present
     namespace: cert-manager
     kubeconfig: /etc/rancher/k3s/k3s.yaml
-    src: "{{ temp_dir }}/do-secrets.yaml"
+    src: "{{ remote_tmp }}/do-secrets.yaml"
 
 - name: Remove secret file
   file:
-    path: "{{ temp_dir }}/do-secrets.yaml"
+    path: "{{ remote_tmp }}/do-secrets.yaml"
     state: absent
     
 - name: Creating clusterIssuer
   k8s:
     state: present
     kubeconfig: /etc/rancher/k3s/k3s.yaml
-    src: "{{ temp_dir }}/{{ item }}"
+    src: "{{ remote_tmp }}/{{ item }}"
   with_items:
     - prod-clusterissuer.yaml
     - staging-clusterissuer.yaml
