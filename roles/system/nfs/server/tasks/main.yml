@@ -1,0 +1,44 @@
+---
+- name: Mount Storage
+  become: yes
+  mount:
+    path: "{{ storage.location }}"
+    src: "{{ storage.device }}"
+    fstype: ext4
+    state: mounted
+  when: storage.storage_type == "device"
+
+- name: Set permission on mount
+  become: yes
+  file:
+    path: "{{ storage.location }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  when: storage.storage_type == "device"
+
+- name: Ensure local directory
+  file:
+    path: "{{ storage.location }}"
+    state: directory
+  when: storage.storage_type == "local"
+
+- name: Install nfs-kernel-server
+  become: yes
+  apt:
+    name: nfs-kernel-server
+    state: present
+
+- name: Copy nfs exports
+  become: yes
+  template:
+    src: exports
+    dest: /etc/exports
+    group: root
+    owner: root
+
+- name: Restart nfs server
+  become: yes
+  service:
+    name: nfs-kernel-server
+    state: restarted
