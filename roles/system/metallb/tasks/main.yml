@@ -1,22 +1,18 @@
 ---
-   
-- name: Copy Metallb Instalastion files
-  copy:
-     src: roles/metallb/templates/metallb.sh
-     dest: "{{ temp_dir }}/metallb.sh"
-     owner: ansible
-     mode: '0700'
      
+- name: Install Metallb - Step 1
+  command: kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
+
+- name: Install Metallb - Step 2
+  command: kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
+
+- name: Generate Metallb Secret
+  command: kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+
 - name: Copy Metallb Config files
   copy:
      src: roles/metallb/templates/config.yml
      dest: "{{ temp_dir }}/config.yml"
-
-- name: Install Metallb - Step 1
-  command: "kubectl apply -f {{ temp_dir }}/config.yml"
-
-- name: Install Metallb - Step 2
-  command: "kubectl apply -f {{ temp_dir }}/config.yml"
 
 - name: Configure Metallb
   command: "kubectl apply -f {{ temp_dir }}/config.yml"
