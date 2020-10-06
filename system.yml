@@ -17,7 +17,7 @@
 - hosts: master
   become: yes
   roles:
-    - role: system/helm
+    - role: andrewrothstein.kubernetes-helm
     - role: system/metallb
     - role: system/nfs/provisioner
     - role: system/cert-manager
