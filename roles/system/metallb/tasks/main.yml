@@ -1,4 +1,4 @@
----
+te---
      
 - name: Install Metallb - Step 1
   command: kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
@@ -12,7 +12,7 @@
 - name: Copy Metallb Config files
   copy:
      src: roles/metallb/templates/config.yml
-     dest: "{{ temp_dir }}/config.yml"
+     dest: "{{ remote_dir }}/config.yml"
 
 - name: Configure Metallb
-  command: "kubectl apply -f {{ temp_dir }}/config.yml"
+  command: "kubectl apply -f {{ remote_dir }}/config.yml"
