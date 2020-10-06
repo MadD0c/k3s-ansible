@@ -12,8 +12,11 @@
      src: roles/metallb/templates/config.yml
      dest: "{{ temp_dir }}/config.yml"
 
-- name: Install Metallb
-  command: "sh {{ temp_dir }}/metallb.sh"
-  
+- name: Install Metallb - Step 1
+  command: "kubectl apply -f {{ temp_dir }}/config.yml"
+
+- name: Install Metallb - Step 2
+  command: "kubectl apply -f {{ temp_dir }}/config.yml"
+
 - name: Configure Metallb
   command: "kubectl apply -f {{ temp_dir }}/config.yml"
