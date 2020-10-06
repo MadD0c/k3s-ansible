@@ -11,13 +11,6 @@
     release_namespace: traefik
     create_namespace: true
     
-- name: Copy traefik update files
-  copy:
-     src: roles/traefik/templates/update-traefik.sh
-     dest: "{{ remote_tmp }}/update-traefik.sh"
-     owner: ansible
-     mode: '0700'
-
 - name: Copy over traefik settings file
   template:
     src: "{{ item }}"
@@ -27,5 +20,12 @@
     - traefik-deployment.yaml
     - traefik-service.yaml
 
-- name: Update traefik
-  command: "sh {{ remote_tmp }}/update-traefik.sh"
+- name: Setting up Traefik
+  k8s:
+    state: present
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    src: "{{ remote_tmp }}/{{ item }}"
+  with_items:
+    - traefik-rbac.yaml
+    - traefik-deployment.yaml
+    - traefik-service.yaml
