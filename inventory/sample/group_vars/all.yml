@@ -5,6 +5,7 @@ systemd_dir: /etc/systemd/system
 master_ip: "{{ hostvars[groups['master'][0]]['ansible_host'] | default(groups['master'][0]) }}"
 extra_server_args: "--disable traefik --disable servicelb --write-kubeconfig-mode 644"
 extra_agent_args: ""
+remote_tmp : $HOME/.ansible/tmp
 
 # cert-manager
 cert_manager_crds_url: https://raw.githubusercontent.com/jetstack/cert-manager/release-0.12/deploy/manifests/00-crds.yaml
@@ -25,5 +26,5 @@ network_subnet: 192.168.1.0/24
 
 storage:
   storage_type: local
-  location: /home/k8s/kube_storage
+  location: $HOME/kube_storage
   wipe: true
