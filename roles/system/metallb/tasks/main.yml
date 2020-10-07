@@ -9,10 +9,16 @@
 #- name: Generate Metallb Secret
 #  command: kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 #
-#- name: Copy Metallb Config files
-#  copy:
-#     src: roles/metallb/templates/config.yml
-#     dest: "{{ remote_tmp }}/config.yml"
+- name: Copy Metallb Config files
+  copy:
+     src: roles/metallb/templates/config.yml
+     dest: "{{ remote_tmp }}/config.yml"
+
+#- name: Configure Metallb
+#  command: "kubectl apply -f {{ remote_tmp }}/config.yml"
 
 - name: Configure Metallb
-  command: "kubectl apply -f {{ remote_tmp }}/config.yml"
+  k8s:
+    state: present
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    src: "{{ remote_tmp }}/config.yml"
