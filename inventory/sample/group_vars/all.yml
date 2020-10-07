@@ -19,6 +19,8 @@ cert_manager_crds_url: https://raw.githubusercontent.com/jetstack/cert-manager/r
 cert_manager_issuer_prod: certissuer-prod
 cert_manager_issuer_staging: certissuer-staging
 acme_email: someone@somewhere.com
+acme_staging_url: https://acme-staging-v02.api.letsencrypt.org/directory
+acme_prod_url: https://acme-v02.api.letsencrypt.org/directory
 
 # network related
 metallb_mode: layer2
