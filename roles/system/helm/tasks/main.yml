@@ -7,15 +7,15 @@
 #- name: Install Helm
 #  command: "curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash"
 #  
-- name: ansible create directory example
-  file:
-    path: /usr/local/bin/helm
-    state: directory
+#- name: ansible create directory example
+#  file:
+#    path: /usr/local/bin/helm
+#    state: directory
 
 - name: Install Helm (x86)
   unarchive:
     src: "https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz"
-    dest: /usr/local/bin/helm
+    dest: /usr/local/bin
     remote_src: yes
   when: ansible_facts.architecture == "x86_64"
 
@@ -23,7 +23,7 @@
 - name: Install Helm (arm64)
   unarchive:
     src: "https://get.helm.sh/helm-{{ helm_version }}-linux-arm64.tar.gz"
-    dest: /usr/local/bin/helm
+    dest: /usr/local/bin
     remote_src: yes
   when:
     - ( ansible_facts.architecture is search("arm") and
@@ -33,8 +33,9 @@
 - name: Install Helm (armhf)
   unarchive:
     src: "https://get.helm.sh/helm-{{ helm_version }}-linux-arm.tar.gz"
-    dest: /usr/local/bin/helm
+    dest: /usr/local/bin
     remote_src: yes
   when:
     - ansible_facts.architecture is search("arm")
     - ansible_facts.userspace_bits == "32"
+
