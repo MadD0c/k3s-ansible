@@ -17,6 +17,7 @@
 - hosts: master
   become: yes
   roles:
+     - role: system/openshift
 #    - role: andrewrothstein.kubernetes-helm
     - role: system/metallb
     - role: system/nfs/provisioner
