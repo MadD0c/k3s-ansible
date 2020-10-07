@@ -1,9 +1,13 @@
 ---
-- name: Copy over helm deploy file
-  template:
-    src: cert-manager-helm.yaml
-    dest: "{{ remote_tmp }}/cert-manager-helm.yaml"
-
+#- name: Copy over helm deploy file
+#  template:
+#    src: cert-manager-helm.yaml
+#    dest: "{{ remote_tmp }}/cert-manager-helm.yaml"
+- name: Add jetstack repo
+  community.kubernetes.helm_repository:
+    name: jetstack
+    repo_url: "{{ jetstack_chart_url }}"
+    
 - name: Install cert-manager crds
   shell: "kubectl apply --validate=false -f {{ cert_manager_crds_url }}"
 
@@ -16,7 +20,7 @@
   community.kubernetes.helm:
     kubeconfig: /etc/rancher/k3s/k3s.yaml
     name: cert-manager
-    chart_ref: "{{ jetstack_chart_url }}"
+    chart_ref: jetstack/cert-manager 
     release_namespace: cert-manager
     
 - name: Copy over clusterIssuer files
