@@ -18,7 +18,7 @@
     dest: "{{ remote_tmp }}/{{ item }}"
     mode:  666
   with_items:
-    - traefik-ingress.yaml
+    #- traefik-ingress.yaml
     - traefik-deployment.yaml
     #- traefik-middleware.yaml
   
@@ -29,6 +29,6 @@
     namespace: default
     src: "{{ remote_tmp }}/{{ item }}"
   with_items:
-    - traefik-ingress.yaml
+    #- traefik-ingress.yaml
     - traefik-deployment.yaml
    # - traefik-middleware.yaml
