@@ -7,12 +7,17 @@
 - name: Install cert-manager crds
   shell: "kubectl apply --validate=false -f {{ cert_manager_crds_url }}"
 
+#- name: Install cert-manager from helm
+#  k8s:
+#    state: present
+#    kubeconfig: /etc/rancher/k3s/k3s.yaml
+#    src: "{{ remote_tmp }}/cert-manager-helm.yaml"
 - name: Install cert-manager from helm
-  k8s:
-    state: present
-    kubeconfig: /etc/rancher/k3s/k3s.yaml
-    src: "{{ remote_tmp }}/cert-manager-helm.yaml"
-
+  community.kubernetes.helm:
+    name: cert-manager
+    chart_ref: "{{ jetstack_chart_url }}"
+    release_namespace: cert-manager
+    
 - name: Copy over clusterIssuer files
   template:
     src: "{{ item }}"
