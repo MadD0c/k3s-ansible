@@ -23,7 +23,7 @@ spec:
           emptyDir: {}
       containers:
         - name: traefik
-          image: 'traefik:v2.3.0'
+          image: {{ traefik_image }}
           args:
             - '--global.checknewversion'
             - '--global.sendanonymoususage'
