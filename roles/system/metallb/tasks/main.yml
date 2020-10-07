@@ -9,10 +9,12 @@
 #- name: Generate Metallb Secret
 #  command: kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 #
-- name: Copy Metallb Config files
-  copy:
-     src: roles/metallb/templates/config.yml
-     dest: "{{ remote_tmp }}/config.yml"
+- name: Copy over MetalLB config file
+  template:
+    src: "{{ item }}"
+    dest: "{{ remote_tmp }}/{{ item }}"
+  with_items:
+    - config.yml
 
 #- name: Configure Metallb
 #  command: "kubectl apply -f {{ remote_tmp }}/config.yml"
