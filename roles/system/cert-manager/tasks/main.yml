@@ -22,6 +22,7 @@
     name: cert-manager
     chart_ref: jetstack/cert-manager 
     release_namespace: cert-manager
+    create_namespace: true
     
 - name: Copy over clusterIssuer files
   template:
