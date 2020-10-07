@@ -1,27 +1,3 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: security
-spec:
-  headers:
-    frameDeny: true
-    sslRedirect: true
-    browserXssFilter: true
-    contentTypeNosniff: true
-    #HSTS
-    stsIncludeSubdomains: true
-    stsPreload: true
-    stsSeconds: 31536000
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: redirect-https
-spec:
-  redirectScheme:
-    scheme: https
-    permanent: true
-    port: "443"
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -124,21 +100,6 @@ apiVersion: traefik.containo.us/v1alpha1
 metadata:
   name: traefik-dashboard
   namespace: default
-spec:
-  entryPoints:
-    - traefik
-  routes:
-    - kind: Rule
-      match: PathPrefix(`/dashboard`) || PathPrefix(`/api`)
-      services:
-        - kind: TraefikService
-          name: api@internal
----
-kind: IngressRoute
-apiVersion: traefik.containo.us/v1alpha1
-metadata:
-  name: traefik-dashboard
-  namespace: kube-system
 spec:
   entryPoints:
     - traefik
