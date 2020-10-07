@@ -20,7 +20,7 @@
   with_items:
     - traefik-ingress.yaml
     - traefik-deployment.yaml
-    - traefik-middleware.yaml
+    #- traefik-middleware.yaml
   
 - name: Setting up Traefik
   k8s:
@@ -31,4 +31,4 @@
   with_items:
     - traefik-ingress.yaml
     - traefik-deployment.yaml
-    - traefik-middleware.yaml
+   # - traefik-middleware.yaml
