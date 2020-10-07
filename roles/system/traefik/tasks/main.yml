@@ -16,10 +16,11 @@
   template:
     src: "{{ item }}"
     dest: "{{ remote_tmp }}/{{ item }}"
+    mode:  666
   with_items:
     - traefik-ingress.yaml
     - traefik-deployment.yaml
-  mode:  666
+  
   
 - name: Setting up Traefik
   k8s:
