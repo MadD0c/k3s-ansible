@@ -36,5 +36,5 @@ network_subnet: 192.168.1.0/24
 
 storage:
   storage_type: local
-  location: $HOME/kube_storage
+  location: /home/ansible/kube_storage
   wipe: true
