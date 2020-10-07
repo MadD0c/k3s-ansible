@@ -1,0 +1,14 @@
+---
+
+- name: Install Docker Dependencies
+  apt:
+    pkg:
+    - nfs-common
+    - python3-pip
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg-agent
+    - software-properties-common
+    update_cache: yes
+    state: present
