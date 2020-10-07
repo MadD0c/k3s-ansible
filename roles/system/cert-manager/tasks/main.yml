@@ -1,28 +1,20 @@
 ---
-#- name: Copy over helm deploy file
-#  template:
-#    src: cert-manager-helm.yaml
-#    dest: "{{ remote_tmp }}/cert-manager-helm.yaml"
-- name: Add jetstack repo
-  community.kubernetes.helm_repository:
-    name: jetstack
-    repo_url: "{{ jetstack_chart_url }}"
+
+#- name: Add jetstack repo
+#  community.kubernetes.helm_repository:
+#    name: jetstack
+#    repo_url: "{{ jetstack_chart_url }}"
     
-- name: Install cert-manager crds
-  shell: "kubectl apply --validate=false -f {{ cert_manager_crds_url }}"
+#- name: Install cert-manager crds
+#  shell: "kubectl apply --validate=false -f {{ cert_manager_crds_url }}"
 
 #- name: Install cert-manager from helm
-#  k8s:
-#    state: present
+#  community.kubernetes.helm:
 #    kubeconfig: /etc/rancher/k3s/k3s.yaml
-#    src: "{{ remote_tmp }}/cert-manager-helm.yaml"
-- name: Install cert-manager from helm
-  community.kubernetes.helm:
-    kubeconfig: /etc/rancher/k3s/k3s.yaml
-    name: cert-manager
-    chart_ref: jetstack/cert-manager 
-    release_namespace: cert-manager
-    create_namespace: true
+#    name: cert-manager
+#    chart_ref: jetstack/cert-manager 
+#    release_namespace: cert-manager
+#    create_namespace: true
     
 - name: Copy over clusterIssuer files
   template:
@@ -34,12 +26,12 @@
     - tslstore.yaml
     - do-secrets.yaml
 
-- name: Import secret
-  k8s:
-    state: present
-    namespace: cert-manager
-    kubeconfig: /etc/rancher/k3s/k3s.yaml
-    src: "{{ remote_tmp }}/do-secrets.yaml"
+#- name: Import secret
+#  k8s:
+#    state: present
+#    namespace: cert-manager
+#    kubeconfig: /etc/rancher/k3s/k3s.yaml
+#    src: "{{ remote_tmp }}/do-secrets.yaml"
 
 - name: Remove secret file
   file:
