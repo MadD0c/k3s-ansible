@@ -1,0 +1,5 @@
+---
+- name: Install Openshift module
+  pip:
+    name: openshift
+    extra_args: --user
