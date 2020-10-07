@@ -7,7 +7,6 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: traefik
-  namespace: kube-system
 spec:
   replicas: 1
   selector:
@@ -132,7 +131,6 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: traefik-data
-  namespace: kube-system
 spec:
   accessModes:
     - ReadWriteOnce
