@@ -7,6 +7,11 @@
 #- name: Install Helm
 #  command: "curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash"
 #  
+- name: ansible create directory example
+  file:
+    path: /usr/local/bin/helm
+    state: directory
+
 - name: Install Helm (x86)
   unarchive:
     src: "https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz"
