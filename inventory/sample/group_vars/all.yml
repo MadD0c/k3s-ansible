@@ -1,6 +1,7 @@
 ---
 k3s_version: v1.17.5+k3s1
 helm_version: v3.3.4
+kubernetes_helm_arch: arm64
 ansible_user: debian
 systemd_dir: /etc/systemd/system
 master_ip: "{{ hostvars[groups['master'][0]]['ansible_host'] | default(groups['master'][0]) }}"
