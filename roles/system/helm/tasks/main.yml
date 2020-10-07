@@ -1,11 +1,14 @@
 ---
 #- name: Get helm install script
 #  get_url:
-#    url: https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
-#    dest: "{{ remote_tmp }}/get_helm.sh"
-#    mode: '0700'
-    
+#    url: https://get.helm.sh/helm-v3.3.4-linux-arm64.tar.gz
+#    dest: "{{ remote_tmp }}/helm.tar.gz"
+
 #- name: Install Helm
-#  command: "sh {{ remote_tmp }}/get_helm.sh"
-- name: Install Helm
-  command: "curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash"
+#  command: "curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash"
+#  
+- name: Unarchive a file that needs to be downloaded (added in 2.0)
+  unarchive:
+    src: https://get.helm.sh/helm-v3.3.4-linux-arm64.tar.gz
+    dest: /usr/local/bin/helm
+    remote_src: yes
