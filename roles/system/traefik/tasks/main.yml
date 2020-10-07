@@ -19,11 +19,13 @@
   with_items:
     - traefik-ingress.yaml
     - traefik-deployment.yaml
-    
+  mode:  666
+  
 - name: Setting up Traefik
   k8s:
     state: present
     kubeconfig: /etc/rancher/k3s/k3s.yaml
+    namespace: default
     src: "{{ remote_tmp }}/{{ item }}"
   with_items:
     - traefik-ingress.yaml
