@@ -11,8 +11,8 @@ image:
   pullPolicy: IfNotPresent
 
 nfs:
-  server:
-  path: /ifs/kubernetes
+  server: 192.168.1.200
+  path: /home/ansible/kube-storage
   mountOptions:
 
 # For creating the StorageClass automatically:
@@ -24,7 +24,7 @@ storageClass:
 
   # Set StorageClass as the default StorageClass
   # Ignored if storageClass.create is false
-  defaultClass: false
+  defaultClass: true
 
   # Set a StorageClass name
   # Ignored if storageClass.create is false
