@@ -15,6 +15,17 @@
   roles:
 #    - role: system/openshift
 #   - role: andrewrothstein.kubernetes-helm
+#    - role: system/helm-repo
+#    - role: system/metallb
+#    - role: system/nfs/provisioner
+#    - role: system/cert-manager
+#    - role: system/traefik
+
+- hosts: master
+  become: no
+  roles:
+#    - role: system/openshift
+#   - role: andrewrothstein.kubernetes-helm
     - role: system/helm-repo
 #    - role: system/metallb
 #    - role: system/nfs/provisioner
