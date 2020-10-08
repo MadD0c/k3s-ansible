@@ -1,14 +1,10 @@
 ---
-- name: Remove existing helm repo
-  ignore_errors: yes
-  shell:  "helm repo remove stable"
-  args:
-    warn: no
 
-- name: Install helm repo
-  shell:  "helm repo add stable {{ helm_chart_url }}"
-  args:
-    warn: no
+- name: Add traefik repository
+  community.kubernetes.helm_repository:
+    name: stable
+    repo_url: "{{ helm_chart_url }}"
+
 
 - name: Update helm repo
   shell:  "helm repo update"
