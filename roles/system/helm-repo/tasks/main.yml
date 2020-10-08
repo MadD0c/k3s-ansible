@@ -10,3 +10,7 @@
   args:
     warn: no
 
+- name: Update helm repo
+  shell:  "helm repo update"
+  args:
+    warn: no
