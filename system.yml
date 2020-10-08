@@ -14,8 +14,8 @@
   become: yes
   roles:
 #    - role: system/openshift
-    - role: andrewrothstein.kubernetes-helm
-#    - role: system/helm-repo
+#   - role: andrewrothstein.kubernetes-helm
+    - role: system/helm-repo
 #    - role: system/metallb
 #    - role: system/nfs/provisioner
 #    - role: system/cert-manager
