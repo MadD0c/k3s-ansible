@@ -1,14 +1,14 @@
 ---
      
-#- name: Install Metallb - Step 1
-#  command: kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
-#
-#- name: Install Metallb - Step 2
-#  command: kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
-#
-#- name: Generate Metallb Secret
-#  command: kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
-#
+- name: Install Metallb - Step 1
+  command: kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
+
+- name: Install Metallb - Step 2
+  command: kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
+
+- name: Generate Metallb Secret
+  command: kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+
 - name: Copy over MetalLB config file
   template:
     src: "{{ item }}"
@@ -16,11 +16,8 @@
   with_items:
     - config.yml
 
-#- name: Configure Metallb
-#  command: "kubectl apply -f {{ remote_tmp }}/config.yml"
-
 - name: Configure Metallb
-  k8s:
+  community.kubernetes.k8s:
     state: present
     kubeconfig: /etc/rancher/k3s/k3s.yaml
     src: "{{ remote_tmp }}/config.yml"
