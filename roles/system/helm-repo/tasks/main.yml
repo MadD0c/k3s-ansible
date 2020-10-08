@@ -1,6 +1,6 @@
 ---
 
-- name: Add traefik repository
+- name: Add stable repository
   community.kubernetes.helm_repository:
     name: stable
     repo_url: "{{ helm_chart_url }}"
