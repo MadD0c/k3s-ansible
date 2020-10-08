@@ -13,7 +13,7 @@
 - hosts: master
   become: yes
   roles:
-#    - role: system/openshift
+    - role: system/openshift
 #   - role: andrewrothstein.kubernetes-helm
 #    - role: system/helm-repo
 #    - role: system/metallb
