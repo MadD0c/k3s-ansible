@@ -5,18 +5,18 @@
     - role: system/essential  
     - role: system/docker
     
-- hosts: master
-  become: yes
-  roles:
-    - role: system/nfs/server
+#- hosts: master
+#  become: yes
+#  roles:
+#    - role: system/nfs/server
 
-- hosts: master
-  become: yes
-  roles:
-    - role: system/openshift
-    - role: andrewrothstein.kubernetes-helm
-    - role: system/helm-repo
-    - role: system/metallb
-    - role: system/nfs/provisioner
-    - role: system/cert-manager
-    - role: system/traefik
+#- hosts: master
+#  become: yes
+#  roles:
+#    - role: system/openshift
+#    - role: andrewrothstein.kubernetes-helm
+#    - role: system/helm-repo
+#    - role: system/metallb
+#    - role: system/nfs/provisioner
+#    - role: system/cert-manager
+#    - role: system/traefik
