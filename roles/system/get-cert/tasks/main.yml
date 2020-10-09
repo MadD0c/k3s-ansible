@@ -28,4 +28,4 @@
   with_items:
     - get_cert.yml
   when: 
-    - get_prod | bool
+    - get_cert | bool
