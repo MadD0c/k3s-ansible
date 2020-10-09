@@ -38,7 +38,7 @@
     path: "{{ remote_tmp }}/do-secrets.yaml"
     state: absent
     
-- name: Creating clusterIssuer
+- name: Creating Certificate Issuers
   k8s:
     state: present
     kubeconfig: /etc/rancher/k3s/k3s.yaml
