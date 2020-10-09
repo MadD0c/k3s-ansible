@@ -1,10 +1,15 @@
 ---
-- name: Copy over nfs provisioner config file
+- name: Add k8s-at-home repository
+  community.kubernetes.helm_repository:
+    name: k8s-at-home
+    repo_url: https://k8s-at-home.com/charts/
+
+- name: Copy over digitalocean-dyndns config file
   template:
     src: digitalocean.yaml
     dest: config.yml
 
-- name: Deploy nfs provisioner
+- name: Deploy digitalocean-dyndns
   community.kubernetes.helm:
     name: digitalocean-dyndns
     kubeconfig: /etc/rancher/k3s/k3s.yaml
