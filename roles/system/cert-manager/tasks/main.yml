@@ -23,7 +23,6 @@
   with_items:
     - prod-clusterissuer.yaml
     - staging-clusterissuer.yaml
-    - tslstore.yaml
     - do-secrets.yaml
 
 - name: Import secret
@@ -46,4 +45,3 @@
   with_items:
     - prod-clusterissuer.yaml
     - staging-clusterissuer.yaml
-    #- tslstore.yaml
