@@ -2,12 +2,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: "{{ dns_domains }}-cert.staging"
+  name: "{{ dns_domains }}-cert.prod"
   namespace: default
 spec:
-  secretName: "{{ dns_domains }}-tls-staging"
+  secretName: "{{ dns_domains }}-tls-prod"
   issuerRef:
-    name: "{{ cert_manager_issuer_staging }}"
+    name: "{{ cert_manager_issuer_prod }}"
   dnsNames:
   - "{{ dns_domains }}"
   - "{{ wdns_domains }}"
