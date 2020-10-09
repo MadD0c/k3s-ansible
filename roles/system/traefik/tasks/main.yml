@@ -1,35 +1,33 @@
 ---
-- name: Copy over traefik settings file
-  template:
-    src: "{{ item }}"
-    dest: "{{ item }}"
-  with_items:
-    - traefik.yml
-    - traefik-middleware.yaml
-    - https-redirect.yml
- #   - traefik-dashboard.yml
 
-#- name: Add traefik repository
-#  community.kubernetes.helm_repository:
-#    name: traefik
-#    repo_url: https://helm.traefik.io/traefik
+- name: Add traefik repository
+  community.kubernetes.helm_repository:
+    name: traefik
+    repo_url: https://helm.traefik.io/traefik
 
-#- name: Deploy traefik
-#  community.kubernetes.helm:
-#    name: traefik
-#    kubeconfig: /etc/rancher/k3s/k3s.yaml
-#    chart_ref: traefik/traefik
-#    release_namespace: traefik
-#    create_namespace: true
-#    update_repo_cache: yes
-#    values: "{{ lookup('template', 'traefik.yml' ) | from_yaml }}" 
-  
-- name: Setting up Traefik
-  k8s:
-    state: present
+- name: Deploy traefik
+  community.kubernetes.helm:
+    name: traefik
     kubeconfig: /etc/rancher/k3s/k3s.yaml
-    src: "{{ item }}"
-  with_items:
-    - traefik-middleware.yaml
-    - https-redirect.yml
-#    - traefik-dashboard.yml
+    chart_ref: traefik/traefik
+    release_namespace: traefik
+    create_namespace: true
+    update_repo_cache: yes
+    values: "{{ lookup('template', 'traefik.yml' ) | from_yaml }}" 
+  
+#- name: Copy over traefik settings file
+#  template:
+#    src: "{{ item }}"
+#    dest: "{{ item }}"
+#  with_items:
+#    - traefik-middleware.yaml
+#    - https-redirect.yml  
+  
+#- name: Setting up Traefik
+#  k8s:
+#    state: present
+#    kubeconfig: /etc/rancher/k3s/k3s.yaml
+#    src: "{{ item }}"
+#  with_items:
+#    - traefik-middleware.yaml
+#    - https-redirect.yml
