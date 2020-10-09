@@ -15,7 +15,17 @@
     src: "{{ item }}"
     dest: "{{ remote_tmp }}/get_cert.yml"
   with_items:
-    - staging-cert.yaml
+    - staging-cert.yml
   when: 
     - get_cert == "yes"
     - cert_type == "staging"
+
+- name: Creating Certificate
+  k8s:
+    state: present
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    src: "{{ remote_tmp }}/{{ item }}"
+  with_items:
+    - get_cert.yml
+  when: 
+    - get_cert == "yes"
