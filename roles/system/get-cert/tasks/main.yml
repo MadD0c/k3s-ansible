@@ -8,7 +8,7 @@
     - prod-cert.yaml
   when: 
     - get_cert | bool
-    - cert_type | bool
+    - cert_prod | bool
     
 - name: Copy over staging Cert file
   template:
@@ -18,7 +18,7 @@
     - staging-cert.yml
   when: 
     - get_cert | bool
-    - cert_type == "staging"
+    - not cert_prod | bool
 
 - name: Creating Certificate
   k8s:
@@ -28,4 +28,4 @@
   with_items:
     - get_cert.yml
   when: 
-    - get_cert | bool
+    - get_prod | bool
