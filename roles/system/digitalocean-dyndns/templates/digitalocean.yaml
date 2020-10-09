@@ -10,7 +10,7 @@ image:
   #pullPolicy: Always
 
 digitialocean:
-  token: sometoken  # REQUIRED: The token you generate in DigitalOcean's API settings.
+  token: "{{ do_dns_token  }}"  # REQUIRED: The token you generate in DigitalOcean's API settings.
   domain: "{{ dns_domains }}"  # REQUIRED: The domain your subdomain is registered at. (i.e. foo.com for home.foo.com)
   name: "@"  # REQUIRED: Subdomain to use. (name in A record) (i.e. home for home.foo.com or @ for no subdomain)
   sleep_interval: 300   # Polling time in seconds
