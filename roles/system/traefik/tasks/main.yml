@@ -32,4 +32,4 @@
   with_items:
     - traefik-middleware.yaml
     - https-redirect.yml
-    - traefik-dashboard.yml
+#    - traefik-dashboard.yml
