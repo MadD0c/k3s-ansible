@@ -1,0 +1,15 @@
+---
+- name: Copy over nfs provisioner config file
+  template:
+    src: digitalocean.yaml
+    dest: config.yml
+
+- name: Deploy nfs provisioner
+  community.kubernetes.helm:
+    name: digitalocean-dyndns
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    chart_ref: k8s-at-home/digitalocean-dyndns
+    release_namespace: kube-system
+    update_repo_cache: yes
+    values: "{{ lookup('template', 'config.yml' ) | from_yaml }}"
+    
