@@ -21,6 +21,8 @@ cert_manager_issuer_staging: certissuer-staging
 acme_email: someone@somewhere.com
 acme_staging_url: https://acme-staging-v02.api.letsencrypt.org/directory
 acme_prod_url: https://acme-v02.api.letsencrypt.org/directory
+dns_domains: 
+wdns_domains:
 
 # network related
 metallb_mode: layer2
