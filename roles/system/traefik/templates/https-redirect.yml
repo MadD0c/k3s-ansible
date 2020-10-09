@@ -1,0 +1,17 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: http-to-https
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: HostRegexp(`{any:.+}`)
+      kind: Rule
+      services:
+        - name: traefik
+          port: 80
+      middlewares:
+        - name: kube-system-redirect-https@kubernetescrd
+        - name: kube-system-security@kubernetescrd
