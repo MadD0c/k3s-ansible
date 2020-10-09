@@ -7,7 +7,7 @@
     - traefik.yml
     - traefik-middleware.yaml
     - https-redirect.yml
-    - traefik-dashboard.yml
+ #   - traefik-dashboard.yml
 
 #- name: Add traefik repository
 #  community.kubernetes.helm_repository:
