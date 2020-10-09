@@ -3,7 +3,6 @@
   template:
     src: "{{ item }}"
     dest: "{{ item }}"
-    mode:  666
   with_items:
     - traefik.yml
     - traefik-middleware.yaml
