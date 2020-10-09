@@ -8,6 +8,7 @@ spec:
   secretName: "{{ dns_domains }}-tls-prod"
   issuerRef:
     name: "{{ cert_manager_issuer_prod }}"
+    kind: ClusterIssuer
   dnsNames:
   - "{{ dns_domains }}"
   - "{{ wdns_domains }}"
