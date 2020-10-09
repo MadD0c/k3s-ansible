@@ -2,7 +2,7 @@
 - name: Copy over traefik settings file
   template:
     src: "{{ item }}"
-    dest: "{{ remote_tmp }}/{{ item }}"
+    dest: "{{ item }}"
     mode:  666
   with_items:
     - traefik.yml
@@ -29,7 +29,7 @@
   k8s:
     state: present
     kubeconfig: /etc/rancher/k3s/k3s.yaml
-    src: "{{ remote_tmp }}/{{ item }}"
+    src: "{{ item }}"
   with_items:
     - traefik-middleware.yaml
     - https-redirect.yml
