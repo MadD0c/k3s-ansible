@@ -8,6 +8,7 @@ spec:
   secretName: "{{ dns_domains }}-tls-staging"
   issuerRef:
     name: "{{ cert_manager_issuer_staging }}"
+    kind: ClusterIssuer
   dnsNames:
   - "{{ dns_domains }}"
   - "{{ wdns_domains }}"
