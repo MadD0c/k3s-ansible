@@ -6,16 +6,32 @@
 - name: Wait for installation to complete
   shell: "kubectl wait --namespace=cert-manager --for=condition=Ready pods --all --timeout=600s"
   register: cert_manager_ready
-
-- name: Copy over clusterIssuer files
-  template:
-    src: "{{ item }}"
-    dest: "{{ remote_tmp }}/{{ item }}"
+- name: Wait for all control-plane pods become created
+  shell: "kubectl get po --namespace=cert-manager --output=jsonpath='{.items[*].metadata.name}'"
+  register: cert_manager_pods_created
+  until: item in cert_manager_pods_created.stdout
+  retries: 10
+  delay: 30
   with_items:
-    - prod-clusterissuer.yaml
-    - staging-clusterissuer.yaml
-    - do-secrets.yaml
-  when: cert_manager_ready == 1
+    - cert-manager
+    - cert-manager-cainjector
+    - cert-manager-webhook
+
+- name: Wait for control-plane pods become ready
+  shell: "kubectl wait --namespace=cert-manager --for=condition=Ready pods --all --timeout=600s"
+  register: cert_manager_pods_ready
+
+- debug: var=cert_manager_pods_ready.stdout_lines
+
+#- name: Copy over clusterIssuer files
+#  template:
+#    src: "{{ item }}"
+#    dest: "{{ remote_tmp }}/{{ item }}"
+#  with_items:
+#    - prod-clusterissuer.yaml
+#    - staging-clusterissuer.yaml
+#    - do-secrets.yaml
+#  when: cert_manager_ready == 1
 
 - name: Import secret
   k8s:
