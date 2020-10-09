@@ -23,6 +23,10 @@ acme_staging_url: https://acme-staging-v02.api.letsencrypt.org/directory
 acme_prod_url: https://acme-v02.api.letsencrypt.org/directory
 dns_domains: 
 wdns_domains:
+#Set get_cert to yes/no if need cert created
+get_cert: yes
+#Set cert_type to staging/prod for cert type
+cert_type: staging
 
 # network related
 metallb_mode: layer2
