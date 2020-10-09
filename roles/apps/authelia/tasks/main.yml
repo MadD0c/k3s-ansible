@@ -1,0 +1,1 @@
+Kubectl apply -f https://github.com/findpritish/k8s/blob/master/authelia/06_authelia-deployment.yaml
