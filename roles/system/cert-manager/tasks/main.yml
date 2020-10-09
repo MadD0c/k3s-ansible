@@ -3,9 +3,6 @@
 #- name: Install cert-manager crds
 #  shell: "kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.2/cert-manager.yaml"
 
-- name: Wait for installation to complete
-  shell: "kubectl wait --namespace=cert-manager --for=condition=Ready pods --all --timeout=600s"
-  register: cert_manager_ready
 - name: Wait for all control-plane pods become created
   shell: "kubectl get po --namespace=cert-manager --output=jsonpath='{.items[*].metadata.name}'"
   register: cert_manager_pods_created
@@ -21,17 +18,14 @@
   shell: "kubectl wait --namespace=cert-manager --for=condition=Ready pods --all --timeout=600s"
   register: cert_manager_pods_ready
 
-- debug: var=cert_manager_pods_ready.stdout_lines
-
-#- name: Copy over clusterIssuer files
-#  template:
-#    src: "{{ item }}"
-#    dest: "{{ remote_tmp }}/{{ item }}"
-#  with_items:
-#    - prod-clusterissuer.yaml
-#    - staging-clusterissuer.yaml
-#    - do-secrets.yaml
-#  when: cert_manager_ready == 1
+- name: Copy over clusterIssuer files
+  template:
+    src: "{{ item }}"
+    dest: "{{ remote_tmp }}/{{ item }}"
+  with_items:
+    - prod-clusterissuer.yaml
+    - staging-clusterissuer.yaml
+    - do-secrets.yaml
 
 - name: Import secret
   k8s:
