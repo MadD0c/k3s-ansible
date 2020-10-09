@@ -16,5 +16,5 @@
     chart_ref: k8s-at-home/digitalocean-dyndns
     release_namespace: kube-system
     update_repo_cache: yes
-    values: "{{ lookup('template', 'config.yml' ) | from_yaml }}"
+    values: "{{ lookup('template', 'digitalocean.yaml' ) | from_yaml }}"
     
