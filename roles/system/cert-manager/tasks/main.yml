@@ -1,9 +1,9 @@
 ---
 
-- name: Add jetstack repo
-  community.kubernetes.helm_repository:
-    name: jetstack
-    repo_url: "{{ jetstack_chart_url }}"
+#- name: Add jetstack repo
+#  community.kubernetes.helm_repository:
+#    name: jetstack
+#    repo_url: "{{ jetstack_chart_url }}"
 
 - name: Install cert-manager crds
   shell: "kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.2/cert-manager.yaml"
