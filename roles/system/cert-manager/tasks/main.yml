@@ -1,22 +1,12 @@
 ---
 
-#- name: Add jetstack repo
-#  community.kubernetes.helm_repository:
-#    name: jetstack
-#    repo_url: "{{ jetstack_chart_url }}"
+#- name: Install cert-manager crds
+#  shell: "kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.2/cert-manager.yaml"
 
-- name: Install cert-manager crds
-  shell: "kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.2/cert-manager.yaml"
+- name: Wait for installation to complete
+  shell: "kubectl wait --namespace=cert-manager --for=condition=Ready pods --all --timeout=600s"
+  register: cert_manager_ready
 
-#- name: Install cert-manager from helm
-#  community.kubernetes.helm:
-#    kubeconfig: /etc/rancher/k3s/k3s.yaml
-#    name: cert-manager
-#    chart_ref: jetstack/cert-manager 
-#    release_namespace: cert-manager
-#    create_namespace: true
-#    values: "--set installCRDs=true"
-    
 - name: Copy over clusterIssuer files
   template:
     src: "{{ item }}"
@@ -25,6 +15,7 @@
     - prod-clusterissuer.yaml
     - staging-clusterissuer.yaml
     - do-secrets.yaml
+  when: cert_manager_ready == 1
 
 - name: Import secret
   k8s:
