@@ -1,4 +1,15 @@
 ---
+- name: Copy over traefik settings file
+  template:
+    src: "{{ item }}"
+    dest: "{{ remote_tmp }}/{{ item }}"
+    mode:  666
+  with_items:
+    - traefik.yml
+    - traefik-middleware.yaml
+    - https-redirect.yml
+    - traefik-dashboard.yml
+
 - name: Add traefik repository
   community.kubernetes.helm_repository:
     name: traefik
@@ -11,16 +22,8 @@
     chart_ref: traefik/traefik
     release_namespace: traefik
     create_namespace: true
-    
-- name: Copy over traefik settings file
-  template:
-    src: "{{ item }}"
-    dest: "{{ remote_tmp }}/{{ item }}"
-    mode:  666
-  with_items:
-    - traefik-middleware.yaml
-    - https-redirect.yaml
-    - traefik-dashboard.yaml
+    update_repo_cache: yes
+    values: "{{ lookup('template', 'traefik.yml' ) | from_yaml }}" 
   
 - name: Setting up Traefik
   k8s:
@@ -30,5 +33,5 @@
     src: "{{ remote_tmp }}/{{ item }}"
   with_items:
     - traefik-middleware.yaml
-    - https-redirect.yaml
-    - traefik-dashboard.yaml
+    - https-redirect.yml
+    - traefik-dashboard.yml
