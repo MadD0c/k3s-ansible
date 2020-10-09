@@ -5,9 +5,6 @@
     name: jetstack
     repo_url: "{{ jetstack_chart_url }}"
     
-- name: Install cert-manager crds
-  shell: "kubectl apply --validate=false -f {{ cert_manager_crds_url }}"
-
 - name: Install cert-manager from helm
   community.kubernetes.helm:
     kubeconfig: /etc/rancher/k3s/k3s.yaml
@@ -15,6 +12,7 @@
     chart_ref: jetstack/cert-manager 
     release_namespace: cert-manager
     create_namespace: true
+    value: "--set installCRDs=true"
     
 - name: Copy over clusterIssuer files
   template:
