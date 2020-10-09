@@ -25,8 +25,8 @@ dns_domains:
 wdns_domains:
 #Set get_cert to yes/no if need cert created
 get_cert: yes
-#Set cert_type to staging/prod for cert type
-cert_type: staging
+#Set cert_prod to yes/no if need prod cert needed
+cert_prod: no
 
 # network related
 metallb_mode: layer2
