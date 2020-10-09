@@ -1,9 +1,6 @@
 ---
 
-#- name: Install cert-manager crds
-#  shell: "kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.2/cert-manager.yaml"
-
-- name: Wait for all control-plane pods become created
+- name: Wait for all cert-manager pods become created
   shell: "kubectl get po --namespace=cert-manager --output=jsonpath='{.items[*].metadata.name}'"
   register: cert_manager_pods_created
   until: item in cert_manager_pods_created.stdout
@@ -14,7 +11,7 @@
     - cert-manager-cainjector
     - cert-manager-webhook
 
-- name: Wait for control-plane pods become ready
+- name: Wait for cert-manager pods become ready
   shell: "kubectl wait --namespace=cert-manager --for=condition=Ready pods --all --timeout=600s"
   register: cert_manager_pods_ready
 
