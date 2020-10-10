@@ -1,4 +1,4 @@
-i---
+---
 
 - name: Add Celtic repository
   community.kubernetes.helm_repository:
