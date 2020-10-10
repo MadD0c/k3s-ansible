@@ -1,1 +1,16 @@
-helm install my-release -f values.yaml bitnami/mariadb
+---
+
+- name: Add bitnami repository
+  community.kubernetes.helm_repository:
+    name: bitnami
+    repo_url: https://charts.bitnami.com/bitnami
+
+- name: Deploy mariadb
+  community.kubernetes.helm:
+    name: mariadb
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    chart_ref: bitnami/mariadb
+    release_namespace: db
+    create_namespace: true
+    update_repo_cache: yes
+    values: "{{ lookup('template', 'values.yml' ) | from_yaml }}" 
