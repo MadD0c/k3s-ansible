@@ -2,8 +2,8 @@
 - hosts: master
   become: no
   roles:
-    - role: apps/redis
-#    - role: system/helm-repo
+#    - role: apps/redis
+    - role: apps/mariadb
 #    - role: system/metallb
 #    - role: system/nfs/provisioner
 #    - role: system/cert-manager
