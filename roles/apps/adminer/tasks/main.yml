@@ -1,16 +1,11 @@
 ---
 
-- name: Add Celtic repository
-  community.kubernetes.helm_repository:
-    name: celtic
-    repo_url: https://cetic.github.io/helm-charts
-
-- name: Deploy Adminer
+- name: Deploy phpMyAdmin
   community.kubernetes.helm:
-    name: adminer
+    name: phpmyadmin
   #  kubeconfig: /etc/rancher/k3s/k3s.yaml
-    chart_ref: cetic/adminer
+    chart_ref: bitnami/phpmyadmin
     release_namespace: db
    # create_namespace: true
     update_repo_cache: yes
-   # values: "{{ lookup('template', 'values.yml' ) | from_yaml }}" 
+    values: "{{ lookup('template', 'values.yml' ) | from_yaml }}" 
