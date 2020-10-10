@@ -3,8 +3,8 @@
   become: no
   roles:
 #    - role: apps/redis
-    - role: apps/mariadb
-#    - role: system/metallb
+#    - role: apps/mariadb
+    - role: apps/adminer
 #    - role: system/nfs/provisioner
 #    - role: system/cert-manager
 #    - role: system/get-cert
