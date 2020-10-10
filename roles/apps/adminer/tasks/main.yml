@@ -8,7 +8,7 @@
 - name: Deploy Adminer
   community.kubernetes.helm:
     name: adminer
-    kubeconfig: /etc/rancher/k3s/k3s.yaml
+  #  kubeconfig: /etc/rancher/k3s/k3s.yaml
     chart_ref: cetic/adminer
     release_namespace: db
    # create_namespace: true
