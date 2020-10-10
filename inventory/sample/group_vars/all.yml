@@ -7,7 +7,7 @@ systemd_dir: /etc/systemd/system
 master_ip: "{{ hostvars[groups['master'][0]]['ansible_host'] | default(groups['master'][0]) }}"
 extra_server_args: "--disable traefik --disable servicelb --write-kubeconfig-mode 644"
 extra_agent_args: ""
-remote_tmp : $HOME/.ansible/tmp
+remote_tmp : /home/ansible/tmp
 
 # Images
 traefik_image: traefik:v2.2
