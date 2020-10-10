@@ -1,42 +1,31 @@
 ---
 
-#- name: Copy over Production Cert file
- # template:
- #   src: "{{ item }}"
- #   dest: "{{ remote_tmp }}/get_cert.yml"
- # with_items:
- #   - prod-cert.yml
- # when: 
- #   - get_cert | bool
- #   - cert_prod | bool
-    
-#- name: Copy over staging Cert file
-#  template:
-#    src: "{{ item }}"
-#    dest: "{{ remote_tmp }}/get_cert.yml"
-#  with_items:
-#    - staging-cert.yml
-#  when: 
-#    - get_cert | bool
-#    - not cert_prod | bool
-
-#- name: Creating Certificate
-#  k8s:
-#    state: present
-#    kubeconfig: /etc/rancher/k3s/k3s.yaml
-#    src: "{{ remote_tmp }}/{{ item }}"
-#  with_items:
-#    - get_cert.yml
-#  when: 
-#    - get_cert | bool
-
-- name: Creating Production Certificate
-  k8s:
-    state: present
-    kubeconfig: /etc/rancher/k3s/k3s.yaml
-    remote-src: "{{ item }}"
+- name: Copy over Production Cert file
+  template:
+    src: "{{ item }}"
+    dest: "{{ remote_tmp }}/get_cert.yml"
   with_items:
     - prod-cert.yml
   when: 
     - get_cert | bool
     - cert_prod | bool
+    
+- name: Copy over staging Cert file
+  template:
+    src: "{{ item }}"
+    dest: "{{ remote_tmp }}/get_cert.yml"
+  with_items:
+    - staging-cert.yml
+  when: 
+    - get_cert | bool
+    - not cert_prod | bool
+
+- name: Creating Certificate
+  k8s:
+    state: present
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    src: "{{ remote_tmp }}/{{ item }}"
+  with_items:
+    - get_cert.yml
+  when: 
+    - get_cert | bool
