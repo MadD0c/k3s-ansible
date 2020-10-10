@@ -34,7 +34,7 @@
   k8s:
     state: present
     kubeconfig: /etc/rancher/k3s/k3s.yaml
-    src: {{ item }}
+    src: "{{ item }}"
   with_items:
     - prod-cert.yml
   when: 
