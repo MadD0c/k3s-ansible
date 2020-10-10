@@ -10,7 +10,7 @@
     name: adminer
     kubeconfig: /etc/rancher/k3s/k3s.yaml
     chart_ref: cetic/adminer
-   # release_namespace: db
-    create_namespace: true
+    release_namespace: db
+   # create_namespace: true
     update_repo_cache: yes
    # values: "{{ lookup('template', 'values.yml' ) | from_yaml }}" 
