@@ -41,7 +41,7 @@ service:
 db:
   ## If you do not want the user to be able to specify an arbitrary MySQL server
   ## at login time, set this to false
-  allowArbitraryServer: true
+  allowArbitraryServer: false
 
   ## Database port
   ##
