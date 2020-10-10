@@ -5,7 +5,7 @@
     src: "{{ item }}"
     dest: "{{ remote_tmp }}/get_cert.yml"
   with_items:
-    - prod-cert.yaml
+    - prod-cert.yml
   when: 
     - get_cert | bool
     - cert_prod | bool
