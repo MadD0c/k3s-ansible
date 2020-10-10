@@ -4,7 +4,6 @@
   community.kubernetes.helm_repository:
     name: celtic
     repo_url: https://cetic.github.io/helm-charts
-    update_repo_cache: yes
 
 - name: Deploy Adminer
   community.kubernetes.helm:
