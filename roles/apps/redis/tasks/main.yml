@@ -1,4 +1,18 @@
+---
+
+- name: Create a Redis namespace
+  community.kubernetes.k8s:
+    name: redis
+    api_version: v1
+    kind: Namespace
+    state: present
+
 - name: Depoly Redis
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('file', 'deploy.yml') | from_yaml }}"
+
+- name: Create Redis Service
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('file', 'service.yml') | from_yaml }}"
