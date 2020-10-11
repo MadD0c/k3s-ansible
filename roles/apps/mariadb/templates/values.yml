@@ -12,7 +12,7 @@
 ## ref: https://hub.docker.com/r/bitnami/mariadb/tags/
 ##
 image:
-  registry: docker.io
+  #registry: docker.io
   repository: mariadb
   tag: latest
   ## Specify a imagePullPolicy
