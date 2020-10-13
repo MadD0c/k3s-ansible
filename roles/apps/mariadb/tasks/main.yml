@@ -1,9 +1,9 @@
 ---
 
-- name: Add madd0c repository
-  community.kubernetes.helm_repository:
-    name: madd0c
-    repo_url: https://madd0c.github.io
+#- name: Add madd0c repository
+#  community.kubernetes.helm_repository:
+#    name: madd0c
+#    repo_url: https://madd0c.github.io
 
 - name: Deploy mariadb
   community.kubernetes.helm:
