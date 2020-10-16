@@ -2,7 +2,7 @@
 
 - name: Deploy LDAP
   community.kubernetes.helm:
-    name: ldap
+    name: openldap
     #kubeconfig: /etc/rancher/k3s/k3s.yaml
     chart_ref: stable/openldap
     release_namespace: auth
