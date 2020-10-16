@@ -1,0 +1,11 @@
+---
+
+- name: Deploy LDAP
+  community.kubernetes.helm:
+    name: ldap
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    chart_ref: stable/ldap
+    release_namespace: db
+    create_namespace: true
+    update_repo_cache: yes
+    values: "{{ lookup('template', 'values.yml' ) | from_yaml }}" 
