@@ -56,7 +56,7 @@ env:
   LDAP_ORGANISATION: "McCann Clan"
   LDAP_DOMAIN: "mccannclan.family"
   LDAP_BACKEND: "hdb"
-  LDAP_TLS: "true"
+  LDAP_TLS: "false"
   LDAP_TLS_ENFORCE: "false"
   LDAP_REMOVE_CONFIG_AFTER_SETUP: "true"
   DISABLE_CHOWN: "true"
@@ -74,7 +74,7 @@ env:
 
 ## Persist data to a persistent volume
 persistence:
-  enabled: false
+  enabled: true
   ## database data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
