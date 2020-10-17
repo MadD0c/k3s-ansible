@@ -3,7 +3,7 @@
   become: no
   roles:
 #    - role: apps/redis
-#    - role: apps/mariadb
+    - role: apps/mariadb
 #    - role: apps/phpmyadmin
     - role: apps/ldap
 #    - role: system/cert-manager
