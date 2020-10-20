@@ -35,7 +35,7 @@
   file:
     path: "{{ remote_tmp }}/do-secrets.yaml"
     state: absent
-    
+
 - name: Creating Certificate Issuers
   k8s:
     state: present
