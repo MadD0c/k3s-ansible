@@ -15,10 +15,10 @@
   roles:
     - role: system/openshift
     - role: andrewrothstein.kubernetes-helm
-    - role: system/helm-repo
+    - role: system/helm_repo
     - role: system/metallb
     - role: system/nfs/provisioner
-    - role: system/cert-manager
-    - role: system/get-cert
+    - role: system/cert_manager
+    - role: system/get_cert
     - role: system/traefik
-    - role: system/digitalocean-dyndns
+    - role: system/digitalocean_dyndns
