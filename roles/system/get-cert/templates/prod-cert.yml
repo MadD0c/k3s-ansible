@@ -10,5 +10,5 @@ spec:
     name: "{{ cert_manager_issuer_prod }}"
     kind: ClusterIssuer
   dnsNames:
-  - "{{ dns_domains }}"
-  - "{{ wdns_domains }}"
+    - "{{ dns_domains }}"
+    - "{{ wdns_domains }}"

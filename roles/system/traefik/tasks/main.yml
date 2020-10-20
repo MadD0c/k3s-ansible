@@ -13,21 +13,4 @@
     release_namespace: traefik
     create_namespace: true
     update_repo_cache: yes
-    values: "{{ lookup('template', 'traefik.yml' ) | from_yaml }}" 
-  
-#- name: Copy over traefik settings file
-#  template:
-#    src: "{{ item }}"
-#    dest: "{{ item }}"
-#  with_items:
-#    - traefik-middleware.yaml
-#    - https-redirect.yml  
-  
-#- name: Setting up Traefik
-#  k8s:
-#    state: present
-#    kubeconfig: /etc/rancher/k3s/k3s.yaml
-#    src: "{{ item }}"
-#  with_items:
-#    - traefik-middleware.yaml
-#    - https-redirect.yml
+    values: "{{ lookup('template', 'traefik.yml' ) | from_yaml }}"
