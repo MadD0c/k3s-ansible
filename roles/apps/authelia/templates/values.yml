@@ -144,7 +144,7 @@ authelia:
     # The length of time before a banned user can login again.
     ban_time: 300
 
-  notifier: 
+  notifier:
   # You can disable the notifier startup check by setting this to true.
     disable_startup_check: false
 
@@ -235,14 +235,14 @@ tolerations: []
 affinity: {}
 
 secrets:
-    jwt_secret:
-    session_secret:
-    duo_secret_key: 1234567890abcdefghifjkl
-    redis_password: "authelia"
-    DBPassword: authelia
-    LDAP_password: password
-    smtp_password: password
-    
+  jwt_secret:
+  session_secret:
+  duo_secret_key: 1234567890abcdefghifjkl
+  redis_password: "authelia"
+  DBPassword: authelia
+  LDAP_password: password
+  smtp_password: password
+
 redis:
   enabled: false
   usePassword: false
@@ -251,7 +251,7 @@ redis:
 
 externaldb:
   enabled: false
-  DBType: 
-  DBURL: 
-  Database: 
+  DBType:
+  DBURL:
+  Database:
   DBUser: root
