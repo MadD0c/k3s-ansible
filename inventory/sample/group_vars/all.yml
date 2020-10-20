@@ -7,7 +7,7 @@ systemd_dir: /etc/systemd/system
 master_ip: "{{ hostvars[groups['master'][0]]['ansible_host'] | default(groups['master'][0]) }}"
 extra_server_args: "--disable traefik --disable servicelb --write-kubeconfig-mode 644"
 extra_agent_args: ""
-remote_tmp : /home/ansible/tmp
+remote_tmp: /home/ansible/tmp
 
 # Images
 traefik_image: traefik:v2.2
@@ -21,8 +21,8 @@ cert_manager_issuer_staging: certissuer-staging
 acme_email: someone@somewhere.com
 acme_staging_url: https://acme-staging-v02.api.letsencrypt.org/directory
 acme_prod_url: https://acme-v02.api.letsencrypt.org/directory
-dns_domains: 
-wdns_domains:
+dns_domains: someone.com
+wdns_domains: "*.someone.com"
 #Set get_cert to yes/no if need cert created
 get_cert: yes
 #Set cert_prod to yes/no if need prod cert needed

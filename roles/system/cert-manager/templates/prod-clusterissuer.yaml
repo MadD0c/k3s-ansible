@@ -9,7 +9,7 @@ spec:
     # You must replace this email address with your own.
     # Let's Encrypt will use this to contact you about expiring
     # certificates, and issues related to your account.
-    email: {{acme_email }}
+    email: {{acme_email}}
     server: {{acme_prod_url}}
     privateKeySecretRef:
       # Secret resource used to store the account's private key.
