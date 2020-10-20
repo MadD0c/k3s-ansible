@@ -1,9 +1,10 @@
 ---
 
-#- name: Add madd0c repository
-#  community.kubernetes.helm_repository:
-#    name: madd0c
-#    repo_url: https://madd0c.github.io
+- name: Add madd0c repository
+  community.kubernetes.helm_repository:
+    name: madd0c
+    repo_url: https://madd0c.github.io
+    repo_state: present
 
 - name: Deploy mariadb
   community.kubernetes.helm:
@@ -13,4 +14,4 @@
     release_namespace: db
     create_namespace: true
     update_repo_cache: yes
-    values: "{{ lookup('template', 'values.yml' ) | from_yaml }}" 
+    values: "{{ lookup('template', 'values.yml' ) | from_yaml }}"
