@@ -5,8 +5,7 @@
     name: stable
     repo_url: "{{ helm_chart_url }}"
 
-
 - name: Update helm repo
-  shell:  "helm repo update"
+  shell: "helm repo update"
   args:
     warn: no

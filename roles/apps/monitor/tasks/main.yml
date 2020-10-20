@@ -1,4 +1,5 @@
 ---
+
 - name: Clone Cluster Monitoring Repo
   git:
     repo: https://github.com/carlosedp/cluster-monitoring.git
@@ -15,7 +16,7 @@
     dest: "{{ remote_tmp }}/cluster-monitoring/vars.jsonnet"
     owner: ansible
 
-- name: Copy Metallb Instalastion files
+- name: Copy Monitoring Stack Instalastion files
   copy:
     src: setup.sh
     dest: "{{ remote_tmp }}/cluster-monitoring/setup.sh"

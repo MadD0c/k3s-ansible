@@ -9,5 +9,3 @@
     release_namespace: kube-system
     update_repo_cache: yes
     values: "{{ lookup('template', 'nfs-provisioner-helm.yaml' ) | from_yaml }}"
-    
-   

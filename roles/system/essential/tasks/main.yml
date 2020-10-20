@@ -3,12 +3,12 @@
 - name: Install System Dependencies
   apt:
     pkg:
-    - nfs-common
-    - python3-pip
-    - apt-transport-https
-    - ca-certificates
-    - curl
-    - gnupg-agent
-    - software-properties-common
+      - nfs-common
+      - python3-pip
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
     update_cache: yes
     state: present
