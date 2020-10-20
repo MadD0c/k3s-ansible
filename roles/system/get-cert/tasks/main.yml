@@ -6,17 +6,17 @@
     dest: "{{ remote_tmp }}/get_cert.yml"
   with_items:
     - prod-cert.yml
-  when: 
+  when:
     - get_cert | bool
     - cert_prod | bool
-    
+
 - name: Copy over staging Cert file
   template:
     src: "{{ item }}"
     dest: "{{ remote_tmp }}/get_cert.yml"
   with_items:
     - staging-cert.yml
-  when: 
+  when:
     - get_cert | bool
     - not cert_prod | bool
 
@@ -27,5 +27,5 @@
     src: "{{ remote_tmp }}/{{ item }}"
   with_items:
     - get_cert.yml
-  when: 
+  when:
     - get_cert | bool
