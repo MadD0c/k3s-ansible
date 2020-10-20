@@ -251,7 +251,7 @@ redis:
 
 externaldb:
   enabled: false
-  DBType:
-  DBURL:
-  Database:
+  DBType: mysql
+  DBURL: mysql://
+  Database: authelia
   DBUser: root

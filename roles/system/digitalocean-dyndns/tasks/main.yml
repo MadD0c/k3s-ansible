@@ -17,4 +17,3 @@
     release_namespace: kube-system
     update_repo_cache: yes
     values: "{{ lookup('template', 'digitalocean.yaml' ) | from_yaml }}"
-    

@@ -11,17 +11,16 @@
 
 - name: Copy Cluster Monitoring settings file
   copy:
-     src: vars.jsonnet
-     dest: "{{ remote_tmp }}/cluster-monitoring/vars.jsonnet"
-     owner: ansible
+    src: vars.jsonnet
+    dest: "{{ remote_tmp }}/cluster-monitoring/vars.jsonnet"
+    owner: ansible
 
 - name: Copy Metallb Instalastion files
   copy:
-     src: setup.sh
-     dest: "{{ remote_tmp }}/cluster-monitoring/setup.sh"
-     owner: ansible
-     mode: '0700'
+    src: setup.sh
+    dest: "{{ remote_tmp }}/cluster-monitoring/setup.sh"
+    owner: ansible
+    mode: '0700'
 
 - name: Install Cluster Monitoring
   command: "sh {{ remote_tmp }}/cluster-monitoring/setup.sh"
-  

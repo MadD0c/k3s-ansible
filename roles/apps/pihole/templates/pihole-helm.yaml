@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 spec:
   chart: pihole
-  repo: {{ personal_chart_url }}
+  repo: {{personal_chart_url}}
   set:
     persistentVolumeClaim.enabled: "true"
     persistentVolumeClaim.storageClass: "nfs-client"
