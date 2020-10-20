@@ -10,8 +10,8 @@ metadata:
   namespace: redis
 spec:
   ports:
-  - port: 6379
-    targetPort: 6379
+    - port: 6379
+      targetPort: 6379
   selector:
     app: redis
     role: master
