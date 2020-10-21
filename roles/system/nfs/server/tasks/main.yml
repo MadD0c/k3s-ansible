@@ -21,6 +21,7 @@
   file:
     path: "{{ storage.location }}"
     state: directory
+    mode: '777'
   when: storage.storage_type == "local"
 
 - name: Install nfs-kernel-server
@@ -36,6 +37,7 @@
     dest: /etc/exports
     group: root
     owner: root
+    mode: '744'
 
 - name: Restart nfs server
   become: yes
