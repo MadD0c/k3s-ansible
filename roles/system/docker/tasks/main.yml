@@ -16,7 +16,8 @@
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 
-- apt_repository: Add Docker Repository
+- name: Add Docker Repository
+  apt_repository: 
     repo: deb-src https://download.docker.com/linux/ubuntu focal stable
     state: present
 
