@@ -14,22 +14,22 @@ nameOverride: ""
 fullnameOverride: ""
 
 authelia:
-  logLevel: "trace"
-  redirectionURL: "https://home.example.com:8080/"
-  totpIssuer: "authelia.com"
+  logLevel: {{ authelia.enabled }}
+  redirectionURL: {{ authelia.enabled }}
+  totpIssuer: {{ authelia.enabled }}
 
   duo:
-    enabled: false
+    enabled: {{ duo.enabled }}
     config:
-      hostname: api-123456789.example.com
-      integration_key: ABCDEF
+      hostname: {{ duo.hostname }}
+      integration_key: {{ duo.integration_key }}
 
   ldap:
-    enabled: false
+    enabled: {{ ldap.enabled }}
     config:
-      url: ldap://127.0.0.1
+      url: {{ ldap.url }}
       # The base dn for every entries
-      base_dn: dc=example,dc=com
+      base_dn: {{ ldap.base_dn }}
       # An additional dn to define the scope to all users
       additional_users_dn: ou=users
       # The users filter used to find the user DN
@@ -49,82 +49,23 @@ authelia:
       # The attribute holding the mail address of the user
       mail_attribute: mail
       # The username and password of the admin user.
-      user: cn=admin,dc=example,dc=com
+      user: {{ ldap.user }}
 
     # If LDAP is disabled, you can specify a users database file, however
     # it will be read-only!
   fileAuth:
-    users: {}
-      # john:
-      #   password: "{CRYPT}$6$rounds=500000$jgiCMRyGXzoqpxS3$w2pJeZnnH8bwW3zzvoMWtTRfQYsHbWbD/hquuQ5vUeIyl9gdwBIt6RWk2S6afBA0DPakbeWgD/4SZPiS0hYtU/"
-      #   email: john.doe@authelia.com
-      #   groups:
-      #     - admins
-      #     - dev
+    users: {{ fileauth.users }}
 
   # Default policy can either be `bypass`, `one_factor`, `two_factor` or `deny`.
   # It is the policy applied to any resource if there is no policy to be applied
   # to the user.
   accessControl:
     defaultPolicy: deny
-    rules:
-      # Rules applied to everyone
-      - domain: public.example.com
-        policy: bypass
-
-      - domain: secure.example.com
-        policy: one_factor
-        # Network based rule, if not provided any network matches.
-        networks:
-          - 192.168.1.0/24
-      - domain: secure.example.com
-        policy: two_factor
-
-      - domain: singlefactor.example.com
-        policy: one_factor
-
-      # Rules applied to 'admin' group
-      - domain: 'mx2.mail.example.com'
-        subject: 'group:admin'
-        policy: deny
-      - domain: '*.example.com'
-        subject: 'group:admin'
-        policy: two_factor
-
-      # Rules applied to 'dev' group
-      - domain: dev.example.com
-        resources:
-          - '^/groups/dev/.*$'
-        subject: 'group:dev'
-        policy: two_factor
-
-      # Rules applied to user 'john'
-      - domain: dev.example.com
-        resources:
-          - '^/users/john/.*$'
-        subject: 'user:john'
-        policy: two_factor
-
-      # Rules applied to user 'harry'
-      - domain: dev.example.com
-        resources:
-          - '^/users/harry/.*$'
-        subject: 'user:harry'
-        policy: two_factor
-
-      # Rules applied to user 'bob'
-      - domain: '*.mail.example.com'
-        subject: 'user:bob'
-        policy: two_factor
-      - domain: 'dev.example.com'
-        resources:
-          - '^/users/bob/.*$'
-        subject: 'user:bob'
-        policy: two_factor
+    rules: {{ accessControl.rules }}
 
   session:
     # The name of the session cookie. (default: authelia_session).
-    name: authelia_session
+    name: {{ session.name }}
     # The time in ms before the cookie expires and session is reset.
     expiration: 3600000 # 1 hour
     # The inactivity time in ms before the session is reset.
@@ -132,7 +73,7 @@ authelia:
     # The domain to protect.
     # Note: the authenticator must also be in that domain. If empty, the cookie
     # is restricted to the subdomain of the issuer.
-    domain: example.local
+    domain: {{ dns_domains }}
 
   regulation:
     # The number of failed login attempts before user is banned.
@@ -154,11 +95,11 @@ authelia:
 
     # Use a SMTP server for sending notifications
     # smtp:
-    #   username: test
-    #   secure: false
-    #   host: 127.0.0.1
-    #   port: 1025
-    #   sender: admin@example.com
+    #   username: {{ notifier.smtp.username }}
+    #   secure: {{ notifier.smtp.secure }}
+    #   host: {{ notifier.smtp.host }}
+    #   port: {{ notifier.smtp.port }}
+    #   sender: {{ notifier.smtp.sender }}
 
 # Options for Authelia PVC (/var/lib/authelia/store) when not using external DB
 persistence:
@@ -235,23 +176,23 @@ tolerations: []
 affinity: {}
 
 secrets:
-  jwt_secret:
-  session_secret:
-  duo_secret_key: 1234567890abcdefghifjkl
-  redis_password: "authelia"
-  DBPassword: authelia
-  LDAP_password: password
-  smtp_password: password
+  jwt_secret: {{ authelia_jwt }}
+  session_secret: {{ authelia_session }}
+  duo_secret_key: {{ authelia_duo }}
+  redis_password: {{ authelia_session }}
+  DBPassword: {{ dbuser_password }}
+  LDAP_password: {{ ldap_password }}
+  smtp_password: {{ email_password }}
 
 redis:
-  enabled: false
-  usePassword: false
-  cluster:
-    enabled: false
+  enabled: {{ redis.enabled }}
+  host: {{ redis.host }}
+  port: 6379
+  database_index: {{ redis.dbindex }}
 
 externaldb:
-  enabled: false
-  DBType: mysql
-  DBURL: mysql://
-  Database: authelia
-  DBUser: root
+  enabled: {{ externaldb.enabled }}
+  DBType: {{ externaldb.type }}
+  DBURL: {{ externaldb.url }}
+  Database: {{ externaldb.database_name }}
+  DBUser: {{ externaldb.user }}

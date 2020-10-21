@@ -44,3 +44,44 @@ storage:
   storage_type: local
   location: /home/ansible/kube_storage
   wipe: true
+
+# Authelia details
+authelia:
+  logLevel: "trace"
+  redirectionurl: "https://auth.mccannclan.family/"
+  totpissuer: "mccannclan.family"
+
+duo:
+  enabled: false
+  hostname: api-123456789.example.com
+  integration_key: ABCDEF
+
+session:
+  name: mccannclan_session
+
+ldap:
+  enabled: true
+  url: ldap://127.0.0.1
+  base_dn: dc=mccannclan,dc=family
+  user: cn=admin,dc=mccannclan,dc=family
+
+notifier:
+    smtp:
+      enabled: true
+      username: test
+      secure: false
+      host: 127.0.0.1
+      port: 1025
+      sender: admin@example.com
+
+#External Databse Details
+externaldb:
+  enabled: true
+  type: mysql
+  url: mysql://mariadb.db.cluster.local
+  database_name: authelia
+  user: authelia
+redis:
+  enabled: true
+  host:
+  dbindex: 0
