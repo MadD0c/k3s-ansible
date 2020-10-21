@@ -15,6 +15,7 @@
     src: vars.jsonnet
     dest: "{{ remote_tmp }}/cluster-monitoring/vars.jsonnet"
     owner: ansible
+    mode: '777'
 
 - name: Copy Monitoring Stack Instalastion files
   copy:
