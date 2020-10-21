@@ -10,6 +10,8 @@
   template:
     src: pihole-helm.yaml
     dest: "{{ remote_tmp }}/pihole-helm.yaml"
+    mode: '777'
+
 - name: Install pihole from helm
   k8s:
     state: present
