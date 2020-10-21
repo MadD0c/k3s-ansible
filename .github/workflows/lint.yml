@@ -28,4 +28,4 @@ jobs:
         run: yamllint .
 
       - name: Run ansible-lint.
-        run: ansible-lint -x idempotency,repeatability,safety
+        run: ansible-lint -x idempotency,repeatability,safety --exclude ./.github
