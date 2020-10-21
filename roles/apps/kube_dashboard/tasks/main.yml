@@ -3,6 +3,7 @@
   get_url:
     url: "https://raw.githubusercontent.com/kubernetes/dashboard/{{ kube_dashboard_version }}/aio/deploy/recommended.yaml"
     dest: "{{ temp_dir }}/dashboard-service.yaml"
+    mode: '777'
 
 - name: Copy service files
   copy:
