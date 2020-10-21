@@ -15,6 +15,7 @@
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
+    mode: '777'
   when: storage.storage_type == "device"
 
 - name: Ensure local directory
