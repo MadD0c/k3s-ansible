@@ -11,13 +11,13 @@
     update_cache: yes
     state: present
 
-- name: Add Docker Repository
+- name: Add Docker Repository key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 
 - apt_repository: Add Docker Repository
-    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    repo: 'deb https://download.docker.com/linux/ubuntu focal stable'
     state: present
 
 - name: Install Docker
