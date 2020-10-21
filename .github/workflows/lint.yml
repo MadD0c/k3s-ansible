@@ -25,7 +25,7 @@ jobs:
         run: pip3 install yamllint ansible-lint
 
       - name: Run yamllint.
-        run: yamllint .
+        run: yamllint -d "{extends: relaxed, rules: {line-length: {max: 200}}}" .
 
       - name: Run ansible-lint.
         run: ansible-lint -x idempotency,repeatability,safety --exclude ./.github .
