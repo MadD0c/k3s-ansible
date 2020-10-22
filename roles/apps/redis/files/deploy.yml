@@ -22,7 +22,7 @@ spec:
     spec:
       volumes:
         - name: data
-           persistentVolumeClaim:
+          persistentVolumeClaim:
            claimName: data-redis
         - name: config
           configMap:
