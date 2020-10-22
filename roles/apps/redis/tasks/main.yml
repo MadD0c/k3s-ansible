@@ -7,6 +7,16 @@
     kind: Namespace
     state: present
 
+- name: Create Volumn for Redis
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('file', 'pvc.yml') | from_yaml }}"
+
+- name: Setup Redis Config
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('file', 'config.yml') | from_yaml }}"
+    
 - name: Depoly Redis
   community.kubernetes.k8s:
     state: present
