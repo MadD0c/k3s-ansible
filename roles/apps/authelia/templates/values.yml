@@ -1,7 +1,7 @@
+---
 # Default values for authelia.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
 replicaCount: 1
 
 image:
@@ -87,19 +87,19 @@ authelia:
 
   notifier:
   # You can disable the notifier startup check by setting this to true.
-    disable_startup_check: false
+    smtpenabled: {{ notifier.smtp.enabled }}
 
   # For testing purpose, notifications can be sent in a file
     filesystem:
       filename: /config/notification.txt
 
     # Use a SMTP server for sending notifications
-    # smtp:
-    #   username: {{ notifier.smtp.username }}
-    #   secure: {{ notifier.smtp.secure }}
-    #   host: {{ notifier.smtp.host }}
-    #   port: {{ notifier.smtp.port }}
-    #   sender: {{ notifier.smtp.sender }}
+    smtp:
+      username: {{ notifier.smtp.username }}
+      secure: {{ notifier.smtp.secure }}
+      host: {{ notifier.smtp.host }}
+      port: {{ notifier.smtp.port }}
+      sender: {{ notifier.smtp.sender }}
 
 # Options for Authelia PVC (/var/lib/authelia/store) when not using external DB
 persistence:
