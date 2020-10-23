@@ -29,12 +29,6 @@ spec:
           configMap:
             name: redis
             defaultMode: 420
-        - name: redis-secret
-          secret:
-            secretName: redis-secret
-            items:
-              - key: redis_secret
-                path: password
       containers:
         - name: redis
           image: redis
@@ -43,9 +37,10 @@ spec:
             - containerPort: 6379
           env:
             - name: REDIS_PASSWORD
-              value: $(<password)
-            - name: REDIS_LOG
-              value: {{ redis.log }}
+              valueFrom:
+                secretKeyRef:
+                  name: redis-secret
+                  key: redis-password
           resources:
             requests:
               cpu: 100m
