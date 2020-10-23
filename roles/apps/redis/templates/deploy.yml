@@ -44,7 +44,7 @@ spec:
           env:
             - name: REDIS_PASSWORD
               value: /usr/local/etc/redis/secrets/password
-            - name: REDIS_PASSWORD
+            - name: REDIS_LOG
               value: {{ redis.log }}
           resources:
             requests:
