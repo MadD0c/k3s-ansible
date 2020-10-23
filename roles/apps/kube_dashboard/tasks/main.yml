@@ -1,26 +1,17 @@
 ---
-helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
-helm install kubernetes-dashboard/kubernetes-dashboard --name my-release
-#- name: Download dashboard yaml
-#  get_url:
-#    url: "https://raw.githubusercontent.com/kubernetes/dashboard/{{ kube_dashboard_version }}/aio/deploy/recommended.yaml"
-#    dest: "{{ temp_dir }}/dashboard-service.yaml"
-#    mode: '777'
 
-#- name: Copy service files
-#  copy:
-#    src: "{{ item }}"
-#    dest: "{{ temp_dir }}/{{ item }}"
-#  with_items:
-#    - dashboard-cluster-role-binding.yaml
-#    - dashboard-service-account.yaml
+- name: Add kubernetes-dashboard repository
+  community.kubernetes.helm_repository:
+    name: kubernetes-dashboard
+    repo_url: https://kubernetes.github.io/dashboard/
+    repo_state: present
 
-#- name: Creating deployment
-#  k8s:
-#    state: present
-#    kubeconfig: /etc/rancher/k3s/k3s.yaml
-#    src: "{{ temp_dir }}/{{ item }}"
-#  with_items:
-#    - dashboard-service.yaml
-#    - dashboard-service-account.yaml
-#    - dashboard-cluster-role-binding.yaml
+- name: Deploy kubernetes-dashboard
+  community.kubernetes.helm:
+    name: kubernetes-dashboard
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    chart_ref: kubernetes-dashboard/kubernetes-dashboard
+    release_namespace: kube-system
+    create_namespace: true
+    update_repo_cache: yes
+    values: "{{ lookup('template', 'values.yml' ) | from_yaml }}"
