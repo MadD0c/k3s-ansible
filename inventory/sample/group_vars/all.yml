@@ -85,6 +85,6 @@ externaldb:
 redis:
   enabled: true
   host:
-  dbindex: 0
+  dbindex: 1
   # Log options debug, verbose, notice, warning
   log: verbose
