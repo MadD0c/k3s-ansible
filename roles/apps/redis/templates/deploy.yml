@@ -44,6 +44,8 @@ spec:
           env:
             - name: REDIS_PASSWORD
               value: /usr/local/etc/redis/secrets/password
+            - name: REDIS_PASSWORD
+              value: {{ redis.log }}
           resources:
             requests:
               cpu: 100m

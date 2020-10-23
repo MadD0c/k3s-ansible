@@ -1,6 +1,6 @@
 ---
 
-apiVersion: V1
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: redis
@@ -16,7 +16,7 @@ data:
     daemonize no
     supervised no
     pidfile /var/run/redis.pid
-    loglevel {{ redis.log }}
+    loglevel ${REDIS_LOG}
     databases 16
     always-show-logo yes
     stop-writes-on-bgsave-error yes
