@@ -16,7 +16,7 @@
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('file', 'config.yml') | from_yaml }}"
-    
+
 - name: Depoly Redis
   community.kubernetes.k8s:
     state: present
