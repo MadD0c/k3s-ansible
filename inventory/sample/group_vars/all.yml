@@ -47,44 +47,32 @@ storage:
   wipe: true
 
 # Authelia details
-authelia:
-  logLevel: "trace"
-  redirectionurl: "https://auth.mccannclan.family/"
-  totpissuer: "mccannclan.family"
-
-duo:
-  enabled: false
-  hostname: api-123456789.example.com
-  integration_key: ABCDEF
-
-session:
-  name: mccannclan_session
-
-ldap:
-  enabled: true
-  url: ldap://127.0.0.1
-  base_dn: dc=mccannclan,dc=family
-  user: cn=admin,dc=mccannclan,dc=family
-
-notifier:
-    smtp:
-      enabled: true
-      username: test
-      secure: false
-      host: 127.0.0.1
-      port: 1025
-      sender: admin@example.com
-
+authelia_logLevel: "trace"
+authelia_redirectionurl: "https://auth.mccannclan.family/"
+authelia_totpissuer: "mccannclan.family"
+#duo:
+duo_enabled: false
+duo_hostname: api-123456789.example.com
+duo_integration_key: ABCDEF
+session_name: mccannclan_session
+ldap_enabled: true
+ldap_url: ldap://127.0.0.1
+ldap_base_dn: dc=mccannclan,dc=family
+ldap_user: cn=admin,dc=mccannclan,dc=family
+smtp_enabled: true
+smtp_username: test
+smtp_secure: false
+smtp_host: 127.0.0.1
+smtp_port: 1025
+smtp_sender: admin@example.com
 #External Databse Details
-externaldb:
-  enabled: true
-  type: mysql
-  url: mysql://mariadb.db.cluster.local
-  database_name: authelia
-  user: authelia
-redis:
-  enabled: true
-  host:
-  dbindex: 1
+externaldb_enabled: true
+externaldb_type: mysql
+externaldb_url: mysql://mariadb.db.svc.cluster.local
+externaldb_database_name: authelia
+externaldb_user: authelia
+redis_enabled: true
+redis_host: redis.redis.svc.cluster.local
+redis_dbindex: 1
   # Log options debug, verbose, notice, warning
-  log: verbose
+redis_log: verbose

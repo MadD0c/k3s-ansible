@@ -14,22 +14,22 @@ nameOverride: ""
 fullnameOverride: ""
 
 authelia:
-  logLevel: {{ authelia.enabled }}
-  redirectionURL: {{ authelia.enabled }}
-  totpIssuer: {{ authelia.enabled }}
+  logLevel: {{ authelia_enabled }}
+  redirectionURL: {{ authelia_redirectionurl }}
+  totpIssuer: {{ authelia_totpissuer }}
 
   duo:
-    enabled: {{ duo.enabled }}
+    enabled: {{ duo_enabled }}
     config:
-      hostname: {{ duo.hostname }}
-      integration_key: {{ duo.integration_key }}
+      hostname: {{ duo_hostname }}
+      integration_key: {{ duo_integration_key }}
 
   ldap:
-    enabled: {{ ldap.enabled }}
+    enabled: {{ ldap_enabled }}
     config:
-      url: {{ ldap.url }}
+      url: {{ ldap_url }}
       # The base dn for every entries
-      base_dn: {{ ldap.base_dn }}
+      base_dn: {{ ldap_base_dn }}
       # An additional dn to define the scope to all users
       additional_users_dn: ou=users
       # The users filter used to find the user DN
@@ -49,13 +49,13 @@ authelia:
       # The attribute holding the mail address of the user
       mail_attribute: mail
       # The username and password of the admin user.
-      user: {{ ldap.user }}
+      user: {{ ldap_user }}
 
     # If LDAP is disabled, you can specify a users database file, however
     # it will be read-only!
   fileAuth:
     users: {}
-    
+
   # Default policy can either be `bypass`, `one_factor`, `two_factor` or `deny`.
   # It is the policy applied to any resource if there is no policy to be applied
   # to the user.
@@ -67,7 +67,7 @@ authelia:
 
   session:
     # The name of the session cookie. (default: authelia_session).
-    name: {{ session.name }}
+    name: {{ session_name }}
     # The time in ms before the cookie expires and session is reset.
     expiration: 3600000 # 1 hour
     # The inactivity time in ms before the session is reset.
@@ -89,7 +89,7 @@ authelia:
 
   notifier:
   # You can disable the notifier startup check by setting this to true.
-    smtpenabled: {{ notifier.smtp.enabled }}
+    smtpenabled: {{ smtp_enabled }}
 
   # For testing purpose, notifications can be sent in a file
     filesystem:
@@ -97,11 +97,11 @@ authelia:
 
     # Use a SMTP server for sending notifications
     smtp:
-      username: {{ notifier.smtp.username }}
-      secure: {{ notifier.smtp.secure }}
-      host: {{ notifier.smtp.host }}
-      port: {{ notifier.smtp.port }}
-      sender: {{ notifier.smtp.sender }}
+      username: {{ smtp_username }}
+      secure: {{ smtp_secure }}
+      host: {{ smtp_host }}
+      port: {{ smtp_port }}
+      sender: {{ smtp_sender }}
 
 # Options for Authelia PVC (/var/lib/authelia/store) when not using external DB
 persistence:
@@ -187,14 +187,14 @@ secrets:
   smtp_password: {{ email_password }}
 
 redis:
-  enabled: {{ redis.enabled }}
-  host: {{ redis.host }}
+  enabled: {{ redis_enabled }}
+  host: {{ redis_host }}
   port: 6379
-  database_index: {{ redis.dbindex }}
+  database_index: {{ redis_dbindex }}
 
 externaldb:
-  enabled: {{ externaldb.enabled }}
-  DBType: {{ externaldb.type }}
-  DBURL: {{ externaldb.url }}
-  Database: {{ externaldb.database_name }}
-  DBUser: {{ externaldb.user }}
+  enabled: {{ externaldb_enabled }}
+  DBType: {{ externaldb_type }}
+  DBURL: {{ externaldb_url }}
+  Database: {{ externaldb_database_name }}
+  DBUser: {{ externaldb_user }}
