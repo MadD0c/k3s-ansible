@@ -9,7 +9,6 @@
 - name: Deploy Authelia
   community.kubernetes.helm:
     name: authelia
-    kubeconfig: /etc/rancher/k3s/k3s.yaml
     chart_ref: madd0c/authelia
     release_namespace: auth
     create_namespace: true
