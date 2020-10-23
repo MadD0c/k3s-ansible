@@ -21,8 +21,8 @@ authelia:
   duo:
     enabled: false
     config:
-      hostname: {{ duo.hostname }}
-      integration_key: {{ duo.integration_key }}
+      hostname: api-123456789.example.com
+      integration_key: ABCDEF
 
   ldap:
     enabled: false
