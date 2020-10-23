@@ -7,10 +7,15 @@
     kind: Namespace
     state: present
 
-- name: Create Volumn for Redis
+- name: Create Volume for Redis
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('template', 'pvc.yml') | from_yaml }}"
+
+- name: Create Secrets for Redis
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('template', 'secrets.yml') | from_yaml }}"
 
 - name: Setup Redis Config
   community.kubernetes.k8s:

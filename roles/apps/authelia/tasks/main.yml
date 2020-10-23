@@ -1,10 +1,10 @@
 ---
 # https://galaxy.ansible.com/community/mysql?extIdCarryOver=true&sc_cid=701f2000001OH7YAAW
 
-#- name: Add madd0c repository
-#  community.kubernetes.helm_repository:
-#    name: madd0c
-#    repo_url: https://madd0c.github.io
+- name: Add madd0c repository
+  community.kubernetes.helm_repository:
+    name: madd0c
+    repo_url: https://madd0c.github.io
 
 - name: Deploy Authelia
   community.kubernetes.helm:

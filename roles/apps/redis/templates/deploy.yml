@@ -29,12 +29,21 @@ spec:
           configMap:
             name: redis
             defaultMode: 420
+        - name: redis-secret
+          secret:
+            secretName: redis-secret
+            items:
+              - key: redis_secret
+                path: password
       containers:
         - name: redis
           image: redis
           args: ["/usr/local/etc/redis/redis.conf"]
           ports:
             - containerPort: 6379
+          env:
+            - name: REDIS_PASSWORD
+              value: /usr/local/etc/redis/secrets/password
           resources:
             requests:
               cpu: 100m
@@ -45,3 +54,6 @@ spec:
             - name: config
               mountPath: /usr/local/etc/redis/redis.conf
               subPath: redis.conf
+            - name: redis-secret
+              mountPath: /usr/local/etc/redis/secrets
+              readOnly: true
