@@ -19,7 +19,7 @@ authelia:
   totpIssuer: {{ authelia.enabled }}
 
   duo:
-    enabled: {{ duo.enabled }}
+    enabled: false
     config:
       hostname: {{ duo.hostname }}
       integration_key: {{ duo.integration_key }}
