@@ -8,7 +8,6 @@ data:
   redis.conf: |
     bind 0.0.0.0
     protected-mode yes
-    requirepass ${REDIS_PASSWORD}
     port 6379
     tcp-backlog 511
     timeout 0
@@ -16,7 +15,6 @@ data:
     daemonize no
     supervised no
     pidfile /var/run/redis.pid
-    loglevel ${REDIS_LOG}
     databases 16
     always-show-logo yes
     stop-writes-on-bgsave-error yes
