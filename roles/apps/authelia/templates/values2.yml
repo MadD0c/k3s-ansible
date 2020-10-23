@@ -14,15 +14,15 @@ nameOverride: ""
 fullnameOverride: ""
 
 authelia:
-  logLevel: "trace"
-  redirectionURL: "https://home.example.com:8080/"
-  totpIssuer: "authelia.com"
+  logLevel: {{ authelia.enabled }}
+  redirectionURL: {{ authelia.enabled }}
+  totpIssuer: {{ authelia.enabled }}
 
   duo:
-    enabled: false
+    enabled: {{ duo.enabled }}
     config:
-      hostname: api-123456789.example.com
-      integration_key: ABCDEF
+      hostname: {{ duo.hostname }}
+      integration_key: {{ duo.integration_key }}
 
   ldap:
     enabled: false
