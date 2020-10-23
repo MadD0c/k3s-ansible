@@ -51,6 +51,3 @@ spec:
             - name: config
               mountPath: /usr/local/etc/redis/redis.conf
               subPath: redis.conf
-            - name: redis-secret
-              mountPath: /usr/local/etc/redis/secrets
-              readOnly: true
