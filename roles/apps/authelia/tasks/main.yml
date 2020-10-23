@@ -13,4 +13,4 @@
     release_namespace: auth
     create_namespace: true
     update_repo_cache: yes
-    values: "{{ lookup('template', 'values.yml' ) | from_yaml }}"
+    values: "{{ lookup('template', 'values2.yml' ) | from_yaml }}"
