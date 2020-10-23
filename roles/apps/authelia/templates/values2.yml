@@ -14,9 +14,9 @@ nameOverride: ""
 fullnameOverride: ""
 
 authelia:
-  logLevel: {{ authelia.enabled }}
-  redirectionURL: {{ authelia.enabled }}
-  totpIssuer: {{ authelia.enabled }}
+  logLevel: "trace"
+  redirectionURL: "https://home.example.com:8080/"
+  totpIssuer: "authelia.com"
 
   duo:
     enabled: false
