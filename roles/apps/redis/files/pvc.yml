@@ -6,7 +6,8 @@ metadata:
   namespace: redis
 spec:
   volumeMode: Filesystem
-  accessModes: ReadWriteOnce
+  accessModes:
+    - ReadWriteOnce
   storageClassName: nfs-client
   resources:
     requests:
