@@ -18,7 +18,6 @@ data:
     supervised no
     pidfile /var/run/redis.pid
     loglevel {{ redis.log }}
-    logfile ""
     databases 16
     always-show-logo yes
     stop-writes-on-bgsave-error yes
