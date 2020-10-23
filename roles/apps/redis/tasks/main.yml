@@ -20,6 +20,7 @@
 - name: Setup Redis Config
   community.kubernetes.k8s:
     state: present
+    namespace: redis
     definition: "{{ lookup('template', 'configmap.yml') | from_yaml }}"
 
 - name: Depoly Redis
