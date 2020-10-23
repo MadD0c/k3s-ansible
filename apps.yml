@@ -2,11 +2,11 @@
 - hosts: master
   become: no
   roles:
-#    - role: apps/redis
-#    - role: apps/mariadb
-#    - role: apps/phpmyadmin
-#    - role: apps/ldap
-    - role: apps/authelia
-#    - role: system/get-cert
-#    - role: system/traefik
-#    - role: system/digitalocean-dyndns
+    - role: apps/redis
+    #- role: apps/mariadb
+    #- role: apps/phpmyadmin
+    - role: apps/ldap
+    #- role: apps/authelia
+    #- role: system/get-cert
+    #- role: system/traefik
+    #- role: system/digitalocean-dyndns
