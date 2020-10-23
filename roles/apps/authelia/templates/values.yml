@@ -14,7 +14,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 authelia:
-  logLevel: {{ authelia_enabled }}
+  logLevel: {{ authelia_logLevel }}
   redirectionURL: {{ authelia_redirectionurl }}
   totpIssuer: {{ authelia_totpissuer }}
 
