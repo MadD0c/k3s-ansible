@@ -2,9 +2,9 @@
 - hosts: master
   become: no
   roles:
-    #- role: apps/redis
+    - role: apps/redis
     #- role: apps/mariadb
     #- role: apps/phpmyadmin
     #- role: apps/ldap
     #- role: apps/authelia
-    - role: apps/kube_dashboard
+    #- role: apps/kube_dashboard
