@@ -43,7 +43,7 @@ spec:
             - containerPort: 6379
           env:
             - name: REDIS_PASSWORD
-              value: /usr/local/etc/redis/secrets/password
+              value: $(<password)
             - name: REDIS_LOG
               value: {{ redis.log }}
           resources:
