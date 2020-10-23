@@ -54,14 +54,16 @@ authelia:
     # If LDAP is disabled, you can specify a users database file, however
     # it will be read-only!
   fileAuth:
-    users: {{ lookup('file', 'users.yml' ) | from_yaml }}
-
+    users: {}
+    
   # Default policy can either be `bypass`, `one_factor`, `two_factor` or `deny`.
   # It is the policy applied to any resource if there is no policy to be applied
   # to the user.
   accessControl:
     defaultPolicy: deny
-    rules: {{ lookup('file', 'access.yml' ) | from_yaml }}
+    rules:
+      - domain: auth.mccannclan.family.com
+        policy: allow
 
   session:
     # The name of the session cookie. (default: authelia_session).
