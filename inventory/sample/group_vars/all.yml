@@ -86,3 +86,5 @@ redis:
   enabled: true
   host:
   dbindex: 0
+  # Log options debug, verbose, notice, warning
+  log: verbose
