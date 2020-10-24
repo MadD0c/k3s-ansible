@@ -181,7 +181,7 @@ secrets:
   jwt_secret: {{ authelia_jwt }}
   session_secret: {{ authelia_session }}
   duo_secret_key: {{ authelia_duo }}
-  redis_password: {{ authelia_session }}
+  redis_password: {{ redis_password }}
   DBPassword: {{ dbuser_password }}
   LDAP_password: {{ ldap_password }}
   smtp_password: {{ email_password }}
