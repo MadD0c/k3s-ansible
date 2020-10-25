@@ -1,6 +1,6 @@
 ---
 
-- name: Deploy phpMyAdmin
+- name: Deploy phpLDAPAdmin
   community.kubernetes.helm:
     name: phpldapadmin
   #  kubeconfig: /etc/rancher/k3s/k3s.yaml
