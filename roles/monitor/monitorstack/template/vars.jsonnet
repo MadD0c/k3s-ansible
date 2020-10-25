@@ -7,7 +7,7 @@
     {
       // After deployment, run the create_gmail_auth.sh script from scripts dir.
       name: 'smtpRelay',
-      enabled: true,
+      enabled: false,
       file: import 'modules/smtp_relay.jsonnet',
     },
     {
@@ -69,7 +69,7 @@
     storageClass: 'nfs-client',
     // Define the PV sizes below
     prometheusSizePV: '1Gi',
-    grafanaSizePV: '2Gi',
+    grafanaSizePV: '1Gi',
   },
 
   // Configuration for Prometheus deployment
