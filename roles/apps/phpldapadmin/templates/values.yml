@@ -93,6 +93,6 @@ ldap:
   host: {{ ldap_url }}
   port: {{ ldap_port }}
   auth_type: {{ ldap_auth_type }}
-  bind_id: {{ ldap_ldap_user }}
+  bind_id: {{ ldap_user }}
   password: {{ ldap_password }}
   tsl: {{ ldap_tsl }}
