@@ -4,7 +4,7 @@
   community.kubernetes.helm:
     name: openldap
     #kubeconfig: /etc/rancher/k3s/k3s.yaml
-    chart_ref: stable/openldap
+    chart_ref: madd0c/openldap
     release_namespace: auth
     create_namespace: true
     update_repo_cache: yes
