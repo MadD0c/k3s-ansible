@@ -74,7 +74,6 @@ adminPassword: {{ ldap_password }}
 
 ## Persist data to a persistent volume
 persistence:
-  enabled: true
   ## database data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
