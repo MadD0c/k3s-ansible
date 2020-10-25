@@ -55,10 +55,15 @@ duo_enabled: false
 duo_hostname: api-123456789.example.com
 duo_integration_key: ABCDEF
 session_name: mccannclan_session
+# LDAP authentication Settings
 ldap_enabled: true
-ldap_url: ldap://127.0.0.1
+ldap_url: ldap://openldap.auth.svc.cluster.local
 ldap_base_dn: dc=mccannclan,dc=family
 ldap_user: cn=admin,dc=mccannclan,dc=family
+ldap_auth_type: config
+ldap_port: 389
+ldap_tsl: false
+# SMTP notification setting
 smtp_enabled: true
 smtp_username: test
 smtp_secure: false

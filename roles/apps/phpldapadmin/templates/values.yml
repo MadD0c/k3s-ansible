@@ -3,12 +3,6 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-## TODO: add this in the deployment.yaml
-env:
-  # PHPLDAPADMIN_LDAP_HOSTS: ...
-  PHPLDAPADMIN_HTTPS: "false"
-  PHPLDAPADMIN_TRUST_PROXY_SSL: "true"
-
 ## Number of phpLDAPadmin images
 replicaCount: 1
 
@@ -16,7 +10,7 @@ replicaCount: 1
 ##
 image:
   repository: osixia/phpldapadmin
-  tag: 0.7.1
+  tag: stable-arm64v9
   pullPolicy: IfNotPresent
 
 
@@ -92,3 +86,13 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+## LDAP server details
+ldap:
+  name: Example
+  host: {{ ldap_url }}
+  port: {{ ldap_port }}
+  auth_type: {{ ldap_auth_type }}
+  bind_id: {{ ldap_ldap_user }}
+  password: {{ ldap_password }}
+  tsl: {{ ldap_tsl }}
