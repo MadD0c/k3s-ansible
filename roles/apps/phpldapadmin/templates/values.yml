@@ -25,7 +25,7 @@ image:
 ## ref: http://kubernetes.io/docs/user-guide/services/
 ##
 service:
-  type: CLusterIP
+  type: ClusterIP
   ## name: phpldapadmin
   port: 80
   annotations: {}
