@@ -5,6 +5,6 @@
     #- role: apps/redis
     #- role: apps/mariadb
     #- role: apps/ldap
-    - role: apps/phpldapadmin
+    #- role: apps/phpldapadmin
     #- role: apps/authelia
     #- role: apps/kube_dashboard
