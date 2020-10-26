@@ -17,12 +17,35 @@
     owner: ansible
     mode: '777'
 
-- name: Copy Monitoring Stack Instalastion files
-  copy:
-    src: setup.sh
-    dest: "{{ remote_tmp }}/cluster-monitoring/setup.sh"
-    owner: ansible
-    mode: '0700'
+#- name: Copy Monitoring Stack Instalastion files
+#  copy:
+#    src: setup.sh
+#    dest: "{{ remote_tmp }}/cluster-monitoring/setup.sh"
+#    owner: ansible
+#    mode: '0700'
 
-- name: Install Cluster Monitoring
-  command: "sh {{ remote_tmp }}/cluster-monitoring/setup.sh"
+#- name: Install Cluster Monitoring
+#  command: "sh {{ remote_tmp }}/cluster-monitoring/setup.sh"
+
+- name: Build stack Settings
+  community.general.make:
+    chdir: "{{ remote_tmp }}/cluster-monitoring"
+    target: vendor
+
+- name: Build Stack
+  community.general.make:
+    chdir: "{{ remote_tmp }}/cluster-monitoring"
+
+- name: Install Stack Step 1
+  community.kubernetes.k8s:
+    state: present
+    src:  "{{ remote_tmp }}/cluster-monitoring/manifests/setup/"
+
+- name: Wait for Step 1 to complete
+  wait_for:
+    timeout: 120
+
+- name: Install Stack Step 2
+  community.kubernetes.k8s:
+    state: present
+    src:  "{{ remote_tmp }}/cluster-monitoring/manifests/"
