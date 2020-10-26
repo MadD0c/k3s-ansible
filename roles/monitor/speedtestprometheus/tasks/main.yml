@@ -5,11 +5,10 @@
     repo_url: https://k8s-at-home.com/charts/
     repo_state: present
 
-- name: Deploy digitalocean-dyndns
+- name: Deploy Prometheus SpeedTest
   community.kubernetes.helm:
-    name: digitalocean-dyndns
-    kubeconfig: /etc/rancher/k3s/k3s.yaml
-    chart_ref: k8s-at-home/digitalocean-dyndns
-    release_namespace: kube-system
+    name: prometheus-speedtest
+    chart_ref: k8s-at-home/speedtest-prometheus
+    release_namespace: monitoring
     update_repo_cache: yes
     values: "{{ lookup('template', 'values.yaml' ) | from_yaml }}"
