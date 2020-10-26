@@ -10,7 +10,7 @@ replicaCount: 1
 ##
 image:
   repository: osixia/phpldapadmin
-  tag: stable-arm64v9
+  tag: stable-arm64v8
   pullPolicy: IfNotPresent
 
 
