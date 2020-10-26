@@ -10,5 +10,6 @@
       - curl
       - gnupg-agent
       - software-properties-common
+      - golang
     update_cache: yes
     state: present
