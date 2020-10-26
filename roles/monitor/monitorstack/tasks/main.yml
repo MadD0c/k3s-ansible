@@ -31,10 +31,12 @@
   community.general.make:
     chdir: "{{ remote_tmp }}/cluster-monitoring"
     target: vendor
+    file: "{{ remote_tmp }}/cluster-monitoring/Makefile"
 
 - name: Build Stack
   community.general.make:
     chdir: "{{ remote_tmp }}/cluster-monitoring"
+    file: "{{ remote_tmp }}/cluster-monitoring/Makefile"
 
 - name: Install Stack Step 1
   community.kubernetes.k8s:
