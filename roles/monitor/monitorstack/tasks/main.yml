@@ -35,5 +35,12 @@
 #    owner: ansible
 #    mode: '0700'
 
+#- name: Install Cluster Monitoring
+#  command: "kubectl apply -f {{ remote_tmp }}/cluster-monitoring/manifests/setup/"
+
 - name: Install Cluster Monitoring
-  command: "kubectl apply -f {{ remote_tmp }}/cluster-monitoring/manifests/setup/"
+  wait_for:
+    timeout: 90
+
+- name: Install Cluster Monitoring
+  command: "kubectl apply -f {{ remote_tmp }}/cluster-monitoring/manifests/"
