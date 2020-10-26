@@ -12,6 +12,8 @@
 
 - hosts: master
   become: no
+  vars_files:
+    - ./secrets/secrets.var
   roles:
     - role: system/openshift
     - role: andrewrothstein.kubernetes-helm

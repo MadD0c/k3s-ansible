@@ -4,9 +4,6 @@
   vars_files:
     - ./secrets/secrets.var
   roles:
-    - role: monitor/monitorstack
-    #- role: apps/mariadb
-    #- role: apps/ldap
-    #- role: apps/phpldapadmin
-    #- role: apps/authelia
-    #- role: apps/kube_dashboard
+  #  - role: monitor/monitorstack
+    - role: monitor/speedtestprometheus
+    - role: monitor/unifipoller
