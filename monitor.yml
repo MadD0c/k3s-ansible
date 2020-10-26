@@ -1,0 +1,10 @@
+---
+- hosts: master
+  become: no
+  roles:
+    - role: monitor/monitorstack
+    #- role: apps/mariadb
+    #- role: apps/ldap
+    #- role: apps/phpldapadmin
+    #- role: apps/authelia
+    #- role: apps/kube_dashboard
