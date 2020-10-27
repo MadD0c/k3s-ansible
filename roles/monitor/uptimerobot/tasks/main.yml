@@ -1,0 +1,14 @@
+---
+- name: Add k8s-at-home repository
+  community.kubernetes.helm_repository:
+    name: k8s-at-home
+    repo_url: https://k8s-at-home.com/charts/
+    repo_state: present
+
+- name: Deploy UptimeRobot
+  community.kubernetes.helm:
+    name: uptimerobot
+    chart_ref: k8s-at-home/uptimerobot-prometheus
+    release_namespace: monitoring
+    update_repo_cache: yes
+    values: "{{ lookup('template', 'values.yaml' ) | from_yaml }}"

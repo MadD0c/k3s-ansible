@@ -6,7 +6,7 @@
   roles:
     #- role: services/redis
     #- role: services/mariadb
-    #- role: services/ldap
-    - role: services/phpldapadmin
+    - role: services/ldap
+    #- role: services/phpldapadmin
     #- role: services/authelia
     #- role: services/kube_dashboard
