@@ -132,13 +132,13 @@ config:
       # config.unifi.defaults.role -- Friendly name used in dashboards. Uses URL if left empty; which is fine.
       # Avoid changing this later because it will live forever in your database.
       # Multiple controllers may share a role. This allows grouping during scrapes.
-      role: "unifi-controller"
+      role: "{{ organization_name }} Controller"
       # config.unifi.defaults.role -- Username to talk to unifi
-      user: "unifipoller"
+      user: "{{ unifi_user }}"
       # config.unifi.defaults.pass -- Password to talk to unifi
-      pass: "unifipoller"
+      pass: "{{ unifi_password }}"
       # config.unifi.defaults.url -- Url to talk to unifi
-      url: "https://127.0.0.1:8443"
+      url: "{{ organization_name }}:{{ organization_name }}"
       # config.unifi.defaults.sites -- If the controller has more than one site, specify which sites to poll here.
       # Set this to ["default"] to poll only the first site on the controller.
       # A setting of ["all"] will poll all sites; this works if you only have 1 site too.
