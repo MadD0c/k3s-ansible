@@ -81,3 +81,7 @@ redis_host: redis.redis.svc.cluster.local
 redis_dbindex: 1
   # Log options debug, verbose, notice, warning
 redis_log: verbose
+# Unifi controller
+unifi_user:
+unifi_url:
+unifi_port:

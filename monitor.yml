@@ -7,3 +7,4 @@
   #  - role: monitor/monitorstack
     - role: monitor/speedtestprometheus
     - role: monitor/unifipoller
+    - role: monitor/uptimerobot
