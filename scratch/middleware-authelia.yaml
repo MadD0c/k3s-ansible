@@ -1,0 +1,12 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: middlewares-authelia
+spec:
+      forwardAuth:
+        address: "http://authelia:9091/api/verify?rd=https://authelia.example.com"
+        trustForwardHeader: true
+        authResponseHeaders:
+          - "Remote-User"
+          - "Remote-Groups"
