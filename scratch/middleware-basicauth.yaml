@@ -4,17 +4,9 @@ kind: Middleware
 metadata:
   name: middlewares-basic-auth
 spec:
-      basicAuth:
-        # users:
-        #   - "user:$apsdfs.$EntPC0w3FtswWvC/6fTVJ7IUVtX1"
-        usersFile: "/shared/.htpasswd" #be sure to mount the volume through docker-compose.yml
-        realm: "Traefik 2 Basic Auth"
+  basicAuth:
+    # users:
+    #   - "user:$apsdfs.$EntPC0w3FtswWvC/6fTVJ7IUVtX1"
+    usersFile: "/shared/.htpasswd" #be sure to mount the volume through docker-compose.yml
+    realm: "Traefik 2 Basic Auth"
 
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: middlewares-rate-limit
-spec:
-      rateLimit:
-        average: 100
-        burst: 50
