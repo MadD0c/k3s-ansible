@@ -58,14 +58,14 @@ env:
   LDAP_BACKEND: "hdb"
   LDAP_TLS: "false"
   LDAP_TLS_ENFORCE: "false"
-  LDAP_REMOVE_CONFIG_AFTER_SETUP: "true"
-  DISABLE_CHOWN: "true"
+  LDAP_REMOVE_CONFIG_AFTER_SETUP: "false"
+  DISABLE_CHOWN: "false"
 
 # Default Passwords to use, stored as a secret. If unset, passwords are auto-generated.
 # You can override these at install time with
 # helm install openldap --set openldap.adminPassword=<passwd>,openldap.configPassword=<passwd>
 adminPassword: {{ ldap_password }}
-# configPassword: {{ ldap_password }}
+configPassword: {{ ldap_password }}
 
 # Custom openldap configuration files used to override default settings
 # customLdifFiles:
@@ -117,4 +117,4 @@ test:
 
 # Set the container log level
 # Valid log levels: none, error, warning, info (default), debug, trace
-logLevel: info
+logLevel: debug
