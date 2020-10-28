@@ -14,3 +14,10 @@
     create_namespace: true
     update_repo_cache: yes
     values: "{{ lookup('template', 'traefik.yml' ) | from_yaml }}"
+
+- name: >-
+    Read definition file from the Ansible controller file system.
+    If the definition file has been encrypted with Ansible Vault it will automatically be decrypted.
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('file', '/testing/deployment.yml') | from_yaml }}"
