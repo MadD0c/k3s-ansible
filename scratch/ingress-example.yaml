@@ -1,0 +1,22 @@
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingressroutebar
+
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`example.com`) && PathPrefix(`/stripit`)
+    kind: Rule
+    services:
+    - name: whoami
+      port: 80
+    middlewares:
+    - name: stripprefix
+      namespace: foo
+  tls:
+    store:
+      name: default
