@@ -43,12 +43,12 @@
 - name: Install tls options
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', 'tsl-options.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', 'tls-options.yaml') | from_yaml }}"
 
 - name: Install tls store
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', 'tsl-store.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', 'tls-store.yaml') | from_yaml }}"
 
 - name: Install External Ingress
   community.kubernetes.k8s:
