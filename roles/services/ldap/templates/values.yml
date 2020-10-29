@@ -55,11 +55,11 @@ service:
 env:
   LDAP_ORGANISATION: {{ organization_name }}
   LDAP_DOMAIN: {{ dns_domains }}
-  LDAP_BACKEND: "hdb"
+  LDAP_BACKEND: "mdb"
   LDAP_TLS: "false"
   LDAP_TLS_ENFORCE: "false"
-  LDAP_REMOVE_CONFIG_AFTER_SETUP: "false"
-  DISABLE_CHOWN: "false"
+  LDAP_REMOVE_CONFIG_AFTER_SETUP: "true"
+  DISABLE_CHOWN: "true"
 
 # Default Passwords to use, stored as a secret. If unset, passwords are auto-generated.
 # You can override these at install time with
