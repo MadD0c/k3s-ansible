@@ -33,7 +33,7 @@
 - name: Install middleware chains
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', 'middleware-chains-basicauth.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', 'middleware-chains-basic-auth.yaml') | from_yaml }}"
 
 - name: Install middleware chains
   community.kubernetes.k8s:
