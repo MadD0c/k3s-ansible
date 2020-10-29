@@ -3,54 +3,54 @@
 - name: Install middlewares
   community.kubernetes.k8s:
     state: present
-    template: '/files/middlewares/middleware-https-only.yaml'
+    src:: '/files/middlewares/middleware-https-only.yaml'
 
 - name: Install middlewares
   community.kubernetes.k8s:
     state: present
-    template: '/files/middlewares/middleware-rate-limit.yaml'
+    src:: '/files/middlewares/middleware-rate-limit.yaml'
 
 - name: Install middlewares
   community.kubernetes.k8s:
     state: present
-    template: '/files/middlewares/middleware-headers.yaml'
+    src:: '/files/middlewares/middleware-headers.yaml'
 
 - name: Install middlewares
   community.kubernetes.k8s:
     state: present
-    template: '/files/middlewares/middleware-basicauth.yaml'
+    src:: '/files/middlewares/middleware-basicauth.yaml'
 
 - name: Install middlewares
   community.kubernetes.k8s:
     state: present
-    template: '/files/middlewares/middleware-authelia.yaml'
+    src:: '/files/middlewares/middleware-authelia.yaml'
 
 - name: Install middleware chains
   community.kubernetes.k8s:
     state: present
-    template: '/files/middlewares/middleware-chains-no-auth.yaml'
+    src:: '/files/middlewares/middleware-chains-no-auth.yaml'
 
 - name: Install middleware chains
   community.kubernetes.k8s:
     state: present
-    template: '/files/middlewares/middleware-chains-basicauth.yaml'
+    src:: '/files/middlewares/middleware-chains-basicauth.yaml'
 
 - name: Install middleware chains
   community.kubernetes.k8s:
     state: present
-    template: '/files/middlewares/middleware-chains-authelia.yaml'
+    src:: '/files/middlewares/middleware-chains-authelia.yaml'
 
 - name: Install tls options
   community.kubernetes.k8s:
     state: present
-    template: '/files/tsl/tsl-options.yaml'
+    src:: '/files/tsl/tsl-options.yaml'
 
 - name: Install tls store
   community.kubernetes.k8s:
     state: present
-    template: '/files/tsl/tsl-store.yaml'
+    src:: '/files/tsl/tsl-store.yaml'
 
 - name: Install External Ingress
   community.kubernetes.k8s:
     state: present
-    template: '/files/ingress/ingress-traefik.yaml'
+    src:: '/files/ingress/ingress-traefik.yaml'
