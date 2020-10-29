@@ -3,54 +3,54 @@
 - name: Install middlewares
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', '/middlewares/middleware-https-only.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', 'middleware-https-only.yaml') | from_yaml }}"
 
 - name: Install middlewares
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', '/files/middlewares/middleware-rate-limit.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', 'middleware-rate-limit.yaml') | from_yaml }}"
 
 - name: Install middlewares
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', '/files/middlewares/middleware-headers.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', 'middleware-headers.yaml') | from_yaml }}"
 
 - name: Install middlewares
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', '/files/middlewares/middleware-basicauth.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', 'middleware-basicauth.yaml') | from_yaml }}"
 
 - name: Install middlewares
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', '/files/middlewares/middleware-authelia.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', 'middleware-authelia.yaml') | from_yaml }}"
 
 - name: Install middleware chains
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', '/files/middlewares/middleware-chains-no-auth.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', 'middleware-chains-no-auth.yaml') | from_yaml }}"
 
 - name: Install middleware chains
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', '/files/middlewares/middleware-chains-basicauth.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', 'middleware-chains-basicauth.yaml') | from_yaml }}"
 
 - name: Install middleware chains
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', '/files/middlewares/middleware-chains-authelia.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', 'middleware-chains-authelia.yaml') | from_yaml }}"
 
 - name: Install tls options
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', '/files/tsl/tsl-options.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', 'tsl-options.yaml') | from_yaml }}"
 
 - name: Install tls store
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', '/files/tsl/tsl-store.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', 'tsl-store.yaml') | from_yaml }}"
 
 - name: Install External Ingress
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', '/files/ingress/ingress-traefik.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', 'ingress-traefik.yaml') | from_yaml }}"
