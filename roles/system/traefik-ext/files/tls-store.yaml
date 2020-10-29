@@ -6,4 +6,4 @@ metadata:
   namespace: default
 spec:
   defaultCertificate:
-    secretName:  "{{ dns_domains }}-tls-prod"
+    secretName: "{{ dns_domains }}-tls-prod"
