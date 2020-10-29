@@ -6,4 +6,4 @@ metadata:
   namespace: default
 spec:
   defaultCertificate:
-    secretName: mccannclan.family-prod
+    secretName:  "{{ dns_domains }}-tls-prod"

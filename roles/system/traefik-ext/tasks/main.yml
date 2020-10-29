@@ -43,4 +43,14 @@
 - name: Install tls options
   community.kubernetes.k8s:
     state: present
-    template: '/files/middlewares/tsl-options.yaml'
+    template: '/files/tsl/tsl-options.yaml'
+
+- name: Install tls store
+  community.kubernetes.k8s:
+    state: present
+    template: '/files/tsl/tsl-store.yaml'
+
+- name: Install External Ingress
+  community.kubernetes.k8s:
+    state: present
+    template: '/files/ingress/ingress-traefik.yaml'

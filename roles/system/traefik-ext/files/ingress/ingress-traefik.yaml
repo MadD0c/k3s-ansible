@@ -3,18 +3,17 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: ingressroutebar
+  name: ingressroute-traefik
 
 spec:
   entryPoints:
     - web
     - websecure
   routes:
-  - match: Host(`example.com`) && PathPrefix(`/stripit`)
+  - match: Host(`sysop.mccannclan.family`) && PathPrefix(`/ingress`)
     kind: Rule
     services:
-    - name: whoami
-      port: 80
+    - name: api@internal
     middlewares:
     - https-only
     - chain-authelia
