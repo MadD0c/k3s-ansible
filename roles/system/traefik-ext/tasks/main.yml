@@ -3,7 +3,7 @@
 - name: Install middlewares
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', '/files/middlewares/middleware-https-only.yaml') | from_yaml }}"
+    definition: "{{ lookup('file', '/middlewares/middleware-https-only.yaml') | from_yaml }}"
 
 - name: Install middlewares
   community.kubernetes.k8s:
