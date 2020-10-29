@@ -8,6 +8,7 @@ metadata:
 spec:
   entryPoints:
     - web
+    - websecure
   routes:
   - match: Host(`example.com`) && PathPrefix(`/stripit`)
     kind: Rule
@@ -15,8 +16,10 @@ spec:
     - name: whoami
       port: 80
     middlewares:
-    - name: stripprefix
-      namespace: foo
+    - https-only
+    - chain-authelia
+  #  - chain-basic-auth
+  #  - chain-no-auth
   tls:
     store:
       name: default
