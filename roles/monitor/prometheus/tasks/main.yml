@@ -1,0 +1,14 @@
+---
+- name: Add Prometheus Community repository
+  community.kubernetes.helm_repository:
+    name: k8s-at-home
+    repo_url: https://prometheus-community.github.io/helm-charts
+    repo_state: present
+
+- name: Deploy Prometheus SpeedTest
+  community.kubernetes.helm:
+    name: prometheus-community
+    chart_ref: prometheus-community/prometheus
+    release_namespace: monitoring
+    update_repo_cache: yes
+    values: "{{ lookup('template', 'values.yaml' ) | from_yaml }}"

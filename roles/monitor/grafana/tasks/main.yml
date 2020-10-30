@@ -1,0 +1,14 @@
+---
+- name: Add Grafana repository
+  community.kubernetes.helm_repository:
+    name: grafana
+    repo_url: https://grafana.github.io/helm-charts
+    repo_state: present
+
+- name: Deploy Grafana
+  community.kubernetes.helm:
+    name: grafana
+    chart_ref: grafana/grafana
+    release_namespace: monitoring
+    update_repo_cache: yes
+    values: "{{ lookup('template', 'values.yaml' ) | from_yaml }}"
