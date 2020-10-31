@@ -46,9 +46,9 @@ service:
   ##
   externalIPs: []
 
-  loadBalancerIP: ""
+  loadBalancerIP: "192.168.1.221"
   loadBalancerSourceRanges: []
-  type: ClusterIP
+  type: LoadBalancer
 
 # Default configuration for openldap as environment variables. These get injected directly in the container.
 # Use the env variables from https://github.com/osixia/docker-openldap#beginner-guide
@@ -60,6 +60,7 @@ env:
   LDAP_TLS_ENFORCE: "false"
   LDAP_REMOVE_CONFIG_AFTER_SETUP: "true"
   DISABLE_CHOWN: "true"
+  LDAP_LOG_LEVEL: 32 8
 
 # Default Passwords to use, stored as a secret. If unset, passwords are auto-generated.
 # You can override these at install time with
@@ -114,7 +115,3 @@ test:
   image:
     repository: dduportal/bats
     tag: 0.4.0
-
-# Set the container log level
-# Valid log levels: none, error, warning, info (default), debug, trace
-logLevel: trace
