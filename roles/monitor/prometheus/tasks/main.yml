@@ -5,7 +5,7 @@
     repo_url: https://prometheus-community.github.io/helm-charts
     repo_state: present
 
-- name: Deploy Prometheus SpeedTest
+- name: Deploy Prometheus
   community.kubernetes.helm:
     name: prometheus-community
     chart_ref: prometheus-community/prometheus
