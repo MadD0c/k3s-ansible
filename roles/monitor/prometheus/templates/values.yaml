@@ -155,7 +155,8 @@ alertmanager:
   ## Node labels for alertmanager pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: {}
+  nodeSelector:
+    node-role.kubernetes.io/worker: 'true'
 
   ## Pod affinity
   ##
@@ -193,7 +194,7 @@ alertmanager:
     ## alertmanager data Persistent Volume existing claim name
     ## Requires alertmanager.persistentVolume.enabled: true
     ## If defined, PVC must be created manually before volume will be bound
-    existingClaim: ""
+    #existingClaim: ""
 
     ## alertmanager data Persistent Volume mount root path
     ##
@@ -794,7 +795,7 @@ server:
     ## Prometheus server data Persistent Volume existing claim name
     ## Requires server.persistentVolume.enabled: true
     ## If defined, PVC must be created manually before volume will be bound
-    existingClaim: ""
+    # existingClaim: ""
 
     ## Prometheus server data Persistent Volume mount root path
     ##
@@ -869,7 +870,7 @@ server:
     ## If true, use a statefulset instead of a deployment for pod management.
     ## This allows to scale replicas to more than 1 pod
     ##
-    enabled: false
+    enabled: true
 
     annotations: {}
     labels: {}
