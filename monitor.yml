@@ -5,6 +5,7 @@
     - ./secrets/secrets.var
   roles:
   #  - role: monitor/monitorstack
-    - role: monitor/speedtestprometheus
-    - role: monitor/unifipoller
-    - role: monitor/uptimerobot
+    - role: monitor/prometheus
+  #  - role: monitor/speedtestprometheus
+  #  - role: monitor/unifipoller
+  #  - role: monitor/uptimerobot
