@@ -63,7 +63,7 @@ authelia:
     defaultPolicy: deny
     rules:
       - domain: auth.mccannclan.family.com
-        policy: allow
+        policy: bypass
 
   session:
     # The name of the session cookie. (default: authelia_session).
