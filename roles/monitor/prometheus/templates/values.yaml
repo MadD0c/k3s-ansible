@@ -415,7 +415,9 @@ kubeStateMetrics:
 ## kube-state-metrics sub-chart configurable values
 ## Please see https://github.com/helm/charts/tree/master/stable/kube-state-metrics
 ##
-# kube-state-metrics:
+kube-state-metrics:
+  image.repository: carlosedp/kube-state-metrics
+  image.tag: v1.9.6-arm64
 
 nodeExporter:
   ## If false, node-exporter will not be installed
