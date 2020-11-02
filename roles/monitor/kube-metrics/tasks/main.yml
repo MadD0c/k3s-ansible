@@ -1,6 +1,6 @@
 ---
 
-- name: Deploy Prometheus
+- name: Deploy kube-state-metrics
   community.kubernetes.helm:
     name: kube-metrics
     chart_ref: stable/kube-state-metrics
