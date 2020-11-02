@@ -1,6 +1,4 @@
 additionalArguments:
-            - '--global.checknewversion'
-            - '--global.sendanonymoususage'
             - '--entryPoints.traefik.address=:9000'
             - '--entryPoints.web.address=:8000'
             - '--entryPoints.websecure.address=:8443'
@@ -13,3 +11,5 @@ additionalArguments:
             - '--providers.kubernetesingress'
             - '--metrics.prometheus=true'
             - '--tracing.elastic=true'
+            - '--entrypoints.web.http.redirections.entryPoint.to=websecure'
+            - '--entrypoints.web.http.redirections.entryPoint.scheme=https'
