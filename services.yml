@@ -6,6 +6,6 @@
   roles:
     #- role: services/redis
     #- role: services/mariadb
-    - role: services/ldap
+    #- role: services/ldap
     #- role: services/authelia
-    #- role: services/kube_dashboard
+    - role: services/kube_dashboard

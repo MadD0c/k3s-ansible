@@ -1,17 +1,16 @@
 ---
 
-- name: Add kubernetes-dashboard repository
-  community.kubernetes.helm_repository:
-    name: kubernetes-dashboard
-    repo_url: https://kubernetes.github.io/dashboard/
-    repo_state: present
+#- name: Add kubernetes-dashboard repository
+#  community.kubernetes.helm_repository:
+#    name: kubernetes-dashboard
+#    repo_url: https://kubernetes.github.io/dashboard/
+#    repo_state: present
 
 - name: Deploy kubernetes-dashboard
   community.kubernetes.helm:
     name: kubernetes-dashboard
-    kubeconfig: /etc/rancher/k3s/k3s.yaml
     chart_ref: kubernetes-dashboard/kubernetes-dashboard
     release_namespace: kube-system
     create_namespace: true
     update_repo_cache: yes
-#    values: "{{ lookup('template', 'values.yml' ) | from_yaml }}"
+    values: "{{ lookup('template', 'values.yml' ) | from_yaml }}"
