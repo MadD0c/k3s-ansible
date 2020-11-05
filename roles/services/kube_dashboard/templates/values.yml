@@ -16,11 +16,3 @@ proxy:
     repository: nginx
     tag: mainline-alpine
   resources: {}
-  containerSecurityContext:
-    allowPrivilegeEscalation: false
-    readOnlyRootFilesystem: true
-    runAsUser: 1001
-    runAsGroup: 2001
-
-secrets:
-  k8s_token: none
