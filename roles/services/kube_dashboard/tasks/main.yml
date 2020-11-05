@@ -1,16 +1,15 @@
 ---
 
-#- name: Add kubernetes-dashboard repository
-#  community.kubernetes.helm_repository:
-#    name: kubernetes-dashboard
-#    repo_url: https://kubernetes.github.io/dashboard/
-#    repo_state: present
+- name: Add madd0c repository
+  community.kubernetes.helm_repository:
+    name: madd0c
+    repo_url: https://madd0c.github.io
+    repo_state: present
 
 - name: Deploy kubernetes-dashboard
   community.kubernetes.helm:
     name: kubernetes-dashboard
     chart_ref: madd0c/kubernetes-dashboard
     release_namespace: kube-system
-    create_namespace: true
     update_repo_cache: yes
     values: "{{ lookup('template', 'values.yml' ) | from_yaml }}"
