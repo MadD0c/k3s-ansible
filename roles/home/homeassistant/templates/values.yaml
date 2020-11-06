@@ -4,7 +4,7 @@
 
 image:
   repository: homeassistant/home-assistant
-  tag: 0.116.1
+  tag: 0.117.5
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -31,7 +31,7 @@ probes:
     failureThreshold: 30
     periodSeconds: 10
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 8123
   portName: api
   additionalPorts: []
@@ -45,7 +45,7 @@ service:
   ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
   ##
   externalIPs: []
-  loadBalancerIP: ""
+  loadBalancerIP: "192.168.1.221"
   loadBalancerSourceRanges: []
   # nodePort: 30000
   publishNotReadyAddresses: false
@@ -74,7 +74,7 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  # storageClass: "-"
+  storageClass: "nfs-client"
   ##
   ## If you want to reuse an existing claim, you can pass the name of the PVC using
   ## the existingClaim variable
@@ -99,9 +99,9 @@ extraEnv: {}
 extraEnvSecrets:
   # Example
   # This will set ${MQTT_PASSWORD} to the 'password' key from the 'mqtt' secret
-  # MQTT_PASSWORD:
-  #   secret: mqtt
-  #   key: password
+  MQTT_PASSWORD:
+    secret: mqtt
+    key: password
 
 ## If you'd like to provide your own Kubernetes Secret object instead of passing your values
 ## individually, pass in the name of a created + populated Secret.
@@ -150,7 +150,7 @@ hostMounts: []
   #   hostPath: /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_6120245D-if01-port0
 
 configurator:
-  enabled: false
+  enabled: true
 
   ## hass-configurator container image
   ##
@@ -210,7 +210,7 @@ configurator:
 # settings has to be enabled in configuration.yaml
 # https://www.home-assistant.io/components/prometheus/
 monitoring:
-  enabled: false
+  enabled: true
   serviceMonitor:
     # When set true and if Prometheus Operator is installed then use a ServiceMonitor to configure scraping
     enabled: true
