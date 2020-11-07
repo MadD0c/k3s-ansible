@@ -1,4 +1,9 @@
 ---
+- name: Create Secrets for grafana
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('template', 'secrets.yml') | from_yaml }}"
+
 - name: Add Grafana repository
   community.kubernetes.helm_repository:
     name: grafana
