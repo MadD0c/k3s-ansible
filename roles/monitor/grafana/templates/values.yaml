@@ -20,12 +20,7 @@ env: {}
 
 envValueFrom: {}
 
-envFromSecret:
-      - name: LDAP_ADMIN_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: grafana-secrets
-            key: LDAP_ADMIN_PASSWORD
+envFromSecret: {}
 
 ##
 plugins: []
@@ -120,7 +115,7 @@ ldap:
      start_tls = false
      ssl_skip_verify = false
      bind_dn = {{ ldap_user }}
-     bind_password = "${LDAP_ADMIN_PASSWORD}"
+     bind_password = {{ ldap_password }}
      search_filter = "(uid=%s)"
      search_base_dns = [{{ ldap_base_dn }}]
      group_search_filter = "(&(objectClass=posixGroup)(memberUid=%s))"
