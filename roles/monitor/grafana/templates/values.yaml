@@ -20,7 +20,12 @@ env: {}
 
 envValueFrom: {}
 
-envFromSecret: ""
+envFromSecret:
+      - name: LDAP_ADMIN_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: grafana-secrets
+            key: LDAP_ADMIN_PASSWORD
 
 ##
 plugins: []
@@ -31,39 +36,28 @@ plugins: []
 ## ref: http://docs.grafana.org/administration/provisioning/#datasources
 ##
 datasources: {}
-#  datasources.yaml:
-#    apiVersion: 1
-#    datasources:
-#    - name: Prometheus
-#      type: prometheus
-#      url: http://prometheus-prometheus-server
-#      access: proxy
-#      isDefault: true
-#    - name: CloudWatch
-#        type: cloudwatch
-#        access: proxy
-#        uid: cloudwatch
-#        editable: false
-#        jsonData:
-#          authType: credentials
-#          defaultRegion: us-east-1
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      url: http://prometheus-prometheus-server
+      access: proxy
+      isDefault: true
 
 ## Configure notifiers
 ## ref: http://docs.grafana.org/administration/provisioning/#alert-notification-channels
 ##
 notifiers: {}
-#  notifiers.yaml:
-#    notifiers:
-#    - name: email-notifier
-#      type: email
-#      uid: email1
-#      # either:
-#      org_id: 1
-#      # or
-#      org_name: Main Org.
-#      is_default: true
-#      settings:
-#        addresses: an_email_address@example.com
+  notifiers.yaml:
+    notifiers:
+    - name: email-notifier
+      type: email
+      uid: email1
+      org_name: Main Org.
+      is_default: true
+      settings:
+        addresses: an_email_address@example.com
 #    delete_notifiers:
 
 ## Configure grafana dashboard providers
@@ -72,17 +66,17 @@ notifiers: {}
 ## `path` must be /var/lib/grafana/dashboards/<provider_name>
 ##
 dashboardProviders: {}
-#  dashboardproviders.yaml:
-#    apiVersion: 1
-#    providers:
-#    - name: 'default'
-#      orgId: 1
-#      folder: ''
-#      type: file
-#      disableDeletion: false
-#      editable: true
-#      options:
-#        path: /var/lib/grafana/dashboards/default
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+    - name: 'default'
+      orgId: 1
+      folder: ''
+      type: file
+      disableDeletion: false
+      editable: true
+      options:
+        path: /var/lib/grafana/dashboards/default
 
 ## Configure grafana dashboard to import
 ## NOTE: To use dashboards you must also enable/configure dashboardProviders
@@ -92,6 +86,9 @@ dashboardProviders: {}
 ##
 
 grafana.ini:
+  server:
+    root_url:
+    enable_gzip: true
   paths:
     data: /var/lib/grafana/data
     logs: /var/log/grafana
@@ -103,24 +100,48 @@ grafana.ini:
     mode: console
   grafana_net:
     url: https://grafana.net
+  security:
+    allow_embedding: structure
+
 
 ldap:
-  enabled: false
+  enabled: true
   # `existingSecret` is a reference to an existing secret containing the ldap configuration
   # for Grafana in a key `ldap-toml`.
-  existingSecret: ""
+  #existingSecret: ""
   # `config` is the content of `ldap.toml` that will be stored in the created secret
-  config: ""
-  # config: |-
-  #   verbose_logging = true
+  config: |-
+     verbose_logging = true
 
-  #   [[servers]]
-  #   host = "my-ldap-server"
-  #   port = 636
-  #   use_ssl = true
-  #   start_tls = false
-  #   ssl_skip_verify = false
-  #   bind_dn = "uid=%s,ou=users,dc=myorg,dc=com"
+     [[servers]]
+     host = {{ ldap_url }}
+     port = 389
+     use_ssl = false
+     start_tls = false
+     ssl_skip_verify = false
+     bind_dn = {{ ldap_user }}
+     bind_password = "${LDAP_ADMIN_PASSWORD}"
+     search_filter = "(uid=%s)"
+     search_base_dns = [{{ ldap_base_dn }}]
+     group_search_filter = "(&(objectClass=posixGroup)(memberUid=%s))"
+     group_search_filter_user_attribute = "uid"
+     group_search_base_dns = ["ou=groups,{{ ldap_base_dn }}"]
+
+     [[servers.attributes]]
+     name = "givenName"
+     surname = "sn"
+     username = "uid"
+     member_of = "memberOf"
+     email =  "email"
+
+     [[servers.group_mappings]]
+     group_dn = "cn=admin,{{ ldap_base_dn }}"
+     org_role = "Admin"
+     grafana_admin = true
+
+     [[servers.group_mappings]]
+     group_dn = "cn=family,{{ ldap_base_dn }}"
+     org_role = "Viewer"
 
 ## Grafana's SMTP configuration
 ## NOTE: To enable, grafana.ini must be configured with smtp.enabled
@@ -151,7 +172,7 @@ sidecar:
   # skipTlsVerify: true
   enableUniqueFilenames: false
   dashboards:
-    enabled: false
+    enabled: true
     SCProvider: true
     # label that the configmaps with dashboards are marked with
     label: grafana_dashboard
@@ -183,7 +204,7 @@ sidecar:
       # allow Grafana to replicate dashboard structure from filesystem
       foldersFromFilesStructure: false
   datasources:
-    enabled: false
+    enabled: true
     # label that the configmaps with datasources are marked with
     label: grafana_datasource
     # If specified, the sidecar will search for datasource config-maps inside this namespace.
@@ -191,7 +212,7 @@ sidecar:
     # It's also possible to specify ALL to search in all namespaces
     searchNamespace: null
   notifiers:
-    enabled: false
+    enabled: true
     # label that the configmaps with notifiers are marked with
     label: grafana_notifier
     # If specified, the sidecar will search for notifier config-maps inside this namespace.
