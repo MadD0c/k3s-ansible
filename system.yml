@@ -1,27 +1,27 @@
 ---
-#- hosts: k3s_cluster
-#  become: yes
-#  roles:
-#    - role: system/essential
-#    - role: system/docker
+- hosts: k3s_cluster
+  become: yes
+  roles:
+    - role: system/essential
+    - role: system/docker
 
-#- hosts: master
-#  become: yes
-#  roles:
-#    - role: system/nfs/server
+- hosts: master
+  become: yes
+  roles:
+    - role: system/nfs/server
 
 - hosts: master
   become: no
   vars_files:
     - ./secrets/secrets.var
   roles:
-  #  - role: system/openshift
-  #  - role: andrewrothstein.kubernetes-helm
-  #  - role: system/helm_repo
-  #  - role: system/metallb
-  #  - role: system/nfs/provisioner
-  #  - role: system/cert_manager
-  #  - role: system/get_cert
-  #  - role: system/traefik
-  #  - role: system/digitalocean_dyndns
-  #  - role: system/traefik-ext
+    - role: system/openshift
+    - role: andrewrothstein.kubernetes-helm
+    - role: system/helm_repo
+    - role: system/metallb
+    - role: system/nfs/provisioner
+    - role: system/cert_manager
+    - role: system/get_cert
+    - role: system/traefik
+    - role: system/digitalocean_dyndns
+    - role: system/traefik-ext
