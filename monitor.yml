@@ -6,7 +6,7 @@
   roles:
   #  - role: monitor/prometheus
   #  - role: monitor/kube-metrics
-    - role: monitor/grafana
-  #  - role: monitor/speedtestprometheus
-  #  - role: monitor/unifipoller
-  #  - role: monitor/uptimerobot
+  #  - role: monitor/grafana
+    - role: monitor/speedtestprometheus
+    - role: monitor/unifipoller
+    - role: monitor/uptimerobot
