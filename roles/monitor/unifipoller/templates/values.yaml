@@ -75,9 +75,9 @@ prometheus:
     enabled: true
     interval: 1m
     additionalLabels:
-        prometheus.io/scrape: "true"
-        prometheus.io/path: /metrics
-        prometheus.io/port: "8080"
+      - prometheus.io/scrape: "true"
+      - prometheus.io/path: /metrics
+      - prometheus.io/port: "8080"
 
 config:
   poller:
