@@ -1,0 +1,21 @@
+---
+# https://galaxy.ansible.com/community/mysql?extIdCarryOver=true&sc_cid=701f2000001OH7YAAW
+
+- name: Add madd0c repository
+  community.kubernetes.helm_repository:
+    name: madd0c
+    repo_url: https://madd0c.github.io
+
+- name: Deploy Authelia
+  community.kubernetes.helm:
+    name: authelia
+    chart_ref: madd0c/authelia
+    release_namespace: auth
+    create_namespace: true
+    update_repo_cache: yes
+    values: "{{ lookup('template', 'values.yml' ) | from_yaml }}"
+
+- name: Install External Ingress
+  community.kubernetes.k8s:
+    state: present
+    template: '/files/ingress/ingress-authelia.yaml'

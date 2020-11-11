@@ -3,7 +3,6 @@
   become: yes
   roles:
     - role: system/essential
-    - role: system/docker
 
 - hosts: master
   become: yes
@@ -25,3 +24,4 @@
     - role: system/traefik
     - role: system/digitalocean_dyndns
     - role: system/traefik-ext
+    - role: system/kube_dashboard
