@@ -5,10 +5,19 @@
     repo_url: https://prometheus-community.github.io/helm-charts
     repo_state: present
 
+- name: Copy file with owner and permissions
+  copy:
+    src: /templates/values.yaml
+    dest: /home/ansible/values-prom-stack.yaml
+    owner: ansible
+    group: ansible
+    mode: '0644'
+
 - name: Deploy Prometheus
   community.kubernetes.helm:
     name: monitor-stack
     chart_ref: prometheus-community/kube-prometheus-stack
     release_namespace: monitor
     update_repo_cache: yes
-    values: "{{ lookup('template', 'values.yaml' ) | from_yaml }}"
+    values_files: values-prom-stack.yaml
+  #  values: "{{ lookup('template', 'values.yaml' ) | from_yaml }}"
