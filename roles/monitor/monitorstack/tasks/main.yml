@@ -7,7 +7,7 @@
 
 - name: Copy file with owner and permissions
   copy:
-    src: /templates/values.yaml
+    src: ./templates/values.yaml
     dest: /home/ansible/values-prom-stack.yaml
     owner: ansible
     group: ansible
