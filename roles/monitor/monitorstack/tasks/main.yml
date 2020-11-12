@@ -9,9 +9,6 @@
   copy:
     src: ./templates/values.yaml
     dest: /home/ansible/values-prom-stack.yaml
-    owner: ansible
-    group: ansible
-    mode: '0644'
 
 - name: Deploy Prometheus
   community.kubernetes.helm:
