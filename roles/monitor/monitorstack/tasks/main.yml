@@ -1,51 +1,14 @@
 ---
+- name: Add Prometheus Community repository
+  community.kubernetes.helm_repository:
+    name: prometheus-community
+    repo_url: https://prometheus-community.github.io/helm-charts
+    repo_state: present
 
-- name: Clone Cluster Monitoring Repo
-  git:
-    repo: https://github.com/carlosedp/cluster-monitoring.git
-    dest: "{{ remote_tmp }}/cluster-monitoring"
-
-- name: Remove base settings file
-  file:
-    path: "{{ remote_tmp }}/cluster-monitoring/vars.jsonnet"
-    state: absent
-
-- name: Copy Cluster Monitoring settings file
-  copy:
-    src: vars.jsonnet
-    dest: "{{ remote_tmp }}/cluster-monitoring/vars.jsonnet"
-    owner: ansible
-    mode: '777'
-
-- name: Build stack Settings
-  community.general.make:
-    chdir: "{{ remote_tmp }}/cluster-monitoring"
-    target: vendor
-    file: "{{ remote_tmp }}/cluster-monitoring/Makefile"
-
-- name: Build Stack
-  community.general.make:
-    chdir: "{{ remote_tmp }}/cluster-monitoring"
-    file: "{{ remote_tmp }}/cluster-monitoring/Makefile"
-
-- name: Copy Monitoring Stack Instalastion files
-  copy:
-    src: setup.sh
-    dest: "{{ remote_tmp }}/cluster-monitoring/setup.sh"
-    owner: ansible
-    mode: '0700'
-
-- name: Install Cluster Monitoring
-  command: "kubectl apply -f {{ remote_tmp }}/cluster-monitoring/manifests/setup/"
-
-- name: Install Cluster Monitoring
-  wait_for:
-    timeout: 90
-
-- name: Install Cluster Monitoring
-  command: "kubectl apply -f {{ remote_tmp }}/cluster-monitoring/manifests/"
-
-- name: Install External Ingress
-  community.kubernetes.k8s:
-    state: present
-    template: '/files/ingress/ingress-grafana.yaml'
+- name: Deploy Prometheus
+  community.kubernetes.helm:
+    name: monitor-stack
+    chart_ref: prometheus-community/kube-prometheus-stack
+    release_namespace: monitor
+    update_repo_cache: yes
+    values: "{{ lookup('template', 'values.yaml' ) | from_yaml }}"
