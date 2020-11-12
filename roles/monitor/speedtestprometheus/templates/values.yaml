@@ -50,4 +50,4 @@ serviceMonitor:
   enabled: true
   interval: "60m"
   scrapeTimeout: 90s
-  # namespace: default
+  namespace: default

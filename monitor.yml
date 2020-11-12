@@ -8,5 +8,5 @@
   #  - role: monitor/kube-metrics
   #  - role: monitor/grafana
     - role: monitor/speedtestprometheus
-    - role: monitor/unifipoller
-    - role: monitor/uptimerobot
+  #  - role: monitor/unifipoller
+  #  - role: monitor/uptimerobot
