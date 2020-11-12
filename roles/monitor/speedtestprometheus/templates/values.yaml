@@ -51,7 +51,3 @@ serviceMonitor:
   interval: "60m"
   scrapeTimeout: 90s
   # namespace: default
-  additionalLabels:
-    prometheus.io/scrape: "true"
-    prometheus.io/path: /metrics
-    prometheus.io/port: "8080"
