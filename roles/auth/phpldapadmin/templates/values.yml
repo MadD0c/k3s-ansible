@@ -1,6 +1,6 @@
 ---
 secrets:
-  LDAP_HOSTS: "#PYTHON2BASH:[{''mccannclan.family'': [{''server'': [{''host'':''192.168.1.221''},{''tls'': false},{''port'': 389}]},{''login'': [{''bind_id'':''cn=admin,dc=mccannclan,dc=family''},{''bind_pass'':''{{ ldap_password }}''}]}]}]"
+  LDAP_HOSTS: "#PYTHON2BASH:[{'McCann Clan': [{'server': [{'host':'192.168.1.221'},{'tls': 'false'},{'port': '389'}]},{'login': [{'bind_id':'cn=admin,dc=mccannclan,dc=family'},{'bind_pass':'Jennifer.0211'}]}]}]"
 
 image:
   repository: osixia/phpldapadmin
