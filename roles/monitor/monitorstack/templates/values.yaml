@@ -529,6 +529,91 @@ alertmanager:
 ##
 grafana:
   enabled: false
+  persistence:
+    type: pvc
+    enabled: true
+    storageClassName: nfs-client
+    accessModes:
+      - ReadWriteOnce
+      size: 10Gi
+    finalizers:
+      - kubernetes.io/pvc-protection
+
+  extraVolumeMounts:
+    - name: plugins
+      mountPath: /var/lib/grafana/plugins
+      subPath: configs/grafana/plugins
+      readOnly: false
+
+  plugins:
+    - grafana-piechart-panel
+    - grafana-clock-panel
+
+  grafana.ini:
+    analytics:
+      check_for_updates: true
+    grafana_net:
+      url: https://grafana.net
+    log:
+      mode: console
+      filters: ldap:debug
+    paths:
+      data: /var/lib/grafana/data
+      logs: /var/log/grafana
+      plugins: /var/lib/grafana/plugins
+      provisioning: /etc/grafana/provisioning
+    security:
+      allow_embedding: structure
+    server:
+      enable_gzip: true
+      root_url:
+    auth.ldap:
+      enabled: true
+      config_file: /etc/grafana/ldap.toml
+      allow_sign_up: true
+    auth.proxy:
+      enabled: true
+      header_name: Remote-User
+      header_property: username
+      auto_sign_up: true
+      sync_ttl: 60
+      headers: Name:Remote-Name Email:Remote-Email Groups:Remote-Groups
+      enable_login_token: true
+  ldap:
+    enabled: true
+    config: |-
+      [[servers]]
+      host = "192.168.1.221"
+      port = 389
+      use_ssl = false
+      start_tls = false
+      ssl_skip_verify = false
+      bind_dn = "cn=admin,dc=mccannclan,dc=family"
+      bind_password = 'Jennifer.0211'
+      search_filter = "(uid=%s)"
+      search_base_dns = ["ou=users,dc=mccannclan,dc=family"]
+      [servers.attributes]
+      name = "givenName"
+      surname = "sn"
+      username = "uid"
+      member_of = "memberOf"
+      email =  "email"
+      [[servers.group_mappings]]
+      group_dn = "cn=admin,ou=groups,dc=mccannclan,dc=family"
+      org_role = "Admin"
+      grafana_admin = true
+      [[servers.group_mappings]]
+      group_dn = "cn=family,ou=groups,dc=mccannclan,dc=family"
+      org_role = "Viewer"
+
+  sidecar:
+    enableUniqueFilenames: false
+    dashboards:
+      enabled: true
+    datasources:
+      enabled: true
+    notifiers:
+      enabled: true
 
 kubeApiServer:
   enabled: true

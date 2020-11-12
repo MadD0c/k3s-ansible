@@ -8,209 +8,79 @@ persistence:
   # annotations: {}
   finalizers:
     - kubernetes.io/pvc-protection
-adminUser: admin
 
-admin:
-  existingSecret: ""
-  userKey: admin-user
-  passwordKey: admin-password
+extraVolumeMounts:
+  - name: plugins
+    mountPath: /var/lib/grafana/plugins
+    subPath: configs/grafana/plugins
+    readOnly: false
 
-env: {}
-
-
-envValueFrom: {}
-
-envFromSecret: {}
-
-##
-plugins: []
-  # - digrich-bubblechart-panel
-  # - grafana-clock-panel
-
-## Configure grafana datasources
-## ref: http://docs.grafana.org/administration/provisioning/#datasources
-##
-datasources:
-  datasources.yaml:
-    apiVersion: 1
-    datasources:
-    - name: Prometheus
-      type: prometheus
-      url: http://prometheus-prometheus-server
-      access: proxy
-      isDefault: true
-
-## Configure notifiers
-## ref: http://docs.grafana.org/administration/provisioning/#alert-notification-channels
-##
-notifiers:
-  notifiers.yaml:
-    notifiers:
-    - name: email-notifier
-      type: email
-      uid: email1
-      org_name: Main Org.
-      is_default: true
-      settings:
-        addresses: an_email_address@example.com
-#    delete_notifiers:
-
-## Configure grafana dashboard providers
-## ref: http://docs.grafana.org/administration/provisioning/#dashboards
-##
-## `path` must be /var/lib/grafana/dashboards/<provider_name>
-##
-dashboardProviders:
-  dashboardproviders.yaml:
-    apiVersion: 1
-    providers:
-    - name: 'default'
-      orgId: 1
-      folder: ''
-      type: file
-      disableDeletion: false
-      editable: true
-      options:
-        path: /var/lib/grafana/dashboards/default
-
-## Configure grafana dashboard to import
-## NOTE: To use dashboards you must also enable/configure dashboardProviders
-## ref: https://grafana.com/dashboards
-##
-## dashboards per provider, use provider name as key.
-##
+plugins:
+   - grafana-piechart-panel
+   - grafana-clock-panel
 
 grafana.ini:
-  server:
-    root_url:
-    enable_gzip: true
+  analytics:
+    check_for_updates: true
+  grafana_net:
+    url: https://grafana.net
+  log:
+    mode: console
+    filters: ldap:debug
   paths:
     data: /var/lib/grafana/data
     logs: /var/log/grafana
     plugins: /var/lib/grafana/plugins
     provisioning: /etc/grafana/provisioning
-  analytics:
-    check_for_updates: true
-  log:
-    mode: console
-  grafana_net:
-    url: https://grafana.net
   security:
     allow_embedding: structure
-
-
+  server:
+    enable_gzip: true
+    root_url:
+  auth.ldap:
+    enabled: true
+    config_file: /etc/grafana/ldap.toml
+    allow_sign_up: true
+  auth.proxy:
+    enabled: true
+    header_name: Remote-User
+    header_property: username
+    auto_sign_up: true
+    sync_ttl: 60
+    headers: Name:Remote-Name Email:Remote-Email Groups:Remote-Groups
+    enable_login_token: true
 ldap:
   enabled: true
-  # `existingSecret` is a reference to an existing secret containing the ldap configuration
-  # for Grafana in a key `ldap-toml`.
-  #existingSecret: ""
-  # `config` is the content of `ldap.toml` that will be stored in the created secret
   config: |-
-     verbose_logging = true
+    [[servers]]
+    host = "192.168.1.221"
+    port = 389
+    use_ssl = false
+    start_tls = false
+    ssl_skip_verify = false
+    bind_dn = "cn=admin,dc=mccannclan,dc=family"
+    bind_password = 'Jennifer.0211'
+    search_filter = "(uid=%s)"
+    search_base_dns = ["ou=users,dc=mccannclan,dc=family"]
+    [servers.attributes]
+    name = "givenName"
+    surname = "sn"
+    username = "uid"
+    member_of = "memberOf"
+    email =  "email"
+    [[servers.group_mappings]]
+    group_dn = "cn=admin,ou=groups,dc=mccannclan,dc=family"
+    org_role = "Admin"
+    grafana_admin = true
+    [[servers.group_mappings]]
+    group_dn = "cn=family,ou=groups,dc=mccannclan,dc=family"
+    org_role = "Viewer"
 
-     [[servers]]
-     host = {{ ldap_url }}
-     port = 389
-     use_ssl = false
-     start_tls = false
-     ssl_skip_verify = false
-     bind_dn = {{ ldap_user }}
-     bind_password = {{ ldap_password }}
-     search_filter = "(uid=%s)"
-     search_base_dns = [{{ ldap_base_dn }}]
-     group_search_filter = "(&(objectClass=posixGroup)(memberUid=%s))"
-     group_search_filter_user_attribute = "uid"
-     group_search_base_dns = ["ou=groups,{{ ldap_base_dn }}"]
-
-     [[servers.attributes]]
-     name = "givenName"
-     surname = "sn"
-     username = "uid"
-     member_of = "memberOf"
-     email =  "email"
-
-     [[servers.group_mappings]]
-     group_dn = "cn=admin,{{ ldap_base_dn }}"
-     org_role = "Admin"
-     grafana_admin = true
-
-     [[servers.group_mappings]]
-     group_dn = "cn=family,{{ ldap_base_dn }}"
-     org_role = "Viewer"
-
-## Grafana's SMTP configuration
-## NOTE: To enable, grafana.ini must be configured with smtp.enabled
-## ref: http://docs.grafana.org/installation/configuration/#smtp
-smtp:
-  # `existingSecret` is a reference to an existing secret containing the smtp configuration
-  # for Grafana.
-  existingSecret: ""
-  userKey: "user"
-  passwordKey: "password"
-
-## Sidecars that collect the configmaps with specified label and stores the included files them into the respective folders
-## Requires at least Grafana 5 to work and can't be used together with parameters dashboardProviders, datasources and dashboards
 sidecar:
-  image:
-    repository: kiwigrid/k8s-sidecar
-    tag: 1.1.0
-    sha: ""
-  imagePullPolicy: IfNotPresent
-  resources: {}
-#   limits:
-#     cpu: 100m
-#     memory: 100Mi
-#   requests:
-#     cpu: 50m
-#     memory: 50Mi
-  # skipTlsVerify Set to true to skip tls verification for kube api calls
-  # skipTlsVerify: true
   enableUniqueFilenames: false
   dashboards:
     enabled: true
-    SCProvider: true
-    # label that the configmaps with dashboards are marked with
-    label: grafana_dashboard
-    # folder in the pod that should hold the collected dashboards (unless `defaultFolderName` is set)
-    folder: /tmp/dashboards
-    # The default folder name, it will create a subfolder under the `folder` and put dashboards in there instead
-    defaultFolderName: null
-    # If specified, the sidecar will search for dashboard config-maps inside this namespace.
-    # Otherwise the namespace in which the sidecar is running will be used.
-    # It's also possible to specify ALL to search in all namespaces
-    searchNamespace: null
-    # If specified, the sidecar will look for annotation with this name to create folder and put graph here.
-    # You can use this parameter together with `provider.foldersFromFilesStructure`to annotate configmaps and create folder structure.
-    folderAnnotation: null
-    # provider configuration that lets grafana manage the dashboards
-    provider:
-      # name of the provider, should be unique
-      name: sidecarProvider
-      # orgid as configured in grafana
-      orgid: 1
-      # folder in which the dashboards should be imported in grafana
-      folder: ''
-      # type of the provider
-      type: file
-      # disableDelete to activate a import-only behaviour
-      disableDelete: false
-      # allow updating provisioned dashboards from the UI
-      allowUiUpdates: false
-      # allow Grafana to replicate dashboard structure from filesystem
-      foldersFromFilesStructure: false
   datasources:
     enabled: true
-    # label that the configmaps with datasources are marked with
-    label: grafana_datasource
-    # If specified, the sidecar will search for datasource config-maps inside this namespace.
-    # Otherwise the namespace in which the sidecar is running will be used.
-    # It's also possible to specify ALL to search in all namespaces
-    searchNamespace: null
   notifiers:
     enabled: true
-    # label that the configmaps with notifiers are marked with
-    label: grafana_notifier
-    # If specified, the sidecar will search for notifier config-maps inside this namespace.
-    # Otherwise the namespace in which the sidecar is running will be used.
-    # It's also possible to specify ALL to search in all namespaces
-    searchNamespace: null
