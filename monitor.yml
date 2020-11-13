@@ -6,5 +6,5 @@
   roles:
   #  - role: monitor/monitorstack
   #  - role: monitor/kube-metrics
-    - role: monitor/speedtestprometheus
+  #  - role: monitor/speedtestprometheus
     - role: monitor/unifipoller
