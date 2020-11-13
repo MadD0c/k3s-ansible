@@ -4,10 +4,7 @@
   vars_files:
     - ./secrets/secrets.var
   roles:
-    - role: monitor/monitorstack
-  #  - role: monitor/prometheus
+  #  - role: monitor/monitorstack
   #  - role: monitor/kube-metrics
-  #  - role: monitor/grafana
-  #  - role: monitor/speedtestprometheus
-  #  - role: monitor/unifipoller
-  #  - role: monitor/uptimerobot
+    - role: monitor/speedtestprometheus
+    - role: monitor/unifipoller

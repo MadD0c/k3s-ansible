@@ -1,9 +1,0 @@
----
-
-- name: Deploy kube-state-metrics
-  community.kubernetes.helm:
-    name: kube-metrics
-    chart_ref: stable/kube-state-metrics
-    release_namespace: monitoring
-    update_repo_cache: yes
-    values: "{{ lookup('template', 'values.yaml' ) | from_yaml }}"

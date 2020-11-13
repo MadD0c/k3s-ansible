@@ -1,5 +1,0 @@
-# Default values for kube-state-metrics.
-image:
-  repository: carlosedp/kube-state-metrics
-  tag: v1.9.6-arm64
-  pullPolicy: IfNotPresent
