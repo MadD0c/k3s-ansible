@@ -43,11 +43,6 @@ grafana:
     size: 2Gi
     finalizers:
       - kubernetes.io/pvc-protection
-  extraVolumeMounts:
-    - name: plugins
-      mountPath: /var/lib/grafana/plugins
-      subPath: configs/grafana/plugins
-      readOnly: false
   plugins:
     - grafana-piechart-panel
     - grafana-clock-panel
