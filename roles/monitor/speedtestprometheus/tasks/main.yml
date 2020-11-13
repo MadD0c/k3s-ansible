@@ -9,6 +9,6 @@
   community.kubernetes.helm:
     name: prometheus-speedtest
     chart_ref: k8s-at-home/speedtest-prometheus
-    release_namespace: monitoring
+    release_namespace: monitor
     update_repo_cache: yes
     values: "{{ lookup('template', 'values.yaml' ) | from_yaml }}"
