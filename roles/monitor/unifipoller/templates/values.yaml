@@ -12,7 +12,6 @@ config:
     quiet: false
     plugins: []
 
-  #### OUTPUTS
   prometheus:
     disable: false
     http_listen: "0.0.0.0:9130"
@@ -20,12 +19,6 @@ config:
 
   influxdb:
     disable: true
-    interval: "30s"
-    url: "http://127.0.0.1:8086"
-    user: "unifipoller"
-    pass: "unifipoller"
-      db: "unifi"
-    verify_ssl: false
 
   unifi:
     dynamic: false
