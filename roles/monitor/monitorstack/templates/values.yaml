@@ -25,7 +25,6 @@ defaultRules:
     prometheus: true
     prometheusOperator: true
     time: true
-
 alertmanager:
   enabled: true
   alertmanagerSpec:
@@ -41,7 +40,7 @@ grafana:
     storageClassName: nfs-client
     accessModes:
       - ReadWriteOnce
-      size: 10Gi
+    size: 2Gi
     finalizers:
       - kubernetes.io/pvc-protection
   extraVolumeMounts:
