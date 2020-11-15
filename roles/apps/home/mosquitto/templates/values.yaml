@@ -18,8 +18,14 @@ extraVolumes:
 # Any extra volume mounts to define for the containers
 extraVolumeMounts:
     - name: mqttauth
-      mountPath: "/mosquitto/config/passwords.txt"
-      subPath: passwords.txt
+      mountPath: /mosquitto/config
+
+customConfig:
+    port 1883
+    autosave_interval 1800
+    persistence true
+    persistence_location /mosquitto/data/
+    password_file /mosquitto/config/passwords.txt
 
 monitoring:
   podMonitor:
