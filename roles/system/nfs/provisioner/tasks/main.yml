@@ -3,7 +3,6 @@
 - name: Deploy nfs provisioner
   community.kubernetes.helm:
     name: nfs-provisioner
-    kubeconfig: /etc/rancher/k3s/k3s.yaml
     chart_ref: stable/nfs-client-provisioner
     chart_version: 1.2.9
     release_namespace: kube-system
