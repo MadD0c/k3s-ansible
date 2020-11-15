@@ -85,3 +85,7 @@ redis_log: verbose
 unifi_user: test
 unifi_url: 127.0.0.1
 unifi_port: 8443
+
+#home assistant
+mqtt_password: none
+hass_db_password: none
