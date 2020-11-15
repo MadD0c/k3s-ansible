@@ -4,6 +4,6 @@
   vars_files:
     - ./secrets/secrets.var
   roles:
-  #  - role: auth/ldap
-  #  - role: auth/authelia
-    - role: auth/phpldapadmin
+  #  - role: services/auth/ldap
+  #  - role: services/auth/authelia
+    - role: services/auth/phpldapadmin

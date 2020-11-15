@@ -4,7 +4,7 @@
   vars_files:
     - ./secrets/secrets.var
   roles:
-  #  - role: monitor/monitorstack
-    - role: monitor/blackbox-exporter
-  #  - role: monitor/speedtestprometheus
-  #  - role: monitor/unifipoller
+  #  - role: services/monitor/monitorstack
+    - role: services/monitor/blackbox-exporter
+  #  - role: services/monitor/speedtestprometheus
+  #  - role: services/monitor/unifipoller

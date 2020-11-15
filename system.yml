@@ -14,14 +14,14 @@
   vars_files:
     - ./secrets/secrets.var
   roles:
-    - role: system/openshift
+    - role: deploy/system/openshift
     - role: andrewrothstein.kubernetes-helm
-    - role: system/helm_repo
-    - role: system/metallb
-    - role: system/nfs/provisioner
-    - role: system/cert_manager
-    - role: system/get_cert
-    - role: system/traefik
-    - role: system/digitalocean_dyndns
-    - role: system/traefik-ext
-    - role: system/kube_dashboard
+    - role: deploy/system/helm_repo
+    - role: deploy/system/metallb
+    - role: deploy/system/nfs/provisioner
+    - role: deploy/system/cert_manager
+    - role: deploy/system/get_cert
+    - role: deploy/system/traefik
+    - role: deploy/system/digitalocean_dyndns
+    - role: deploy/system/traefik-ext
+    - role: deploy/system/kube_dashboard
