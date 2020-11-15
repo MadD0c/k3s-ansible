@@ -34,9 +34,9 @@ securityContext: {}
 
 service:
   annotations: {}
-  type: ClusterIP
+  type: LoadBalancer
   # externalTrafficPolicy:
-  # loadBalancerIP:
+   loadBalancerIP: 192.168.1.222
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -66,12 +66,51 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  # storageClass: "-"
+   storageClass: nfs-client
   ##
   ## If you want to reuse an existing claim, you can pass the name of the PVC using
   ## the existingClaim variable
   # existingClaim: mosquitto-data
   accessMode: ReadWriteOnce
-  size: 5Gi
+  size: 1Gi
 
 # customConfig:
+
+# Any extra volumes to define for the pod
+extraVolumes: []
+  # - name: example-name
+  #   hostPath:
+  #     path: /path/on/host
+  #     type: DirectoryOrCreate
+
+# Any extra volume mounts to define for the containers
+extraVolumeMounts: []
+#   - name: example-name
+#     mountPath: /path/in/container
+
+monitoring:
+  podMonitor:
+    enabled: true
+  sidecar:
+    enabled: true
+    port: 9234
+    args:
+      - "--use-splitted-config"
+    envs:
+      - name: MQTT_CLIENT_ID
+        value: exporter
+      - name: BROKER_HOST
+        valueFrom:
+          fieldRef:
+            fieldPath: status.podIP
+    image:
+      repository: nolte/mosquitto-exporter
+      tag: v0.6.3
+      pullPolicy: IfNotPresent
+    resources:
+      limits:
+        cpu: 300m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 64Mi

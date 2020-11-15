@@ -1,0 +1,7 @@
+---
+- hosts: master
+  become: no
+  vars_files:
+    - ./secrets/secrets.var
+  roles:
+    - role: home/mosquitto
