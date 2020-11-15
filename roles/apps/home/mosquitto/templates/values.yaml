@@ -18,7 +18,7 @@ extraVolumes:
 # Any extra volume mounts to define for the containers
 extraVolumeMounts:
     - name: mqttauth
-      mountPath: /mosquitto/config
+      mountPath: /mosquitto/secrets
 
 customConfig:
     port 1883
