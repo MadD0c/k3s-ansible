@@ -5,6 +5,6 @@
     - ./secrets/secrets.var
   roles:
   #  - role: monitor/monitorstack
-  #  - role: monitor/kube-metrics
+    - role: monitor/blackbox-exporter
   #  - role: monitor/speedtestprometheus
-    - role: monitor/unifipoller
+  #  - role: monitor/unifipoller
