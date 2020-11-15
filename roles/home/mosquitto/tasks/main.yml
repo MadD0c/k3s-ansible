@@ -10,5 +10,6 @@
     name: mqtt
     chart_ref: k8s-at-home/mosquitto
     release_namespace: support
+    create_namespace: true
     update_repo_cache: yes
     values: "{{ lookup('template', 'values.yaml' ) | from_yaml }}"

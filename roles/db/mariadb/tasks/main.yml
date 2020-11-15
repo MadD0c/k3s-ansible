@@ -9,7 +9,6 @@
 - name: Deploy mariadb
   community.kubernetes.helm:
     name: mariadb
-    kubeconfig: /etc/rancher/k3s/k3s.yaml
     chart_ref: madd0c/mariadb
     release_namespace: db
     create_namespace: true

@@ -4,11 +4,6 @@
     name: k8s-at-home
     repo_url: https://k8s-at-home.com/charts/
 
-#- name: Copy over digitalocean-dyndns config file
-#  template:
-#    src: digitalocean.yaml
-#    dest: config.yml
-
 - name: Deploy digitalocean-dyndns
   community.kubernetes.helm:
     name: digitalocean-dyndns

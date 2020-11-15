@@ -10,5 +10,6 @@
     name: unifi-poller
     chart_ref: k8s-at-home/unifi-poller
     release_namespace: monitor
+    create_namespace: true
     update_repo_cache: yes
     values: "{{ lookup('template', 'values.yaml' ) | from_yaml }}"
