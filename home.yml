@@ -5,3 +5,4 @@
     - ./secrets/secrets.var
   roles:
     - role: apps/home/mosquitto
+    - role: apps/home/homeassistant
