@@ -5,7 +5,7 @@
     repo_url: https://k8s-at-home.com/charts/
     repo_state: present
 
-- name: Deploy digitalocean-dyndns
+- name: Deploy MQTT Server
   community.kubernetes.helm:
     name: mqtt
     chart_ref: k8s-at-home/mosquitto
