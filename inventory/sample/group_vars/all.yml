@@ -89,3 +89,4 @@ unifi_port: 8443
 #home assistant
 mqtt_password: none
 hass_db_password: none
+hass-secrets: none

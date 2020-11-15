@@ -10,7 +10,7 @@ image:
 
 # upgrade strategy type (e.g. Recreate or RollingUpdate)
 strategyType: Recreate
-
+hass-secrets: none
 # Probes configuration
 probes:
   liveness:
