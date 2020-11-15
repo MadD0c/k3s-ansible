@@ -7,8 +7,7 @@
 
 - name: Deploy digitalocean-dyndns
   community.kubernetes.helm:
-    name: mosquitto
-    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    name: mqtt
     chart_ref: k8s-at-home/mosquitto
     release_namespace: support
     update_repo_cache: yes
