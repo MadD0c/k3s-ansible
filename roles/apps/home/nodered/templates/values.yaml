@@ -60,7 +60,7 @@ ingress:
   #      - chart-example.local
 
 persistence:
-  enabled: false
+  enabled: true
   ## node-red data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -68,13 +68,13 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  # storageClass: "-"
+  storageClass: "nfs-client"
   ##
   ## If you want to reuse an existing claim, you can pass the name of the PVC using
   ## the existingClaim variable
   # existingClaim: your-claim
   accessMode: ReadWriteOnce
-  size: 5Gi
+  size: 1Gi
   ## When mounting the data volume you may specify a subPath
   # subPath: /configs/node-red
 

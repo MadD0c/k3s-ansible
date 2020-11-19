@@ -5,11 +5,11 @@
     repo_url: https://k8s-at-home.com/charts/
     repo_state: present
 
-- name: Deploy digitalocean-dyndns
+- name: Deploy node-red
   community.kubernetes.helm:
-    name: digitalocean-dyndns
-    chart_ref: k8s-at-home/digitalocean-dyndns
-    release_namespace: kube-system
+    name: node-red
+    chart_ref: k8s-at-home/node-red
+    release_namespace: home
     create_namespace: true
     update_repo_cache: yes
     values: "{{ lookup('template', 'values.yaml' ) | from_yaml }}"
