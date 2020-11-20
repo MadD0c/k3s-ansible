@@ -11,4 +11,6 @@ persistence:
   data:
     enabled: true
     emptyDir: false
+    storageClass: "nfs-client"
+    accessMode: ReadWriteOnce
     mountPath: /data
