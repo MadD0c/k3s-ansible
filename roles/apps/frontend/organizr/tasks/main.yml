@@ -9,7 +9,7 @@
   community.kubernetes.helm:
     name: organizr
     chart_ref: k8s-at-home/organizr
-    release_namespace: kube-system
+    release_namespace: home
     create_namespace: true
     update_repo_cache: yes
     values: "{{ lookup('template', 'values.yaml' ) | from_yaml }}"

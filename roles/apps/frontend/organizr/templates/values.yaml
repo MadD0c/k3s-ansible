@@ -1,7 +1,7 @@
 image:
   repository: organizr/organizr
-  pullPolicy: Always
-  tag: latest
+  pullPolicy: IfNotPresent
+  tag: linux-arm64
 
 strategy:
   type: Recreate
@@ -10,10 +10,10 @@ service:
   port:
     port: 80
 
-env: {}
-  # TZ: UTC
-  # PUID: 1001
-  # PGID: 1001
+env:
+   branch: v2-master
+   PUID: 1000
+   PGID: 1000
 
 persistence:
   config:
@@ -22,3 +22,10 @@ persistence:
     storageClass: "nfs-client"
     accessMode: ReadWriteOnce
     size: 1Gi
+
+probes:
+  startup:
+    enabled: true
+    initialDelaySeconds: 600
+    failureThreshold: 30
+    periodSeconds: 10
