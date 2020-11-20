@@ -1,23 +1,7 @@
-# Default values for node-red.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-# upgrade strategy type (e.g. Recreate or RollingUpdate)
-strategyType: Recreate
-
 image:
   repository: nodered/node-red
   tag: 1.2.5-12-arm64v8
   pullPolicy: IfNotPresent
-
-# See more environment varaibles in the node-red documentation
-# https://nodered.org/docs/getting-started/docker
-env: {}
-  # TZ:
-  # NODE_OPTIONS:
-  # NODE_RED_ENABLE_PROJECTS:
-  # NODE_RED_ENABLE_SAFE_MODE:
-  # FLOWS:
 
 service:
   port:
