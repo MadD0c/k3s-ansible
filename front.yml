@@ -1,0 +1,9 @@
+---
+- hosts: master
+  become: no
+  vars_files:
+    - ./secrets/secrets.var
+  roles:
+    - role: apps/home/organizr
+  #  - role: apps/home/homeassistant
+  #  - role: apps/home/nodered

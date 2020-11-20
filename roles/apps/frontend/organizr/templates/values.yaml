@@ -1,10 +1,24 @@
-# Default values for organizr.
+image:
+  repository: organizr/organizr
+  pullPolicy: Always
+  tag: latest
 
-organizr:
-  image:
-    organization: organizr
-    repository: organizr
-    pullPolicy: IfNotPresent
-    tag: latest
-  service:
+strategy:
+  type: Recreate
+
+service:
+  port:
     port: 80
+
+env: {}
+  # TZ: UTC
+  # PUID: 1001
+  # PGID: 1001
+
+persistence:
+  config:
+    enabled: true
+    emptyDir: false
+    storageClass: "nfs-client"
+    accessMode: ReadWriteOnce
+    size: 1Gi
