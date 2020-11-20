@@ -13,4 +13,5 @@ persistence:
     emptyDir: false
     storageClass: "nfs-client"
     accessMode: ReadWriteOnce
+    size: 1Gi
     mountPath: /data
