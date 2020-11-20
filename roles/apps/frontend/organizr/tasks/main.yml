@@ -5,10 +5,10 @@
     repo_url: https://k8s-at-home.com/charts/
     repo_state: present
 
-- name: Deploy digitalocean-dyndns
+- name: Deploy organizr
   community.kubernetes.helm:
-    name: digitalocean-dyndns
-    chart_ref: k8s-at-home/digitalocean-dyndns
+    name: organizr
+    chart_ref: k8s-at-home/organizr
     release_namespace: kube-system
     create_namespace: true
     update_repo_cache: yes
