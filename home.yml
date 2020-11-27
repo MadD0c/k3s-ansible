@@ -6,4 +6,5 @@
   roles:
   #  - role: apps/home/mosquitto
   #  - role: apps/home/homeassistant
-    - role: apps/home/nodered
+  #  - role: apps/home/nodered
+    - role: apps/home/adguard
