@@ -4,7 +4,7 @@
 
 image:
   repository: homeassistant/raspberrypi4-64-homeassistant
-  tag: 0.117.5
+  tag: 0.118.4
   pullPolicy: IfNotPresent
   pullSecrets: []
 
