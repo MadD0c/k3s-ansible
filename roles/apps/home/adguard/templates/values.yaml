@@ -215,12 +215,12 @@ probes:
     failureThreshold: 5
     periodSeconds: 10
   readiness:
-    enabled: false
+    enabled: true
     initialDelaySeconds: 5
     failureThreshold: 5
     periodSeconds: 10
   startup:
-    enabled: false
+    enabled: true
     initialDelaySeconds: 5
     failureThreshold: 30
     periodSeconds: 10
