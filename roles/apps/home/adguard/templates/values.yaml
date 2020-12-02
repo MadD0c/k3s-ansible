@@ -4,7 +4,7 @@ strategyType: Recreate
 image:
   repository: adguard/adguardhome
   # Image tag is set via charts appVersion. If you want to override the tag, specify it here
-  # tag: vX.Y.Z
+  tag: v0.104.3
   pullPolicy: IfNotPresent
 
 probes:
@@ -37,7 +37,7 @@ service:
 
 serviceTCP:
   enabled: true
-  type: NodePort
+  type: LoadBalancer
   # externalTrafficPolicy: Local
   # externalIPs: []
   loadBalancerIP: "192.168.1.211"
