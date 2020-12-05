@@ -5,6 +5,7 @@
     - ./secrets/secrets.var
   roles:
   #  - role: services/monitor/monitorstack
-    - role: services/monitor/blackbox-exporter
+  #  - role: services/monitor/blackbox-exporter
   #  - role: services/monitor/speedtestprometheus
   #  - role: services/monitor/unifipoller
+  #  - role: services/monitor/guacamole

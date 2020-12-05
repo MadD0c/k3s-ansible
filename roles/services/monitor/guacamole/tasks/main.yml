@@ -1,0 +1,34 @@
+---
+
+- name: Create a Guacamole namespace
+  community.kubernetes.k8s:
+    name: redis
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: Create Volume for Guacamole
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('template', 'pvc.yml') | from_yaml }}"
+
+#- name: Create Secrets for Guacamole
+#  community.kubernetes.k8s:
+#    state: present
+#    definition: "{{ lookup('template', 'secrets.yml') | from_yaml }}"
+
+#- name: Setup Guacamole Config
+#  community.kubernetes.k8s:
+#    state: present
+#    namespace: redis
+#    definition: "{{ lookup('template', 'configmap.yml') | from_yaml }}"
+
+- name: Depoly Guacamole
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('template', 'deploy.yml') | from_yaml }}"
+
+- name: Create Guacamole Service
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('template', 'service.yml') | from_yaml }}"

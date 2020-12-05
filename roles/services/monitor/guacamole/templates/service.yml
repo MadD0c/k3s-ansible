@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: monitor
+metadata:
+  name: guacamole
+  labels:
+    app: guacamole
+    role: master
+    tier: backend
+  namespace: redis
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: guacamole
+    role: master
+    tier: backend

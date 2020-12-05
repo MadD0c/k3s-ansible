@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: guacamole
+  labels:
+    app: guacamole
+  namespace: monitor
+spec:
+  serviceName: guacamole
+  selector:
+    matchLabels:
+      app: guacamole
+      role: master
+      tier: backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: guacamole
+        role: master
+        tier: backend
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data-guacamole
+  #      - name: config
+  #        configMap:
+  #          name: guacamole
+  #          defaultMode: 420
+      containers:
+        - name: guacamole
+          image: oznu/guacamole:armhf
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          volumeMounts:
+            - name: data
+              mountPath: /config
+#            - name: config
+#              mountPath: /usr/local/etc/redis/redis.conf
+#              subPath: redis.conf
