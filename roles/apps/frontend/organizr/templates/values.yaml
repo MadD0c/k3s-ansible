@@ -1,10 +1,31 @@
-# Default values for organizr.
+image:
+  repository: organizr/organizr
+  pullPolicy: IfNotPresent
+  tag: linux-arm64
 
-organizr:
-  image:
-    organization: organizr
-    repository: organizr
-    pullPolicy: IfNotPresent
-    tag: latest
-  service:
+strategy:
+  type: Recreate
+
+service:
+  port:
     port: 80
+
+env:
+   branch: v2-master
+   PUID: 1000
+   PGID: 1000
+
+persistence:
+  config:
+    enabled: true
+    emptyDir: false
+    storageClass: "nfs-client"
+    accessMode: ReadWriteOnce
+    size: 1Gi
+
+probes:
+  startup:
+    enabled: true
+    initialDelaySeconds: 600
+    failureThreshold: 30
+    periodSeconds: 10

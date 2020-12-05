@@ -5,10 +5,10 @@
     repo_url: https://k8s-at-home.com/charts/
     repo_state: present
 
-- name: Deploy organizr
+- name: Deploy Ad-Guard
   community.kubernetes.helm:
-    name: organizr
-    chart_ref: k8s-at-home/organizr
+    name: adguard-home
+    chart_ref: k8s-at-home/adguard-home
     release_namespace: home
     create_namespace: true
     update_repo_cache: yes
