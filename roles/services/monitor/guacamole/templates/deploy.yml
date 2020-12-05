@@ -5,7 +5,6 @@ metadata:
   name: guacamole
   labels:
     app: guacamole
-  namespace: monitor
 spec:
   serviceName: guacamole
   selector:

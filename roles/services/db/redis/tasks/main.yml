@@ -1,8 +1,7 @@
 ---
-
-- name: Create a Redis namespace
+- name: Check if namespace is present
   community.kubernetes.k8s:
-    name: redis
+    name: db
     api_version: v1
     kind: Namespace
     state: present
@@ -10,25 +9,29 @@
 - name: Create Volume for Redis
   community.kubernetes.k8s:
     state: present
+    namespace: db
     definition: "{{ lookup('template', 'pvc.yml') | from_yaml }}"
 
 - name: Create Secrets for Redis
   community.kubernetes.k8s:
     state: present
+    namespace: db
     definition: "{{ lookup('template', 'secrets.yml') | from_yaml }}"
 
 - name: Setup Redis Config
   community.kubernetes.k8s:
     state: present
-    namespace: redis
+    namespace: db
     definition: "{{ lookup('template', 'configmap.yml') | from_yaml }}"
 
 - name: Depoly Redis
   community.kubernetes.k8s:
     state: present
+    namespace: db
     definition: "{{ lookup('template', 'deploy.yml') | from_yaml }}"
 
 - name: Create Redis Service
   community.kubernetes.k8s:
     state: present
+    namespace: db
     definition: "{{ lookup('template', 'service.yml') | from_yaml }}"

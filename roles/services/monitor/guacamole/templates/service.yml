@@ -7,7 +7,6 @@ metadata:
     app: guacamole
     role: master
     tier: backend
-  namespace: monitor
 spec:
   ports:
     - port: 8080
