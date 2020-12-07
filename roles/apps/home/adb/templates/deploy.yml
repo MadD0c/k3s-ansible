@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adb
+  labels:
+    app: adb
+spec:
+  serviceName: adb
+  selector:
+    matchLabels:
+      app: adm
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: adb
+    spec:
+      volumes:
+  volumes:
+      - name: devices
+        hostPath:
+          path: /dev/bus/usb
+          type: Directory
+      containers:
+        - name: adb
+          image: gounthar/docker-adb:aarch64
+          ports:
+            - containerPort: 5037
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          volumeMounts:
+            - name: devices
+              mountPath: /dev/bus/usb
+          securityContext:
+              allowPrivilegeEscalation: false

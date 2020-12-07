@@ -1,0 +1,19 @@
+---
+- name: Check if namespace is present
+  community.kubernetes.k8s:
+    name: support
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: Depoly ADB Server
+  community.kubernetes.k8s:
+    state: present
+    namespace: support
+    definition: "{{ lookup('template', 'deploy.yml') | from_yaml }}"
+
+- name: Create ADB Server Service
+  community.kubernetes.k8s:
+    state: present
+    namespace: support
+    definition: "{{ lookup('template', 'service.yml') | from_yaml }}"
