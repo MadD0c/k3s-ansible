@@ -17,11 +17,10 @@ spec:
         app: adb
     spec:
       volumes:
-  volumes:
-      - name: devices
-        hostPath:
-          path: /dev/bus/usb
-          type: Directory
+        - name: devices
+          hostPath:
+            path: /dev/bus/usb
+            type: Directory
       containers:
         - name: adb
           image: gounthar/docker-adb:aarch64
