@@ -6,10 +6,9 @@ metadata:
   labels:
     app: adb
 spec:
-  serviceName: adb
   selector:
     matchLabels:
-      app: adm
+      app: adb
   replicas: 1
   template:
     metadata:
@@ -34,4 +33,4 @@ spec:
             - name: devices
               mountPath: /dev/bus/usb
           securityContext:
-              allowPrivilegeEscalation: false
+              allowPrivilegeEscalation: true
