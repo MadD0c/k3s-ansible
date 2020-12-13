@@ -1,6 +1,6 @@
 ---
 
-- name: Deploy adminer
+- name: Deploy Adminer
   community.kubernetes.helm:
     name: adminer
     #kubeconfig: /etc/rancher/k3s/k3s.yaml
