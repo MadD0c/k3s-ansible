@@ -12,7 +12,7 @@ image:
 
 # See envs from https://hub.docker.com/_/adminer/
 config:
-  plugins: ""
+  plugins: "frames"
   design: "pepa-linha"
   externalserver: "192.168.1.220"
 
