@@ -18,11 +18,11 @@
 #    state: present
 #    definition: "{{ lookup('template', 'secrets.yml') | from_yaml }}"
 
-#- name: Setup Guacamole Config
-#  community.kubernetes.k8s:
-#    state: present
-#    namespace: redis
-#    definition: "{{ lookup('template', 'configmap.yml') | from_yaml }}"
+- name: Setup Guacamole Config
+  community.kubernetes.k8s:
+    state: present
+    namespace: monitor
+    definition: "{{ lookup('template', 'configmap.yml') | from_yaml }}"
 
 - name: Depoly Guacamole
   community.kubernetes.k8s:
