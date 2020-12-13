@@ -5,7 +5,7 @@
   become: yes
   roles:
     - role: deploy/prereq
-    - role: deploy/download
+   # - role: deploy/download
     - role: deploy/raspberrypi
 
 #- hosts: master
@@ -13,7 +13,7 @@
 #  roles:
 #    - role: deploy/k3s/master
 
-- hosts: node
-  become: yes
-  roles:
-    - role: deploy/k3s/node
+#- hosts: node
+#  become: yes
+#  roles:
+#    - role: deploy/k3s/node
