@@ -14,12 +14,12 @@
   vars_files:
     - ./secrets/secrets.var
   roles:
-    - role: deploy/system/openshift
+    #- role: deploy/system/openshift
     #- role: andrewrothstein.kubernetes-helm
-    - role: deploy/system/helm_repo
+    #- role: deploy/system/helm_repo
     #- role: deploy/system/metallb
     #- role: deploy/system/nfs/provisioner
-    - role: deploy/ingress/cert_manager
+    #- role: deploy/ingress/cert_manager
     #- role: deploy/ingress/get_cert
     - role: deploy/ingress/traefik
     - role: deploy/ingress/digitalocean_dyndns
