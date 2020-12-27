@@ -1,10 +1,10 @@
 ---
 
-- name: Add stable repository
-  community.kubernetes.helm_repository:
-    name: stable
-    repo_url: "{{ helm_chart_url }}"
-    repo_state: present
+#- name: Add stable repository
+#  community.kubernetes.helm_repository:
+#    name: stable
+#    repo_url: "{{ helm_chart_url }}"
+#    repo_state: present
 
 - name: Update helm repo
   shell: "helm repo update"
