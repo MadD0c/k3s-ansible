@@ -10,6 +10,7 @@
   community.kubernetes.helm:
     name: kubernetes-dashboard
     chart_ref: madd0c/kubernetes-dashboard
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
     release_namespace: kube-system
     update_repo_cache: yes
     values: "{{ lookup('template', 'values.yml' ) | from_yaml }}"
