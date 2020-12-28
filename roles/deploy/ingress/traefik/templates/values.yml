@@ -1,13 +1,3 @@
-# Default values for Traefik
-image:
-  name: traefik
-  # defaults to appVersion
-  tag: ""
-  pullPolicy: IfNotPresent
-
-#
-# Configure the deployment
-#
 deployment:
   enabled: true
   # Number of pods of the deployment
@@ -63,7 +53,7 @@ ingressClass:
 # Activate Pilot integration
 pilot:
   enabled: true
-  token: ""
+  token: "9d189401-68f2-4ac6-b3fe-c73715672495"
 
 # Enable experimental features
 experimental:
