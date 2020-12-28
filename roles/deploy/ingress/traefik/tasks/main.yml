@@ -12,4 +12,4 @@
     release_namespace: traefik
     create_namespace: true
     update_repo_cache: yes
-    values: "{{ lookup('template', 'traefik.yml' ) | from_yaml }}"
+    values: "{{ lookup('template', 'values.yml' ) | from_yaml }}"
