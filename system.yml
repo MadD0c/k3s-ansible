@@ -18,10 +18,10 @@
     #- role: andrewrothstein.kubernetes-helm
     #- role: deploy/system/helm_repo
     #- role: deploy/system/metallb
-    #- role: deploy/system/nfs/provisioner
+    - role: deploy/system/nfs/provisioner
     #- role: deploy/ingress/cert_manager
     #- role: deploy/ingress/get_cert
-    - role: deploy/ingress/traefik
+    #- role: deploy/ingress/traefik
     #- role: deploy/ingress/digitalocean_dyndns
     #- role: deploy/system/traefik-ext
     #- role: deploy/system/kube_dashboard
