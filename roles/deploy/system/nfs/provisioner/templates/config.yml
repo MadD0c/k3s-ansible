@@ -11,8 +11,8 @@ image:
   pullPolicy: IfNotPresent
 
 nfs:
-  server: 192.168.1.200
-  path: /home/ansible/kube-storage
+  server: 192.168.40.10
+  path: /media/datastore/data
   mountOptions:
 
 # For creating the StorageClass automatically:
