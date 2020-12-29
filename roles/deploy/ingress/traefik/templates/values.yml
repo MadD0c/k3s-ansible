@@ -17,8 +17,10 @@ providers:
     enabled: true
 
 logs:
-    general:
+  general:
     level: INFO
+  access:
+    enabled: false
 
 globalArguments:
   - "--global.checknewversion"
