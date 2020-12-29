@@ -30,7 +30,7 @@ spec:
             defaultMode: 420
       containers:
         - name: redis
-          image: redis
+          image: redis:5.0.10-alpine3.12
           args: ["/usr/local/etc/redis/redis.conf", "--requirepass", "${REDIS_PASSWORD}"]
           ports:
             - containerPort: 6379
