@@ -7,4 +7,4 @@
     chart_version: 1.2.9
     release_namespace: kube-system
     update_repo_cache: yes
-    values: "{{ lookup('template', 'config.yaml' ) | from_yaml }}"
+    values: "{{ lookup('templates', 'config.yaml' ) | from_yaml }}"
