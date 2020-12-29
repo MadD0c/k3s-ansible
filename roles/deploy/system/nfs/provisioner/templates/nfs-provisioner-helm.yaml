@@ -8,5 +8,5 @@ spec:
   chart: stable/nfs-client-provisioner
   set:
     image.repository: {{ nfs_provisioner_image }}
-    nfs.server: "{{hostvars[groups['master'][0]].ansible_default_ipv4.address}}"
-    nfs.path: "{{ storage.location }}"
+    nfs.server: "192.186.40.10"
+    nfs.path: "/media/datastore/data"
