@@ -4,6 +4,6 @@
   vars_files:
     - ./secrets/secrets.var
   roles:
-  #  - role: services/db/redis
+    - role: services/db/redis
   #  - role: services/db/mariadb
-    - role: services/db/adminer
+  #  - role: services/db/adminer
