@@ -5,15 +5,8 @@ persistence:
   accessModes:
     - ReadWriteOnce
   size: 10Gi
-  # annotations: {}
   finalizers:
     - kubernetes.io/pvc-protection
-
-extraVolumeMounts:
-  - name: plugins
-    mountPath: /var/lib/grafana/plugins
-    subPath: configs/grafana/plugins
-    readOnly: false
 
 plugins:
    - grafana-piechart-panel
