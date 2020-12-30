@@ -1,7 +1,7 @@
 persistence:
   type: pvc
   enabled: true
-#  storageClassName: nfs-client
+  storageClassName: nfs-client
 #  accessModes:
 #    - ReadWriteOnce
 #  size: 10Gi
