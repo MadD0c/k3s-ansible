@@ -4,7 +4,7 @@
   vars_files:
     - ./secrets/secrets.var
   roles:
-    - role: services/monitor/prometheus
+  #  - role: services/monitor/prometheus
     - role: services/monitor/grafana
   #  - role: services/monitor/monitorstack
   #  - role: services/monitor/blackbox-exporter
