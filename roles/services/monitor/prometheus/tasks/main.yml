@@ -9,6 +9,6 @@
   community.kubernetes.helm:
     name: prometheus-community
     chart_ref: prometheus-community/prometheus
-    release_namespace: monitoring
+    release_namespace: monitor
     update_repo_cache: yes
     values: "{{ lookup('template', 'values.yaml' ) | from_yaml }}"
