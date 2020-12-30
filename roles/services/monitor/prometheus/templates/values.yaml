@@ -1,6 +1,6 @@
 alertmanager:
   ingress:
-    enabled: false
+    enabled: true
   persistentVolume:
     enabled: true
     accessModes:
@@ -28,7 +28,7 @@ server:
     enabled: true
 
 pushgateway:
-  enabled: true
+  enabled: false
   persistentVolume:
     enabled: true
     # existingClaim: ""
