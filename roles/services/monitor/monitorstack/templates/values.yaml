@@ -1,3 +1,5 @@
+## Create default rules for monitoring the cluster
+##
 defaultRules:
   create: true
   rules:
@@ -25,127 +27,89 @@ defaultRules:
     prometheus: true
     prometheusOperator: true
     time: true
+
+  ## Runbook url prefix for default rules
+  runbookUrl: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#
+  ## Reduce app namespace alert scope
+  appNamespacesTarget: ".*"
+
+  ## Labels for default rules
+  labels: {}
+  ## Annotations for default rules
+  annotations: {}
+
+  ## Additional labels for PrometheusRule alerts
+  additionalRuleLabels: {}
+
+
 alertmanager:
-  enabled: true
-  alertmanagerSpec:
-    image:
-      repository: prom/alertmanager
-      tag: v0.21.0
-      sha: ""
+
+  ## Deploy alertmanager
+  ##
+  enabled: false
+
 grafana:
-  enabled: true
-  persistence:
-    type: pvc
-    enabled: true
-    storageClassName: nfs-client
-    accessModes:
-      - ReadWriteOnce
-    size: 2Gi
-    finalizers:
-      - kubernetes.io/pvc-protection
-  plugins:
-    - grafana-piechart-panel
-    - grafana-clock-panel
-  grafana.ini:
-    analytics:
-      check_for_updates: true
-    grafana_net:
-      url: https://grafana.net
-    log:
-      mode: console
-      filters: ldap:debug
-    paths:
-      data: /var/lib/grafana/data
-      logs: /var/log/grafana
-      plugins: /var/lib/grafana/plugins
-      provisioning: /etc/grafana/provisioning
-    security:
-      allow_embedding: true
-    server:
-      enable_gzip: true
-      root_url:
-    auth.ldap:
-      enabled: true
-      config_file: /etc/grafana/ldap.toml
-      allow_sign_up: true
-    auth.proxy:
-      enabled: true
-      header_name: Remote-User
-      header_property: username
-      auto_sign_up: true
-      sync_ttl: 60
-      headers: Name:Remote-Name Email:Remote-Email Groups:Remote-Groups
-      enable_login_token: true
-  ldap:
-    enabled: true
-    config: |-
-        [[servers]]
-        host = "192.168.1.221"
-        port = 389
-        use_ssl = false
-        start_tls = false
-        ssl_skip_verify = false
-        bind_dn = "cn=admin,dc=mccannclan,dc=family"
-        bind_password = 'Jennifer.0211'
-        search_filter = "(uid=%s)"
-        search_base_dns = ["ou=users,dc=mccannclan,dc=family"]
-        [servers.attributes]
-        name = "givenName"
-        surname = "sn"
-        username = "uid"
-        member_of = "memberOf"
-        email =  "email"
-        [[servers.group_mappings]]
-        group_dn = "cn=admin,ou=groups,dc=mccannclan,dc=family"
-        org_role = "Admin"
-        grafana_admin = true
-        [[servers.group_mappings]]
-        group_dn = "cn=family,ou=groups,dc=mccannclan,dc=family"
-        org_role = "Viewer"
-  sidecar:
-    enableUniqueFilenames: true
-    dashboards:
-      enabled: true
-    datasources:
-      enabled: true
-    notifiers:
-      enabled: true
+  enabled: false
+  
+## Component scraping the kube api server
+##
 kubeApiServer:
   enabled: true
+
 kubelet:
   enabled: true
   namespace: kube-system
+
+## Component scraping the kube controller manager
+##
 kubeControllerManager:
   enabled: true
+
+
+## Component scraping coreDns. Use either this or kubeDns
+##
 coreDns:
   enabled: true
+
+## Component scraping kubeDns. Use either this or coreDns
+##
 kubeDns:
   enabled: false
+
+## Component scraping etcd
+##
+kubeEtcd:
+  enabled: false
+
+## Component scraping kube scheduler
+##
+kubeScheduler:
+  enabled: true
+
+## Component scraping kube proxy
+##
 kubeProxy:
   enabled: false
+
+## Component scraping kube state metrics
+##
 kubeStateMetrics:
   enabled: true
-kube-state-metrics:
-  image:
-    repository: carlosedp/kube-state-metrics
-    tag: v1.9.6-arm64
-    pullPolicy: IfNotPresent
+
+## Deploy node exporter as a daemonset to all nodes
+##
 nodeExporter:
-  enabled: true
+  enabled: false
+
+
+## Manages Prometheus and Alertmanager components
+##
 prometheusOperator:
   enabled: true
-  kubeletService:
-    enabled: true
-    namespace: kube-system
-  image:
-    repository: quay.io/prometheus-operator/prometheus-operator
-    tag: v0.43.2-arm64
-    sha: ""
-    pullPolicy: IfNotPresent
 
+## Deploy a Prometheus instance
+##
 prometheus:
-  enabled: true
-  prometheusSpec:
-    image:
-      repository: prom/prometheus
-      tag: v2.22.1
+
+  enabled: false
+
