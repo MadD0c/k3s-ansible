@@ -1,6 +1,6 @@
 alertmanager:
   ingress:
-    enabled: true
+    enabled: false
   persistentVolume:
     enabled: true
     accessModes:
