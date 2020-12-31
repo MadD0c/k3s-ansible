@@ -4,8 +4,8 @@
   vars_files:
     - ./secrets/secrets.var
   roles:
-    - role: apps/home/mosquitto
-    - role: apps/home/adb
-    #- role: apps/home/homeassistant
-    - role: apps/home/nodered
-    - role: apps/home/adguard
+   # - role: apps/home/mosquitto
+   # - role: apps/home/adb
+    - role: apps/home/homeassistant
+   # - role: apps/home/nodered
+   # - role: apps/home/adguard
