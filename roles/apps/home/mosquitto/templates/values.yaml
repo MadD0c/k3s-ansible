@@ -10,22 +10,22 @@ persistence:
   size: 1Gi
 
 # Any extra volumes to define for the pod
-extraVolumes:
-    - name: mqttauth
-      secret:
-        secretName: mosquitto-auth-secrets
+#extraVolumes:
+#    - name: mqttauth
+#      secret:
+#        secretName: mosquitto-auth-secrets
 
 # Any extra volume mounts to define for the containers
-extraVolumeMounts:
-    - name: mqttauth
-      mountPath: /mosquitto/secrets
+#extraVolumeMounts:
+#    - name: mqttauth
+#      mountPath: /mosquitto/secrets
 
 customConfig:
     port 1883
     autosave_interval 1800
     persistence true
     persistence_location /mosquitto/data/
-    password_file /mosquitto/config/passwords.txt
+#    password_file /mosquitto/config/passwords.txt
 
 monitoring:
   podMonitor:
