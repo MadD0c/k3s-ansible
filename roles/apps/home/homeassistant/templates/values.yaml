@@ -33,5 +33,5 @@ image:
 
 persistence:
   config:
-    enabled: false
+    enabled: true
     emptyDir: false
