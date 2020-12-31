@@ -35,4 +35,4 @@ persistence:
   config:
     enabled: true
     emptyDir: false
-  storageClass: nfs-client
+    storageClass: nfs-client
