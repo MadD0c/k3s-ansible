@@ -1,1 +1,25 @@
 ---
+- name: Check if namespace is present
+  community.kubernetes.k8s:
+    name: home
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: Create Volume for Redis
+  community.kubernetes.k8s:
+    state: present
+    namespace: home
+    definition: "{{ lookup('template', 'pvc.yml') | from_yaml }}"
+
+- name: Depoly Redis
+  community.kubernetes.k8s:
+    state: present
+    namespace: home
+    definition: "{{ lookup('template', 'deploy.yml') | from_yaml }}"
+
+- name: Create Redis Service
+  community.kubernetes.k8s:
+    state: present
+    namespace: home
+    definition: "{{ lookup('template', 'service.yml') | from_yaml }}"
