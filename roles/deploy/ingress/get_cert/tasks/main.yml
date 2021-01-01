@@ -23,7 +23,6 @@
 - name: Creating Certificate
   k8s:
     state: present
-    kubeconfig: /etc/rancher/k3s/k3s.yaml
     src: "{{ remote_tmp }}/{{ item }}"
   with_items:
     - get_cert.yml
