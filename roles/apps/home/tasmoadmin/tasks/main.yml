@@ -6,19 +6,19 @@
     kind: Namespace
     state: present
 
-- name: Create Volume for Redis
+- name: Create Volume for Tasmoadmin
   community.kubernetes.k8s:
     state: present
     namespace: home
     definition: "{{ lookup('template', 'pvc.yml') | from_yaml }}"
 
-- name: Depoly Redis
+- name: Depoly Tasmoadmin
   community.kubernetes.k8s:
     state: present
     namespace: home
     definition: "{{ lookup('template', 'deploy.yml') | from_yaml }}"
 
-- name: Create Redis Service
+- name: Create Tasmoadmin Service
   community.kubernetes.k8s:
     state: present
     namespace: home
