@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: tasmoadmin
+  labels:
+    app: tasmoadmin
+spec:
+  serviceName: tasmoadmin
+  selector:
+    matchLabels:
+      app: tasmoadmin
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tasmoadmin
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data-tasmoadmin
+      containers:
+        - name: tasmoadmin
+          image: raymondmm/tasmoadmin:v1.7.0-alpine-arm64v8
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: data
+              mountPath: /data
