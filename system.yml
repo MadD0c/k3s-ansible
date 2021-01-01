@@ -23,5 +23,5 @@
     #- role: deploy/ingress/get_cert
     #- role: deploy/ingress/traefik
     #- role: deploy/ingress/digitalocean_dyndns
-    - role: deploy/system/traefik-ext
+    - role: deploy/ingress/traefik-ext
     #- role: deploy/system/kube_dashboard
