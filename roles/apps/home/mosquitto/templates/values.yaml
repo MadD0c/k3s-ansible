@@ -16,7 +16,7 @@ extraVolumes:
         secretName: mosquitto-auth-secrets
 
 # Any extra volume mounts to define for the containers
-#extraVolumeMounts:
+extraVolumeMounts:
     - name: mqttauth
       mountPath: /mosquitto/config/passwords.txt
 
