@@ -10,12 +10,12 @@ spec:
     privateKeySecretRef:
       name: production-issuer-account-key
     solvers:
-    - dns01:
-        digitalocean:
-          tokenSecretRef:
-            name: digitalocean-dns
-            key: access-token
-      selector:
-        dnsNames:
-        - 'mccannclan.family'
-        - '*.mccannclan.family'
+      - dns01:
+          digitalocean:
+            tokenSecretRef:
+              name: digitalocean-dns
+              key: access-token
+        selector:
+          dnsNames:
+            - 'mccannclan.family'
+            - '*.mccannclan.family'
