@@ -10,7 +10,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`hassconfig.mccannclan.family`)
+    - match: Host(`{{ prefex_hass_config }}.{{ dns_domains }}`)
       kind: Rule
       services:
         - name: home-assistant

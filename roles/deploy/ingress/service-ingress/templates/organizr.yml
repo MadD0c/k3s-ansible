@@ -10,7 +10,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`sysop.mccannclan.family`)
+    - match: Host(`{{ prefex_organizr }}.{{ dns_domains }}`)
       kind: Rule
       services:
         - name: organizr

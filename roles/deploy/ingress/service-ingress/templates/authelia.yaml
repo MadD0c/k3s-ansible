@@ -10,7 +10,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`auth.mccannclan.family`)
+    - match: Host(`Host(`{{ prefex_authelia }}.{{ dns_domains }}`)`)
       kind: Rule
       services:
         - name: authelia

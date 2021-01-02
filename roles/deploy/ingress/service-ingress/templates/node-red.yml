@@ -10,7 +10,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`nodered.mccannclan.family`)
+    - match: Host(`{{ prefex_node_red }}.{{ dns_domains }}`)
       kind: Rule
       services:
         - name: node-red

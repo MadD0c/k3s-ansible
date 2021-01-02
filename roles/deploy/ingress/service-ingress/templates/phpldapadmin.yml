@@ -10,7 +10,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`ldapadmin.mccannclan.family`)
+    - match: Host(`{{ prefex_phpldapadmin }}.{{ dns_domains }}`)
       kind: Rule
       services:
         - name: phpldapadmin

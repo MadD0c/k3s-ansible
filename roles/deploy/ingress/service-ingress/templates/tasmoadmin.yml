@@ -10,7 +10,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`tasmo.mccannclan.family`)
+    - match: Host(`{{ prefex_tasmoadmin }}.{{ dns_domains }}`)
       kind: Rule
       services:
         - name: tasmoadmin

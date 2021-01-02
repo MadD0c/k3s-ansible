@@ -10,7 +10,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`dns.mccannclan.family`)
+    - match: Host(`{{ prefex_adguard }}.{{ dns_domains }}`)
       kind: Rule
       services:
         - name: adguard-home

@@ -77,7 +77,7 @@ externaldb_url: mysql://mariadb.db.svc.cluster.local
 externaldb_database_name: authelia
 externaldb_user: authelia
 redis_enabled: true
-redis_host: redis.redis.svc.cluster.local
+redis_host: redis.db.svc.cluster.local
 redis_dbindex: 1
   # Log options debug, verbose, notice, warning
 redis_log: verbose
@@ -86,21 +86,27 @@ unifi_user: test
 unifi_url: 127.0.0.1
 unifi_port: 8443
 
-#home assistant
-mqtt_password: none
-hass_db_password: none
-hass-secrets: none
-
 #Ingress Service routes
 create_ingress: no
 ingress_adguard: no
+prefex_adguard:
 ingress_k8s_dashboard: no
+prefex_k8s_dashboard:
 ingress_guacamole: no
+prefex_guacamole:
 ingress_hass_config: no
+prefex_hass_config:
 ingress_home_assistant: no
+prefex_home_assistant:
 ingress_grafana: no
+prefex_grafana:
 ingress_node_red: no
+prefex_node_red:
 ingress_organizr: no
+prefex_organizr:
 ingress_phpldapadmin: no
+prefex_phpldapadmin:
 ingress_prometheus: no
+prefex_prometheus:
 ingress_tasmoadmin: no
+prefex_tasmoadmin:

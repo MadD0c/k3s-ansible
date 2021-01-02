@@ -10,7 +10,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`monitor.mccannclan.family`)
+    - match: Host(`{{ prefex_guacamole }}.{{ dns_domains }}`)
       kind: Rule
       services:
         - name: guacamole

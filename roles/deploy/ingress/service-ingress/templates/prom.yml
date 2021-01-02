@@ -10,7 +10,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`prom.mccannclan.family`)
+    - match: Host(`{{ prefex_prometheus }}.{{ dns_domains }}`)
       kind: Rule
       services:
         - name: prometheus-server
