@@ -4,35 +4,13 @@ image:
   pullPolicy: IfNotPresent
   tag: 2020.12.1
 
-# upgrade strategy type (e.g. Recreate or RollingUpdate)
-#strategyType: Recreate
-#hass-secrets: none
-# Probes configuration
-#probes:
-#  liveness:
-#    enabled: true
-#    scheme: HTTP
-#    initialDelaySeconds: 60
-#    failureThreshold: 5
-#    timeoutSeconds: 10
-#  readiness:
-#    enabled: true
-#    scheme: HTTP
-#    initialDelaySeconds: 60
-#    failureThreshold: 5
-#    timeoutSeconds: 10
-#  startup:
-#    enabled: true
-#    scheme: HTTP
-#    initialDelaySeconds: 600`
-#    failureThreshold: 30
-#    periodSeconds: 10
-#service:
-#  type: LoadBalancer
-#  loadBalancerIP: "192.168.40.101"
-
 persistence:
   config:
     enabled: true
     emptyDir: false
     storageClass: nfs-client
+
+service:
+  enabled: true
+  type: LoadBalancer
+  loadBalancerIP: "192.168.40.102"
