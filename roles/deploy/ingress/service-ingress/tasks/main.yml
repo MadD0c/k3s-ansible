@@ -4,86 +4,86 @@
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('template', 'adguard.yml') | from_yaml }}"
-    when:
-      - create_ingress | bool
-      - ingress_adguard | bool
+  when:
+    - create_ingress | bool
+    - ingress_adguard | bool
 
 - name: Create Kubernates Dashboard Ingress
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('template', 'cluster.yml') | from_yaml }}"
-    when:
-      - create_ingress | bool
-      - ingress_k8s_dashboard | bool
+  when:
+    - create_ingress | bool
+    - ingress_k8s_dashboard | bool
 
 - name: Create Guacamole Ingress
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('template', 'guacamole.yml') | from_yaml }}"
-    when:
-      - create_ingress | bool
-      - ingress_guacamole | bool
+  when:
+    - create_ingress | bool
+    - ingress_guacamole | bool
 
 - name: Create Home Assistant Configurator Ingress
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('template', 'hass-config.yml') | from_yaml }}"
-    when:
-      - create_ingress | bool
-      - ingress_hass_config | bool
+  when:
+    - create_ingress | bool
+    - ingress_hass_config | bool
 
 - name: Create Home Assistant Ingress
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('template', 'hass.yml') | from_yaml }}"
-    when:
-      - create_ingress | bool
-      - ingress_home_assistant | bool
+  when:
+    - create_ingress | bool
+    - ingress_home_assistant | bool
 
 - name: Create Grafana Ingress
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('template', 'monitor.yml') | from_yaml }}"
-    when:
-      - create_ingress | bool
-      - ingress_grafana | bool
+  when:
+    - create_ingress | bool
+    - ingress_grafana | bool
 
 - name: Create Node Red Ingress
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('template', 'node-red.yml') | from_yaml }}"
-    when:
-      - create_ingress | bool
-      - ingress_node_red | bool
+  when:
+    - create_ingress | bool
+    - ingress_node_red | bool
 
 - name: Create Organizr Ingress
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('template', 'organizr.yml') | from_yaml }}"
-    when:
-      - create_ingress | bool
-      - ingress_organizr | bool
+  when:
+    - create_ingress | bool
+    - ingress_organizr | bool
 
 - name: Create phpLDAPAdmin Ingress
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('template', 'phpldapadmin.yml') | from_yaml }}"
-    when:
-      - create_ingress | bool
-      - ingress_phpldapadmin | bool
+  when:
+    - create_ingress | bool
+    - ingress_phpldapadmin | bool
 
 - name: Create Prometheus Ingress
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('template', 'prom.yml') | from_yaml }}"
-    when:
-      - create_ingress | bool
-      - ingress_prometheus | bool
+  when:
+    - create_ingress | bool
+    - ingress_prometheus | bool
 
 - name: Create TasmoAdmin Ingress
   community.kubernetes.k8s:
     state: present
     definition: "{{ lookup('template', 'tasmoadmin.yml') | from_yaml }}"
-    when:
-      - create_ingress | bool
-      - ingress_tasmoadmin | bool
+  when:
+    - create_ingress | bool
+    - ingress_tasmoadmin | bool
