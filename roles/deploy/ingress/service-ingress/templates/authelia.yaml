@@ -10,7 +10,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`Host(`{{ prefex_authelia }}.{{ dns_domains }}`)`)
+    - match: Host(`{{ authelia_redirectionurl }}`)
       kind: Rule
       services:
         - name: authelia

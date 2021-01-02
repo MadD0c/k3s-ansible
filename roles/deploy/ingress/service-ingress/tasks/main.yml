@@ -1,5 +1,13 @@
 ---
 
+  - name: Create AutheliaIngress
+    community.kubernetes.k8s:
+      state: present
+      definition: "{{ lookup('template', 'adguard.yml') | from_yaml }}"
+    when:
+      - create_ingress | bool
+      - ingress_authelia | bool
+
 - name: Create AdGuard Ingress
   community.kubernetes.k8s:
     state: present

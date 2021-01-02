@@ -48,7 +48,7 @@ storage:
 
 # Authelia details
 authelia_logLevel: "trace"
-authelia_redirectionurl: "https://auth.example.com/"
+authelia_redirectionurl: "auth.example.com"
 authelia_totpissuer: "authelia.com"
 #duo:
 duo_enabled: false
@@ -88,6 +88,7 @@ unifi_port: 8443
 
 #Ingress Service routes
 create_ingress: no
+ingress_authelia: no
 ingress_adguard: no
 prefex_adguard:
 ingress_k8s_dashboard: no

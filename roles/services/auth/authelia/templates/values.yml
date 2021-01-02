@@ -15,7 +15,7 @@ fullnameOverride: ""
 
 authelia:
   logLevel: {{ authelia_logLevel }}
-  redirectionURL: {{ authelia_redirectionurl }}
+  redirectionURL: https://{{ authelia_redirectionurl }}/
   totpIssuer: {{ authelia_totpissuer }}
 
   duo:
