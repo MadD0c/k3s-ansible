@@ -90,3 +90,17 @@ unifi_port: 8443
 mqtt_password: none
 hass_db_password: none
 hass-secrets: none
+
+#Ingress Service routes
+create_ingress: no
+ingress_adguard: no
+ingress_k8s_dashboard: no
+ingress_guacamole: no
+ingress_hass_config: no
+ingress_home_assistant: no
+ingress_grafana: no
+ingress_node_red: no
+ingress_organizr: no
+ingress_phpldapadmin: no
+ingress_prometheus: no
+ingress_tasmoadmin: no

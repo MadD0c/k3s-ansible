@@ -1,0 +1,25 @@
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingressroute-tasmoadmin
+  namespace: default
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`tasmo.mccannclan.family`)
+      kind: Rule
+      services:
+        - name: tasmoadmin
+          namespace: home
+          port: 80
+  #  middlewares:
+  #  - chain-authelia
+  #  - chain-basic-auth
+  #  - chain-no-auth
+  tls:
+    store:
+      name: default
