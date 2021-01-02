@@ -89,6 +89,8 @@ unifi_port: 8443
 #Ingress Service routes
 create_ingress: no
 ingress_authelia: no
+ingress_traefik_dashboard: no
+prefex_traefik_dashboard:
 ingress_adguard: no
 prefex_adguard:
 ingress_k8s_dashboard: no
