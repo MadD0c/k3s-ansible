@@ -14,6 +14,7 @@ spec:
     kind: Rule
     services:
     - name: authelia
+      namespace: auth
       port: 9091
     middlewares:
     - https-only
