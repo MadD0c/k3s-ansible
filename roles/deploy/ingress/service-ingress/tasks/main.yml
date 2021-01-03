@@ -1,12 +1,12 @@
 ---
 
-  - name: Create Authelia Ingress
-    community.kubernetes.k8s:
-      state: present
-      definition: "{{ lookup('template', 'adguard.yml') | from_yaml }}"
-    when:
-      - create_ingress | bool
-      - ingress_authelia | bool
+- name: Create Authelia Ingress
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('template', 'adguard.yml') | from_yaml }}"
+  when:
+    - create_ingress | bool
+    - ingress_authelia | bool
 
 - name: Create Traefik Dashboard Ingress
   community.kubernetes.k8s:
