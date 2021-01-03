@@ -14,8 +14,8 @@ spec:
     kind: Rule
     services:
     - name: node-red
-     namespace: home
-    port: 1880
+      namespace: home
+      port: 1880
   middlewares:
   - chain-authelia
 #  - chain-basic-auth
