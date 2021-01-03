@@ -1,3 +1,5 @@
+---
+
 alertmanager:
   ingress:
     enabled: false
@@ -5,7 +7,6 @@ alertmanager:
     enabled: true
     accessModes:
       - ReadWriteOnce
-    #existingClaim: ""
     size: 2Gi
     storageClass: "nfs-client"
 
@@ -18,11 +19,9 @@ server:
     enabled: true
     accessModes:
       - ReadWriteOnce
-    #existingClaim: ""
     mountPath: /data
     size: 8Gi
     storageClass: "nfs-client"
-    # volumeBindingMode: ""
     subPath: ""
   statefulSet:
     enabled: true
@@ -31,5 +30,4 @@ pushgateway:
   enabled: false
   persistentVolume:
     enabled: true
-    # existingClaim: ""
     storageClass: "nfs-client"

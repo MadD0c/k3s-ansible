@@ -3,11 +3,11 @@ env:
    PHPLDAPADMIN_LDAP_HOSTS: "#PYTHON2BASH:[{'McCann Clan': [{'server': [{'host':'192.168.40.200'},{'tls': 'false'},{'port': '389'}]},{'login': [{'bind_id':'cn=admin,dc=mccannclan,dc=family'},{'bind_pass':'Jennifer.0211'}]}]}]"
 
 image:
-  repository: osixia/phpldapadmin
-  tag: stable-arm64v8
-  pullPolicy: IfNotPresent
+   repository: osixia/phpldapadmin
+   tag: stable-arm64v8
+   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
-  port: 80
-  annotations: {}
+   type: ClusterIP
+   port: 80
+   annotations: {}

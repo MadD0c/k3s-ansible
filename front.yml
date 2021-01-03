@@ -5,5 +5,5 @@
     - ./secrets/secrets.var
   roles:
     - role: apps/frontend/organizr
-  #  - role: apps/home/homeassistant
-  #  - role: apps/home/nodered
+    - role: apps/home/homeassistant
+    - role: apps/home/nodered

@@ -13,11 +13,6 @@
     namespace: monitor
     definition: "{{ lookup('template', 'pvc.yml') | from_yaml }}"
 
-#- name: Create Secrets for Guacamole
-#  community.kubernetes.k8s:
-#    state: present
-#    definition: "{{ lookup('template', 'secrets.yml') | from_yaml }}"
-
 - name: Setup Guacamole Config
   community.kubernetes.k8s:
     state: present

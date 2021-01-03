@@ -1,17 +1,9 @@
 ---
-# Default values for authelia.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-replicaCount: 1
 
 image:
   repository: authelia/authelia
   tag: 4
   pullPolicy: IfNotPresent
-
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
 
 authelia:
   logLevel: {{ authelia_logLevel }}
@@ -28,35 +20,19 @@ authelia:
     enabled: {{ ldap_enabled }}
     config:
       url: {{ ldap_url }}
-      # The base dn for every entries
       base_dn: {{ ldap_base_dn }}
       username_attribute: uid
-      # An additional dn to define the scope to all users
       additional_users_dn: ou=users
-      # The users filter used to find the user DN
-      # {0} is a matcher replaced by username.
-      # 'cn={0}' by default.
       users_filter: (&({username_attribute}={input})(objectClass=person))
-      # An additional dn to define the scope of groups
       additional_groups_dn: ou=groups
-      # The groups filter used for retrieving groups of a given user.
-      # {0} is a matcher replaced by username.
-      # {dn} is a matcher replaced by user DN.
-      # {uid} is a matcher replaced by user uid.
-      # 'member={dn}' by default.
       groups_filter: (&(member={dn})(objectclass=groupOfNames))
       group_name_attribute: cn
-      # The attribute holding the mail address of the user
       mail_attribute: mail
-      # The username and password of the admin user.
       user: {{ ldap_user }}
 
   fileAuth:
     users: {}
 
-  # Default policy can either be `bypass`, `one_factor`, `two_factor` or `deny`.
-  # It is the policy applied to any resource if there is no policy to be applied
-  # to the user.
   accessControl:
     defaultPolicy: deny
     rules:
@@ -64,25 +40,14 @@ authelia:
         policy: bypass
 
   session:
-    # The name of the session cookie. (default: authelia_session).
     name: {{ session_name }}
-    # The time in ms before the cookie expires and session is reset.
     expiration: 3600000
-    # The inactivity time in ms before the session is reset.
     inactivity: 300000
-    # The domain to protect.
-    # Note: the authenticator must also be in that domain. If empty, the cookie
-    # is restricted to the subdomain of the issuer.
     domain: {{ dns_domains }}
 
   regulation:
-    # The number of failed login attempts before user is banned.
-    # Set it to 0 to disable regulation.
     max_retries: 3
-    # The time range during which the user can attempt login before being banned.
-    # The user is banned if the authentication failed `max_retries` times in a `find_time` seconds window.
     find_time: 120
-    # The length of time before a banned user can login again.
     ban_time: 300
 
   notifier:
@@ -90,7 +55,6 @@ authelia:
     filesystem:
       filename: /config/notification.txt
 
-    # Use a SMTP server for sending notifications
     smtp:
       username: {{ smtp_username }}
       secure: {{ smtp_secure }}
@@ -98,42 +62,16 @@ authelia:
       port: {{ smtp_port }}
       sender: {{ smtp_sender }}
 
-# Options for Authelia PVC (/var/lib/authelia/store) when not using external DB
 persistence:
-  annotations: {}
-  ## Persistent Volume Storage Class
-  ## If defined, storageClassName: <storageClass>
-  ## If set to "-", storageClassName: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClassName spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
-  # storageClass: "-"
-
-  ## A manually managed Persistent Volume and Claim
-  ## Requires persistence.enabled: true
-  ## If defined, PVC must be created manually before volume will be bound
-  # existingClaim:
-
   accessMode: ReadWriteOnce
   size: 100Mi
 
 serviceAccount:
-  # Specifies whether a service account should be created
   create: true
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name:
 
 service:
   type: ClusterIP
   port: 9091
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
 
 secrets:
   jwt_secret: {{ authelia_jwt }}

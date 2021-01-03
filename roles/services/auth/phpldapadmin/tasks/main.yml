@@ -3,7 +3,6 @@
 - name: Deploy phpLDAPadmin
   community.kubernetes.helm:
     name: phpldapadmin
-    #kubeconfig: /etc/rancher/k3s/k3s.yaml
     chart_ref: cetic/phpldapadmin
     release_namespace: auth
     create_namespace: true

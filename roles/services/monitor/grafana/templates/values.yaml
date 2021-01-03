@@ -1,16 +1,13 @@
+---
+
 persistence:
   type: pvc
   enabled: true
   storageClassName: nfs-client
-#  accessModes:
-#    - ReadWriteOnce
-#  size: 10Gi
-#  finalizers:
-#    - kubernetes.io/pvc-protection
 
 plugins:
-   - grafana-piechart-panel
-   - grafana-clock-panel
+  - grafana-piechart-panel
+  - grafana-clock-panel
 
 grafana.ini:
   analytics:

@@ -1,5 +1,5 @@
-## Create default rules for monitoring the cluster
-##
+---
+
 defaultRules:
   create: true
   rules:
@@ -28,31 +28,15 @@ defaultRules:
     prometheusOperator: true
     time: true
 
-  ## Runbook url prefix for default rules
   runbookUrl: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#
-  ## Reduce app namespace alert scope
   appNamespacesTarget: ".*"
 
-  ## Labels for default rules
-  labels: {}
-  ## Annotations for default rules
-  annotations: {}
-
-  ## Additional labels for PrometheusRule alerts
-  additionalRuleLabels: {}
-
-
 alertmanager:
-
-  ## Deploy alertmanager
-  ##
   enabled: false
 
 grafana:
   enabled: false
-  
-## Component scraping the kube api server
-##
+
 kubeApiServer:
   enabled: true
 
@@ -60,56 +44,32 @@ kubelet:
   enabled: true
   namespace: kube-system
 
-## Component scraping the kube controller manager
-##
 kubeControllerManager:
   enabled: true
 
-
-## Component scraping coreDns. Use either this or kubeDns
-##
 coreDns:
   enabled: true
 
-## Component scraping kubeDns. Use either this or coreDns
-##
 kubeDns:
   enabled: false
 
-## Component scraping etcd
-##
 kubeEtcd:
   enabled: false
 
-## Component scraping kube scheduler
-##
 kubeScheduler:
   enabled: true
 
-## Component scraping kube proxy
-##
 kubeProxy:
   enabled: false
 
-## Component scraping kube state metrics
-##
 kubeStateMetrics:
   enabled: true
 
-## Deploy node exporter as a daemonset to all nodes
-##
 nodeExporter:
   enabled: false
 
-
-## Manages Prometheus and Alertmanager components
-##
 prometheusOperator:
   enabled: true
 
-## Deploy a Prometheus instance
-##
 prometheus:
-
   enabled: false
-

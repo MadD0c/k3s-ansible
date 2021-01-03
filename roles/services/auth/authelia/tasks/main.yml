@@ -13,8 +13,3 @@
     create_namespace: true
     update_repo_cache: yes
     values: "{{ lookup('template', 'values.yml' ) | from_yaml }}"
-
-#- name: Install External Ingress
-#  community.kubernetes.k8s:
-#    state: present
-#    template: '/files/ingress/ingress-authelia.yaml'
