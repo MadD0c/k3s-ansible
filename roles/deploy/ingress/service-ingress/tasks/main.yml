@@ -40,14 +40,6 @@
     - create_ingress | bool
     - ingress_guacamole | bool
 
-- name: Create Home Assistant Configurator Ingress
-  community.kubernetes.k8s:
-    state: present
-    definition: "{{ lookup('template', 'hass-config.yml') | from_yaml }}"
-  when:
-    - create_ingress | bool
-    - ingress_hass_config | bool
-
 - name: Create Home Assistant Ingress
   community.kubernetes.k8s:
     state: present

@@ -15,7 +15,7 @@ spec:
       services:
         - name: prometheus-server
           namespace: monitor
-          port: 9090
+          port: 80
   #  middlewares:
   #  - chain-authelia
   #  - chain-basic-auth
