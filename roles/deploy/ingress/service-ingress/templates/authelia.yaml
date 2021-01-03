@@ -16,8 +16,8 @@ spec:
         - name: authelia
           namespace: auth
           port: 9091
-  middlewares:
-    - chain-authelia
+      middlewares:
+        - chain-authelia
   tls:
     store:
       name: default
