@@ -1,8 +1,4 @@
-# Default values
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-# The Image to use for PLEX
+---
 
 image:
   repository: plexinc/pms-docker
@@ -56,68 +52,21 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
 serviceTCP:
-  type: ClusterIP
+  type: LoadBalancer
   port: 32400
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
   annotations: {}
-  # metallb.universe.tf/allow-shared-ip: plex-svc
+  metallb.universe.tf/allow-shared-ip: plex-svc
   labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
   loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
 
 serviceUDP:
-  type: ClusterIP
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
+  type: LoadBalancer
   annotations: {}
-  # metallb.universe.tf/allow-shared-ip: plex-svc
+  metallb.universe.tf/allow-shared-ip: plex-svc
   labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
   loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
 
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  path: /
-  hosts:
-    - chart-example.local
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 plexPreferences:
   # Enable init script that will read all environment variables starting with PLEX_PREFERENCE_
@@ -204,36 +153,9 @@ persistence:
     # Access mode for this volume
     accessMode: ReadWriteOnce
 
-  extraData: []
-    # Optionally specifify additional Data mounts.  These will be mounted as
-    # /data-${name}.  This should be in the same format as the above 'data',
-    # with the additional field 'name'
-    # - claimName: "special-tv"
-    #   name: 'foo'
-
-  extraMounts: []
-  ## Include additional claims that can be mounted inside the
-  ## pod. This is useful if you wish to use different paths with categories
-  ## Claim will me mounted as /{mountPath} if specified. If no {mountPath} is given,
-  ## mountPath will default to {name}
-  # - name: video
-  #   claimName: video-claim
-  #   mountPath: /mnt/path/in/pod
-
   config:
-    # Optionally specify claimName to manually override the PVC to be used for
-    # the config directory. If claimName is specified, storageClass and size
-    # are ignored.
-    ## claimName: "plex-config-pvc"
-    # Optionally specify a storage class to be used for the config directory.
-    # If not specified and claimName is not specified, the default storage
-    # class will be used.
-    # subPath: some-subpath
     storageClass: ""
-    # The requested size of the volume to be used when creating a
-    # PersistentVolumeClaim.
     size: 20Gi
-    # Access mode for this volume
     accessMode: ReadWriteOnce
 
 # Certificate(s) in Plex
@@ -314,18 +236,6 @@ probes:
     initialDelaySeconds: 5
     failureThreshold: 30
     periodSeconds: 10
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
 
 nodeSelector: {}
 

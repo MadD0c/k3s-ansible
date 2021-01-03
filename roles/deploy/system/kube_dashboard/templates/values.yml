@@ -1,3 +1,5 @@
+---
+
 metricsScraper:
   enabled: true
   image:

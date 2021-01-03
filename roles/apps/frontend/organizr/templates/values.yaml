@@ -1,3 +1,5 @@
+---
+
 image:
   repository: organizr/organizr
   pullPolicy: IfNotPresent
@@ -11,9 +13,9 @@ service:
     port: 80
 
 env:
-   branch: v2-master
-   PUID: 1000
-   PGID: 1000
+  branch: v2-master
+  PUID: 1000
+  PGID: 1000
 
 persistence:
   config:

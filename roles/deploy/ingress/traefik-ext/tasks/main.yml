@@ -40,17 +40,12 @@
     state: present
     definition: "{{ lookup('file', 'middleware-chain-authelia.yaml') | from_yaml }}"
 
-#- name: Install tls options
-#  community.kubernetes.k8s:
-#    state: present
-#    definition: "{{ lookup('file', 'tls-options.yaml') | from_yaml }}"
+# - name: Install tls options
+#   community.kubernetes.k8s:
+#     state: present
+#     definition: "{{ lookup('file', 'tls-options.yaml') | from_yaml }}"
 
-#- name: Install tls store
-#  community.kubernetes.k8s:
-#    state: present
-#    definition: "{{ lookup('file', 'tls-store.yaml') | from_yaml }}"
-
-#- name: Install External Ingress
-#  community.kubernetes.k8s:
-#    state: present
-#    definition: "{{ lookup('file', 'ingress-traefik.yaml') | from_yaml }}"
+- name: Install tls store
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('file', 'tls-store.yaml') | from_yaml }}"

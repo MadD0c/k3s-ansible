@@ -33,4 +33,4 @@ spec:
             - name: devices
               mountPath: /dev/bus/usb
           securityContext:
-              allowPrivilegeEscalation: true
+            allowPrivilegeEscalation: true

@@ -1,4 +1,4 @@
-# Default values for sonarr.
+---
 
 sonarr:
   image:
