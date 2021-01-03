@@ -10,16 +10,15 @@ spec:
     - web
     - websecure
   routes:
-  - match: Host(`{{ prefex_k8s_dashboard }}.{{ dns_domains }}`)
-    kind: Rule
-    services:
-    - name: kubernetes-dashboard
-      namespace: kube-system
-      port: 8080
-  middlewares:
-  - chain-authelia
-#  - chain-basic-auth
-#  - chain-no-auth
+    - match: Host(`{{ prefex_k8s_dashboard }}.{{ dns_domains }}`)
+      kind: Rule
+      services:
+        - name: kubernetes-dashboard
+          namespace: kube-system
+          port: 8080
+      middlewares:
+        - name: chain-authelia
+          namespace: default
   tls:
     store:
       name: default

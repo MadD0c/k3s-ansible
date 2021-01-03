@@ -10,14 +10,15 @@ spec:
     - web
     - websecure
   routes:
-  - match: Host(`{{ authelia_redirectionurl }}`)
-    kind: Rule
-    services:
-    - name: authelia
-      namespace: auth
-      port: 9091
-  middlewares:
-  - chain-authelia
+    - match: Host(`{{ authelia_redirectionurl }}`)
+      kind: Rule
+      services:
+        - name: authelia
+          namespace: auth
+          port: 9091
+      middlewares:
+        - name: chain-authelia
+          namespace: default
   tls:
     store:
       name: default

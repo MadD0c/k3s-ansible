@@ -7,19 +7,18 @@ metadata:
   namespace: default
 spec:
   entryPoints:
-  - web
-  - websecure
+    - web
+    - websecure
   routes:
-  - match: Host(`{{ prefex_home_assistant }}.{{ dns_domains }}`)
-    kind: Rule
-    services:
-    - name: home-assistant
-      namespace: home
-      port: 8123
-  middlewares:
-#  - chain-authelia
-#  - chain-basic-auth
-  - chain-no-auth
+    - match: Host(`{{ prefex_home_assistant }}.{{ dns_domains }}`)
+      kind: Rule
+      services:
+        - name: home-assistant
+          namespace: home
+          port: 8123
+      middlewares:
+        - name: chain-authelia
+          namespace: default
   tls:
     store:
       name: default

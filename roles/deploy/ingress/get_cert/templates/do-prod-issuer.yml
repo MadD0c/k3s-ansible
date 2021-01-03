@@ -5,8 +5,8 @@ metadata:
   name: {{ cert_manager_issuer_prod }}
 spec:
   acme:
-    email:  {{ acme_email }}
-    server:  {{ acme_prod_url }}
+    email: {{ acme_email }}
+    server: {{ acme_prod_url }}
     privateKeySecretRef:
       name: {{ cert_manager_issuer_prod }}
     solvers:

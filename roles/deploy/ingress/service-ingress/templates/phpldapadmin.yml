@@ -7,19 +7,18 @@ metadata:
   namespace: default
 spec:
   entryPoints:
-  - web
-  - websecure
+    - web
+    - websecure
   routes:
-  - match: Host(`{{ prefex_phpldapadmin }}.{{ dns_domains }}`)
-    kind: Rule
-    services:
-    - name: phpldapadmin
-      namespace: auth
-      port: 80
-  middlewares:
-  - chain-authelia
-#  - chain-basic-auth
-#  - chain-no-auth
+    - match: Host(`{{ prefex_phpldapadmin }}.{{ dns_domains }}`)
+      kind: Rule
+      services:
+        - name: phpldapadmin
+          namespace: auth
+          port: 80
+      middlewares:
+        - name: chain-authelia
+          namespace: default
   tls:
     store:
       name: default

@@ -17,9 +17,8 @@ spec:
           namespace: home
           port: 3000
       middlewares:
-        - chain-authelia
-      # - chain-basic-auth
-      # - chain-no-auth
+        - name: chain-authelia
+          namespace: default
   tls:
     store:
       name: default
