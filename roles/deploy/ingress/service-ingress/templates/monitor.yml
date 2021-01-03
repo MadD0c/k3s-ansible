@@ -7,19 +7,19 @@ metadata:
   namespace: default
 spec:
   entryPoints:
-    - web
-    - websecure
+  - web
+  - websecure
+  middlewares:
+  - chain-authelia
+#  - chain-basic-auth
+#  - chain-no-auth
   routes:
-    - match: Host(`{{ prefex_grafana }}.{{ dns_domains }}`)
-      kind: Rule
-      services:
-        - name: grafana
-          namespace: monitor
-          port: 80
-      middlewares:
-        - chain-authelia
-      #  - chain-basic-auth
-      #  - chain-no-auth
+  - match: Host(`{{ prefex_grafana }}.{{ dns_domains }}`)
+    kind: Rule
+    services:
+    - name: grafana
+      namespace: monitor
+      port: 80
   tls:
     store:
       name: default
