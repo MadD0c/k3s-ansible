@@ -13,9 +13,9 @@ spec:
     - match: Host(`{{ prefex_organizr }}.{{ dns_domains }}`)
       kind: Rule
       services:
-        - name:
-          namespace:
-          port:
+        - name: organizr
+          namespace: home
+          port: 80
       middlewares:
         - name: chain-authelia
           namespace: default

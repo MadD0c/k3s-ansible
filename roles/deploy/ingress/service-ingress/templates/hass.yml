@@ -17,7 +17,7 @@ spec:
           namespace: home
           port: 8123
       middlewares:
-        - name: chain-authelia
+        - name: chain-no-auth
           namespace: default
   tls:
     store:
