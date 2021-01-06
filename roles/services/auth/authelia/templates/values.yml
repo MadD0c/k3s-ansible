@@ -41,14 +41,15 @@ authelia:
 
   session:
     name: {{ session_name }}
-    expiration: 3600000
-    inactivity: 300000
+    expiration: 5m
+    inactivity: 1h
+    remember_me_duration:  1M
     domain: {{ dns_domains }}
 
   regulation:
     max_retries: 3
-    find_time: 120
-    ban_time: 300
+    find_time: 2m
+    ban_time: 10m
 
   notifier:
     smtpenabled: {{ smtp_enabled }}
