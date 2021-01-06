@@ -1,6 +1,6 @@
 ---
 env:
-   PHPLDAPADMIN_LDAP_HOSTS: "#PYTHON2BASH:[{'McCann Clan': [{'server': [{'host':'192.168.40.200'},{'tls': 'false'},{'port': '389'}]},{'login': [{'bind_id':'cn=admin,dc=mccannclan,dc=family'},{'bind_pass':'Jennifer.0211'}]}]}]"
+   PHPLDAPADMIN_LDAP_HOSTS: "#PYTHON2BASH:[{'McCann Clan': [{'server': [{'host':'192.168.40.200'},{'tls': 'False'},{'port': '389'}]},{'login': [{'bind_id':'cn=admin,dc=mccannclan,dc=family'},{'bind_pass':'Jennifer.0211'},{'auth_type':'config'}]}]}]"
 
 image:
    repository: osixia/phpldapadmin
