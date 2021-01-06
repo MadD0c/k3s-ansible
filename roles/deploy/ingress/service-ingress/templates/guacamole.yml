@@ -15,7 +15,7 @@ spec:
       services:
         - name: guacamole
           namespace: monitor
-          port: 80
+          port: 8080
       middlewares:
         - name: chain-authelia
           namespace: default
