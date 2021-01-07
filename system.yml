@@ -1,13 +1,13 @@
 ---
-- hosts: k3s_cluster
-  become: yes
-  roles:
-    - role: system/essential
+#- hosts: k3s_cluster
+#  become: yes
+#  roles:
+#    - role: system/essential
 
-- hosts: master
-  become: yes
-  roles:
-    - role: system/nfs/server
+#- hosts: master
+#  become: yes
+#  roles:
+#    - role: system/nfs/server
 
 - hosts: master
   become: no
