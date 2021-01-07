@@ -43,7 +43,7 @@ authelia:
     name: {{ session_name }}
     expiration: 5m
     inactivity: 1h
-    remember_me_duration:  1M
+    remember_me_duration: 1M
     domain: {{ dns_domains }}
 
   regulation:
