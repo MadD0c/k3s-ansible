@@ -6,6 +6,7 @@ metadata:
   name: server-plan
   namespace: system-upgrade
 spec:
+  ttlSecondsAfterFinished: 300
   concurrency: 1
   cordon: true
   nodeSelector:
