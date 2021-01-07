@@ -1,0 +1,14 @@
+---
+
+- name: Install Update Controller
+  command: kubectl apply -f https://github.com/rancher/system-upgrade-controller/releases/download/v0.6.2/system-upgrade-controller.yaml
+
+- name: Create Upgrade Plan for Server
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('template', 'server.yml') | from_yaml }}"
+
+- name: Create Upgrade Plan for Agent
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('template', 'agent.yml') | from_yaml }}"
