@@ -1,0 +1,5 @@
+- become: yes
+  name: Update Nodes via apt
+  apt:
+    update_cache: yes
+    upgrade: 'yes'
